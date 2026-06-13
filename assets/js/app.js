@@ -152,10 +152,14 @@
       });
     }
 
+    // シェア（選んだテーマと結果見出しのみ。個人情報は一切含めない）
+    var shareText = "「" + (node.title || "") + "」｜日米の税務をUSCPAが解説 - Watson US CPA";
+    card.appendChild(makeShareRow(shareText, "このトピックをXでシェア"));
+
     // CTA
     var cta = el("div", "dx-cta");
-    cta.appendChild(el("p", null, "あなたのケースに合わせて、より詳しい情報を note で発信しています。フォローして最新の節税ポイントを受け取ってください。"));
-    var ctaBtn = el("a", "btn btn-primary", "noteをフォローして続きを読む");
+    cta.appendChild(el("p", null, "より詳しい解説は note で発信しています。フォローすると新しい記事が届きます。"));
+    var ctaBtn = el("a", "btn btn-primary", "noteをフォローする");
     ctaBtn.href = NOTE_PROFILE;
     ctaBtn.target = "_blank";
     ctaBtn.rel = "noopener";
@@ -173,6 +177,21 @@
       "※ 表示内容は一般的な情報であり、個別の税務アドバイスではありません。要件・金額基準は年度や状況で変わります。実際のご判断は専門家にご相談ください。"));
 
     mount.appendChild(card);
+  }
+
+  // サイトの正規URL（個人情報を含むhash等は付けない）
+  function siteUrl() { return location.origin + location.pathname; }
+
+  function makeShareRow(text, label) {
+    var row = el("div", "dx-share");
+    var a = el("a", "dx-share-btn");
+    a.href = "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(text) + "&url=" + encodeURIComponent(siteUrl());
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.innerHTML = '<span class="dx-x" aria-hidden="true">𝕏</span>' + escapeHtml(label || "Xでシェア");
+    row.appendChild(a);
+    return row;
   }
 
   function makeBackButton() {

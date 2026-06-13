@@ -4,13 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Roth か Traditional IRA 判定ツール ｜ Watson US CPA</title>
-<meta name="description" content="日本帰国・Exit Tax（出国税）・適格性・税率見通しまで統合して、Roth IRA と Traditional IRA のどちらが向いているかを判定する無料ツール。米国公認会計士（US CPA）監修。" />
+<meta name="description" content="日本への帰国・Exit Tax（出国税）・拠出の適格性・退職後の税率まで踏まえて、Roth IRA と Traditional IRA のどちらが向いているかを判定する無料ツール。米国公認会計士（USCPA）が作成。入力はブラウザ内のみで処理されます。" />
 
 <!-- OGP -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Roth か Traditional IRA 判定ツール ｜ Watson US CPA" />
-<meta property="og:description" content="日本帰国・Exit Tax まで考慮して、はい/いいえで一発判定。米国公認会計士監修。" />
+<meta property="og:description" content="日本への帰国・Exit Tax まで考慮して、自分に向いた IRA を5ステップで判定。米国公認会計士（USCPA）が作成。" />
 <meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,7 +42,7 @@
   .site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
   .header-inner{ max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
   .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--navy); }
-  .brand-mark{ display:grid; place-items:center; width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg, var(--navy), var(--teal)); color:#fff; font-weight:700; font-size:19px; }
+  .brand-mark{ width:38px; height:38px; border-radius:10px; object-fit:cover; background:#ecebe3; border:1px solid var(--line); }
   .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
   .brand-text strong{ font-size:16px; font-weight:700; }
   .brand-text small{ color:var(--tx-secondary); font-size:11px; }
@@ -102,15 +105,15 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="../">
-      <span class="brand-mark">W</span>
+      <img class="brand-mark" src="../assets/img/avatar.png" alt="Watson US CPA" width="38" height="38" />
       <span class="brand-text">
         <strong>Watson US CPA</strong>
-        <small>日米クロスボーダー税務</small>
+        <small>米国公認会計士｜日米の税務</small>
       </span>
     </a>
     <nav class="site-nav">
       <a href="../">ホーム</a>
-      <a href="../#diagnosis">節税診断</a>
+      <a href="../#diagnosis">テーマから調べる</a>
       <a class="nav-cta" href="https://note.com/wtcajptc" target="_blank" rel="noopener">noteを読む</a>
     </nav>
   </div>
@@ -302,7 +305,7 @@
 
 <div style="margin-top:1.5rem; text-align:center;">
   <a id="shareX" class="opt" href="#" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 18px;">
-    <i class="ti ti-brand-x" aria-hidden="true"></i> X で共有する
+    <i class="ti ti-brand-x" aria-hidden="true"></i> このツールを X で紹介する
   </a>
 </div>
 </main>
@@ -313,7 +316,7 @@
     <p class="footer-brand">Watson US CPA</p>
     <nav class="footer-nav">
       <a href="../">ホーム</a>
-      <a href="../#diagnosis">節税診断</a>
+      <a href="../#diagnosis">テーマから調べる</a>
       <a href="https://note.com/wtcajptc" target="_blank" rel="noopener">note</a>
       <a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">X (Twitter)</a>
     </nav>
@@ -543,6 +546,10 @@ function renderRec(){
   if(r.danger) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-danger); color:var(--tx-danger); border-radius:var(--r-md); font-size:12.5px; line-height:1.7;"><i class="ti ti-alert-octagon" aria-hidden="true"></i> <b>Exit Tax 警告:</b> ${r.danger}</div>`;
   if(r.conflict) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-warning); color:var(--tx-warning); border-radius:var(--r-md); font-size:12.5px; line-height:1.65;"><i class="ti ti-alert-triangle" aria-hidden="true"></i> <b>上書き要因:</b> ${r.conflict}</div>`;
   if(r.ladder) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-info); color:var(--tx-info); border-radius:var(--r-md); font-size:12.5px; line-height:1.7;"><b><i class="ti ti-stairs-up" aria-hidden="true"></i> 転換ラダーの要点</b><br>① 米国在住・低税率の年に少額ずつTraditional→Roth転換（転換に所得制限なし）<br>② 帰国・受給の前年までに完了 ③ 不可逆・pro-rata・州税に注意 ④ 帰国後の転換は日本でも課税されうるので米国在住中に</div>`;
+  // 結果のシェア（収入・資産などの入力は一切含めず、判定結果の見出しのみ）
+  var shareText = 'Roth/Traditional IRA 判定ツールの結果は「' + r.headline + '」でした｜日米の税務をUSCPAが解説 - Watson US CPA';
+  var shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(location.origin + location.pathname);
+  html += `<div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--bd-tertiary);"><a href="${shareUrl}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:#1b2733; color:#fff; font-size:13px; font-weight:700; text-decoration:none;"><i class="ti ti-brand-x" aria-hidden="true"></i> この結果をXでシェア</a><div style="font-size:11px; color:var(--tx-tertiary); margin-top:7px;"><i class="ti ti-lock" aria-hidden="true"></i> 収入・資産などの入力内容は含まれません。共有されるのは判定結果の見出しだけです。</div></div>`;
   html += `</div>`;
   el.innerHTML = html;
 }
