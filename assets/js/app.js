@@ -81,23 +81,6 @@
     mount.appendChild(card);
   }
 
-  function articleLink(key) {
-    var a = ARTICLES[key];
-    if (!a) return null;
-    var hasUrl = a.url && a.url.trim() !== "";
-    var link = el("a", "dx-article" + (hasUrl ? "" : " is-pending"));
-    link.href = hasUrl ? a.url : NOTE_PROFILE;
-    link.target = "_blank";
-    link.rel = "noopener";
-    var ico = el("span", "ico", "note");
-    var meta = el("span", "meta");
-    meta.appendChild(el("strong", null, escapeHtml(a.title)));
-    meta.appendChild(el("span", null, hasUrl ? "noteで読む →" : "準備中 — noteの一覧を見る →"));
-    link.appendChild(ico);
-    link.appendChild(meta);
-    return link;
-  }
-
   // notes.json の記事オブジェクト（title/url）→ リンクDOM
   function noteArticleLink(a) {
     var link = el("a", "dx-article");
@@ -135,34 +118,37 @@
       card.appendChild(el("div", "dx-disclaimer", escapeHtml(node.note)));
     }
 
-    // 関連note（手書きカタログ）
+    // 関連note（厳選ピン留め＋タイトル連動の自動補充を「1つのリスト」に統合）
+    var NOTE_MAX = 6;
     var shownUrls = {};
-    var keys = (node.articles || []).filter(function (k) { return ARTICLES[k]; });
-    if (keys.length) {
-      card.appendChild(el("p", "dx-articles-head", "📘 もっと深掘りする（関連note）"));
-      var list = el("div", "dx-articles");
-      keys.forEach(function (k) {
-        var link = articleLink(k);
-        if (link) list.appendChild(link);
-        if (ARTICLES[k] && ARTICLES[k].url) shownUrls[ARTICLES[k].url] = true;
-      });
-      card.appendChild(list);
-    }
+    var noteHead = el("p", "dx-articles-head", "📘 もっと深掘りする（関連note）");
+    var noteList = el("div", "dx-articles");
+    noteHead.style.display = "none";
+    card.appendChild(noteHead);
+    card.appendChild(noteList);
 
-    // 関連note（noteから自動取得・タイトルキーワードで連動）
+    function revealNotes() { if (noteList.children.length) noteHead.style.display = ""; }
+
+    // 1) 手書きカタログのうちURLが入っている記事を先頭にピン留め（準備中は出さない）
+    (node.articles || []).forEach(function (k) {
+      var a = ARTICLES[k];
+      if (!a || !a.url || shownUrls[a.url]) return;
+      shownUrls[a.url] = true;
+      noteList.appendChild(noteArticleLink({ title: a.title, url: a.url }));
+    });
+    revealNotes();
+
+    // 2) 残り枠を、noteから自動取得した記事でタイトル連動して補充（重複除外）
     if (window.WNOTES) {
-      var autoHead = el("p", "dx-articles-head", "📰 関連する最新のnote記事");
-      var autoList = el("div", "dx-articles");
-      autoHead.style.display = "none";
-      card.appendChild(autoHead);
-      card.appendChild(autoList);
       window.WNOTES.ready.then(function () {
-        var matched = window.WNOTES.match(KEYWORDS[nodeId] || [], 5).filter(function (a) {
-          return a.url && !shownUrls[a.url];
-        });
-        if (!matched.length) return;
-        autoHead.style.display = "";
-        matched.forEach(function (a) { autoList.appendChild(noteArticleLink(a)); });
+        var room = NOTE_MAX - noteList.children.length;
+        if (room > 0) {
+          window.WNOTES.match(KEYWORDS[nodeId] || [], room + 5)
+            .filter(function (a) { return a.url && !shownUrls[a.url]; })
+            .slice(0, room)
+            .forEach(function (a) { shownUrls[a.url] = true; noteList.appendChild(noteArticleLink(a)); });
+        }
+        revealNotes();
       });
     }
 
