@@ -550,7 +550,7 @@ onChange();
 
     // 5471 / 8621 が該当しそうなら、その解説noteを必ず1件ずつ先頭にピン留め
     if (typeof S !== 'undefined' && S.corp) {
-      var a5471 = firstMatch(["5471", "cfc", "gilti", "外国法人"]);
+      var a5471 = firstMatch(["会社を持っている", "日本に会社", "外国法人", "5471"]);
       if (a5471) { items.push({ a: a5471, tag: 'Form 5471' }); shown[a5471.url] = true; }
     }
     if (typeof S !== 'undefined' && S.pfic) {
