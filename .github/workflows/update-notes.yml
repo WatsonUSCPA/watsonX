@@ -1,9 +1,9 @@
 name: Update note articles
 
 on:
-  # 毎日 06:00 JST（21:00 UTC）に自動取得
+  # 毎週 日曜 06:00 JST（＝土曜 21:00 UTC）に自動取得
   schedule:
-    - cron: "0 21 * * *"
+    - cron: "0 21 * * 6"
   # 手動実行も可能
   workflow_dispatch:
 
