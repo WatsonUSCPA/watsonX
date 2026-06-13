@@ -108,7 +108,7 @@ const FLOW = {
       "放棄のタイミング・前年までの申告整備で結果が変わるため、放棄を決める前の事前設計が肝心です。",
     ],
     articles: ["exitTax401k", "greenCardAbandon"],
-    tools: ["iraType"],
+    tools: ["exitTax", "iraType"],
   },
   r_assets: {
     result: true,
@@ -354,6 +354,9 @@ const IRA_KEYWORDS = ["ira", "roth", "traditional", "401k", "転換", "backdoor"
 /* FBAR/FATCAツール用キーワード（fbar/index.html から参照） */
 const FATCA_KEYWORDS = ["fbar", "fatca", "8938", "5471", "8621", "pfic", "海外資産", "海外口座", "報告", "開示", "申告漏れ", "投資信託"];
 
+/* Exit Tax（出国税）ツール用キーワード（exit-tax/index.html から参照） */
+const EXIT_KEYWORDS = ["出国税", "exit tax", "exit", "expatriate", "covered", "国籍離脱", "市民権", "放棄", "グリーンカード", "永住権"];
+
 /* -------------------------------------------------------------
  * 4) 判定ツール登録簿
  *    ★ ツールを増やすときは、ここに1件足すだけ。
@@ -382,13 +385,14 @@ const TOOLS = {
     ready: true,
   },
   exitTax: {
-    title: "Exit Tax（出国税）対象判定",
-    desc: "グリーンカードの保有期間や資産規模から、出国税の対象（covered expatriate）に当たるかを確認できるようにする予定です。",
+    title: "Exit Tax（出国税）判定ツール",
+    desc: "市民権・長期グリーンカードを手放す前に。州の財産制度を踏まえた純資産2M判定から、含み益・住宅控除・IRA/401k の扱いまで踏み込んで、出国税がかかりそうかを判定します。",
+    url: "exit-tax/",
     emoji: "🛫",
-    ready: false,
-    notesQuery: "出国税",
+    badge: "無料ツール",
+    ready: true,
   },
 };
 
 /* app.js から参照できるように公開 */
-window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, FATCA_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
+window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, FATCA_KEYWORDS, EXIT_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };

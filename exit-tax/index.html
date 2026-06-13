@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exit Tax（出国税）判定ツール ｜ Watson US CPA</title>
+<meta name="description" content="米国市民権・長期グリーンカードを手放す前に。州の財産制度（コミュニティ/セパレート）を踏まえた純資産2M判定から、含み益・住宅売却益控除・IRA/401k の扱いまで踏み込んで、出国税（Exit Tax / §877A）がかかりそうかを判定する無料ツール。米国公認会計士（USCPA）が作成。入力はブラウザ内のみで処理されます。" />
+
+<!-- OGP -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Exit Tax（出国税）判定ツール ｜ Watson US CPA" />
+<meta property="og:description" content="純資産2M判定 → 含み益・住宅控除・IRA/401k の扱いまで。出国税がかかりそうかを段階判定。米国公認会計士（USCPA）が作成。" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css" />
+<style>
+  :root {
+    --navy:#0f2a43; --navy-700:#16395a; --teal:#1f8a8a; --teal-600:#18706f; --gold:#c9a35a;
+    --bg-primary:#ffffff; --bg-secondary:#f6f8fa; --bg-tertiary:#eef3f8;
+    --bg-info:#e8f1fb; --bg-warning:#f7efdd; --bg-success:#e3f4f1; --bg-danger:#fbeaea;
+    --tx-primary:#1b2733; --tx-secondary:#4a5a6a; --tx-tertiary:#7a8a99;
+    --tx-info:#11497e; --tx-warning:#8a6516; --tx-success:#18706f; --tx-danger:#a32d2d;
+    --bd-tertiary:rgba(15,42,67,0.12); --bd-secondary:rgba(15,42,67,0.28); --bd-info:#2f7fc7;
+    --line:#e2e8ef;
+    --r-md:10px; --r-lg:14px;
+    --shadow:0 10px 30px rgba(15,42,67,0.08);
+    --font:"Noto Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; font-family:var(--font); color:var(--tx-primary); line-height:1.7; background:var(--bg-secondary); -webkit-font-smoothing:antialiased; }
+
+  .site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .header-inner{ max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--navy); }
+  .brand-mark{ width:38px; height:38px; object-fit:contain; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+  .brand-text strong{ font-size:16px; font-weight:700; }
+  .brand-text small{ color:var(--tx-secondary); font-size:11px; }
+  .site-nav{ display:flex; align-items:center; gap:20px; }
+  .site-nav a{ text-decoration:none; color:var(--tx-secondary); font-size:14px; font-weight:500; }
+  .site-nav a:hover{ color:var(--navy); }
+  .nav-cta{ padding:8px 16px; border-radius:999px; background:var(--navy); color:#fff !important; }
+  .nav-cta:hover{ background:var(--navy-700); }
+
+  .ira-main{ max-width:760px; margin:0 auto; padding:1.75rem 1.25rem 2.5rem; }
+  h1{ font-size:24px; font-weight:700; margin:0; color:var(--navy); line-height:1.4; }
+  h2{ font-size:16px; font-weight:500; margin:0; }
+  b{ font-weight:700; }
+  ul{ margin:0; }
+  .step{ margin-top:1.25rem; padding:1.2rem 1.35rem; background:var(--bg-primary); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); }
+  .label{ font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--teal-600); }
+  .lead{ font-size:13px; color:var(--tx-secondary); margin:8px 0 12px; line-height:1.6; }
+  .hint{ font-size:12px; color:var(--tx-tertiary); margin:6px 0 0; line-height:1.6; }
+  .opt{ font-family:inherit; cursor:pointer; background:var(--bg-primary); color:var(--tx-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); padding:8px 15px; font-size:13px; transition:background .12s, border-color .12s, transform .05s; }
+  .opt:hover{ background:var(--bg-tertiary); border-color:var(--teal); }
+  .opt:active{ transform:scale(0.98); }
+  .opt.on{ background:var(--navy); color:#fff; border-color:var(--navy); }
+  .row{ display:flex; gap:6px; flex-wrap:wrap; }
+  .field-label{ font-size:13px; color:var(--tx-secondary); display:block; margin-bottom:6px; }
+  .pill{ display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:500; }
+  .badge{ display:inline-flex; align-items:center; gap:5px; padding:4px 11px; border-radius:999px; font-size:12px; font-weight:500; background:var(--bg-info); color:var(--tx-info); }
+  .card{ background:var(--bg-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-lg); padding:1rem 1.25rem; }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .page-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:.5rem; }
+
+  /* 金額行（ラベル＋円入力） */
+  .amt{ display:grid; grid-template-columns:1fr auto; gap:8px 10px; align-items:center; }
+  .amt > label{ font-size:13px; color:var(--tx-primary); }
+  .yenbox{ display:flex; align-items:center; gap:5px; }
+  .yenbox span{ font-size:13px; color:var(--tx-secondary); }
+  input[type=number]{ width:160px; max-width:46vw; height:38px; padding:7px 10px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); text-align:right; }
+  .grid-cf{ display:grid; grid-template-columns:1fr; gap:10px; }
+  .cf-item{ border:1px solid var(--bd-tertiary); border-radius:var(--r-md); padding:10px 12px; }
+  .cf-item .cf-name{ font-size:13px; font-weight:700; color:var(--navy); margin-bottom:7px; }
+  .cf-inputs{ display:flex; gap:14px; flex-wrap:wrap; }
+  .cf-inputs label{ font-size:11.5px; color:var(--tx-secondary); display:block; margin-bottom:3px; }
+
+  .site-footer{ background:var(--navy); color:#c5d4e1; padding:40px 0 32px; margin-top:2rem; }
+  .footer-inner{ max-width:1080px; margin:0 auto; padding:0 24px; text-align:center; }
+  .footer-brand{ font-weight:700; color:#fff; font-size:17px; margin:0 0 12px; }
+  .footer-nav{ display:flex; justify-content:center; gap:20px; margin-bottom:18px; flex-wrap:wrap; }
+  .footer-nav a{ color:#cfeae9; text-decoration:none; font-size:14px; }
+  .footer-nav a:hover{ text-decoration:underline; }
+  .footer-disclaimer{ max-width:640px; margin:0 auto 14px; font-size:12px; color:#8fa6b9; line-height:1.65; }
+  .footer-copy{ font-size:12px; color:#7e93a6; margin:0; }
+
+  @media (max-width:720px){
+    .site-nav{ gap:14px; }
+    .site-nav a:not(.nav-cta){ display:none; }
+    h1{ font-size:20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../">
+      <img class="brand-mark" src="../assets/img/avatar.png" alt="Watson US CPA" width="38" height="38" />
+      <span class="brand-text">
+        <strong>Watson US CPA</strong>
+        <small>米国公認会計士｜日米の税務</small>
+      </span>
+    </a>
+    <nav class="site-nav">
+      <a href="../">ホーム</a>
+      <a href="../#diagnosis">テーマから調べる</a>
+      <a class="nav-cta" href="https://note.com/wtcajptc" target="_blank" rel="noopener">noteを読む</a>
+    </nav>
+  </div>
+</header>
+
+<main class="ira-main">
+<h2 class="sr-only">米国市民権・長期グリーンカードの放棄に伴う出国税（Exit Tax / §877A）について、covered expatriate 判定から含み益の計算、住宅売却益控除・IRA/401k の扱いまでを段階的に判定するツール</h2>
+
+<div class="page-head">
+  <i class="ti ti-plane-departure" style="font-size:24px; color:var(--tx-secondary)" aria-hidden="true"></i>
+  <h1>Exit Tax（出国税）判定ツール</h1>
+</div>
+<p class="lead">市民権・長期グリーンカードを手放すと、<b>全世界の資産を時価で売ったものとみなして</b>課税される場合があります（§877A）。まず対象者（covered expatriate）かを判定し、該当する場合は含み益を計算して、出国税がかかりそうかまでご案内します。金額は<b>日本円</b>で入力してください（2025年末レート 1ドル=¥156.61 で米ドル基準と比較）。</p>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="label"><i class="ti ti-id-badge-2" aria-hidden="true"></i> STEP 1 — 前提（誰に・どの州で）</div>
+  <div style="margin-bottom:12px;">
+    <span class="field-label">あなたの立場</span>
+    <div class="row" id="g-person">
+      <button class="opt" data-k="person" data-v="citizen">米国市民（市民権を放棄する／検討中）</button>
+      <button class="opt" data-k="person" data-v="ltr">長期グリーンカード保持者（過去15年中8年以上）</button>
+      <button class="opt" data-k="person" data-v="none">どちらでもない</button>
+    </div>
+    <p class="hint">出国税は、市民権を放棄する米国市民か、長期居住者（long-term resident）としてグリーンカードを手放す人が対象です。短期のGC保持者や非居住者は原則対象外です。</p>
+  </div>
+  <div style="margin-bottom:12px;">
+    <span class="field-label">申告ステータス（住宅売却益控除の額に影響）</span>
+    <div class="row" id="g-filing">
+      <button class="opt" data-k="filing" data-v="single">独身（Single）</button>
+      <button class="opt" data-k="filing" data-v="mfj">夫婦合算（MFJ）</button>
+    </div>
+  </div>
+  <div>
+    <span class="field-label">居住する州の財産制度</span>
+    <div class="row" id="g-regime">
+      <button class="opt" data-k="regime" data-v="community">コミュニティ・プロパティ州</button>
+      <button class="opt" data-k="regime" data-v="separate">セパレート・プロパティ州</button>
+      <button class="opt" data-k="regime" data-v="unknown">わからない</button>
+    </div>
+    <p class="hint">コミュニティ・プロパティ州（CA・TX・WA・AZ・NV・NM・ID・LA・WI）では、婚姻中に得た資産は原則<b>夫婦で半分ずつ</b>の所有とみなされ、1人あたりの純資産が下がります。セパレート州は名義人の所有です。</p>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="label"><i class="ti ti-scale" aria-hidden="true"></i> STEP 2 — 純資産テスト（$2M）と他の2要件</div>
+  <p id="nwLead" class="lead">資産の<b>時価（現在の価値）</b>を日本円で入力してください。合計から負債を引いた純資産で判定します。</p>
+  <div class="amt" id="nwInputs"></div>
+  <div id="nwStrip" class="card" style="display:none; margin-top:12px; padding:.9rem 1.1rem;"></div>
+
+  <div style="margin-top:16px;">
+    <span class="field-label">過去5年の「平均の米国所得税額」が <b id="incThr">$206,000</b> を超えていますか？</span>
+    <div class="row" id="g-income">
+      <button class="opt" data-k="income" data-v="yes">はい</button>
+      <button class="opt" data-k="income" data-v="no">いいえ</button>
+      <button class="opt" data-k="income" data-v="unknown">不明</button>
+    </div>
+  </div>
+  <div style="margin-top:12px;">
+    <span class="field-label">過去5年分の米国納税を適正に申告・納付済みと、Form 8854 で証明できますか？</span>
+    <div class="row" id="g-certify">
+      <button class="opt" data-k="certify" data-v="yes">はい</button>
+      <button class="opt" data-k="certify" data-v="no">いいえ・自信がない</button>
+      <button class="opt" data-k="certify" data-v="unknown">不明</button>
+    </div>
+    <p class="hint">この3つ（純資産2M／所得税額／5年の納税証明）の<b>いずれか1つでも</b>当てはまると covered expatriate に該当します。</p>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <div class="label"><i class="ti ti-trending-up" aria-hidden="true"></i> STEP 3 — 含み益の入力（covered に該当する場合）</div>
+  <p class="lead">covered expatriate に該当すると、含み益（時価−取得原価）に課税され得ます。各資産の<b>取得原価（コスト）</b>を日本円で入力してください（時価は STEP 2 の入力を使います）。</p>
+  <div id="cfInputs" class="grid-cf"></div>
+  <p class="hint"><i class="ti ti-info-circle" aria-hidden="true"></i> 401(k)・IRA は mark-to-market（時価課税）とは別ルールで扱われるため、含み益の合計には入れず、STEP 4 で個別にご案内します。</p>
+</div>
+
+<!-- STEP 4 -->
+<div class="step" style="background:var(--bg-tertiary);">
+  <div class="label"><i class="ti ti-clipboard-check" aria-hidden="true"></i> STEP 4 — 判定結果</div>
+  <div id="rec" style="margin-top:10px;"></div>
+</div>
+
+<div class="step" id="relatedNotes" style="display:none;">
+  <div class="label"><i class="ti ti-notebook" aria-hidden="true"></i> 関連する note 記事</div>
+  <p class="lead">出国税・グリーンカード放棄・IRA/401k の扱いの解説です。公開中の最新記事から自動で表示しています。</p>
+  <div id="exitNotesList" style="display:grid; gap:8px;"></div>
+</div>
+
+<p style="font-size:11px; color:var(--tx-tertiary); margin-top:1.25rem; line-height:1.65;">
+  ※ 本ツールは2025年の基準（純資産 $2,000,000／所得税額 $206,000／mark-to-market 控除 $890,000／住宅売却益控除 単身 $250,000・夫婦 $500,000）に基づく、ごく粗い目安の教育情報で、税務アドバイスではありません。実際の課税は資産の種類・取得時期・為替・各種例外・条約で大きく変わり、IRA/401k・繰延報酬・信託は特別ルールがあります。市民権・グリーンカードの放棄は不可逆で影響が大きいため、実行前に必ず日米に詳しい専門家へご相談ください。
+</p>
+
+<div style="margin-top:1.5rem; text-align:center;">
+  <a id="shareX" class="opt" href="#" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:10px 18px;">
+    <i class="ti ti-brand-x" aria-hidden="true"></i> このツールを X で紹介する
+  </a>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-brand">Watson US CPA</p>
+    <nav class="footer-nav">
+      <a href="../">ホーム</a>
+      <a href="../#diagnosis">テーマから調べる</a>
+      <a href="https://note.com/wtcajptc" target="_blank" rel="noopener">note</a>
+      <a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">X (Twitter)</a>
+    </nav>
+    <p class="footer-disclaimer">
+      本サイトの内容は一般的な情報提供を目的としたものであり、個別の税務・法務上のアドバイスを構成するものではありません。
+      実際のご判断にあたっては、必ず資格を有する専門家にご相談ください。
+    </p>
+    <p class="footer-copy">© <span id="year"></span> Watson US CPA</p>
+  </div>
+</footer>
+
+<script>
+// ===== 2025年の基準（USD）。1か所で管理 =====
+const RATE_JPY_PER_USD = 156.61;   // 2025年末の米財務省レート
+const NETWORTH_USD = 2000000;      // 純資産テスト $2M
+const INCOME_USD   = 206000;       // 平均所得税額テスト（2025）
+const MTM_EXCL_USD = 890000;       // mark-to-market 控除額（2025）
+const HOME_EXCL_USD = { single:250000, mfj:500000 }; // §121 住宅売却益控除
+
+// 時価（FMV）入力：純資産テストと含み益の両方で使う
+const FMV_ROWS = [
+  { key:'fmvStocks', label:'株・証券（投資口座）' },
+  { key:'fmvHome',   label:'自宅（主たる住居）' },
+  { key:'fmvRE',     label:'その他の投資用不動産' },
+  { key:'fmvTrad',   label:'Traditional IRA・確定拠出年金など（税引前）' },
+  { key:'fmvRoth',   label:'Roth IRA' },
+  { key:'fmv401',    label:'401(k)' },
+  { key:'fmvOther',  label:'その他の資産（事業・暗号資産・預金など）' },
+  { key:'debt',      label:'（−）負債・ローンの残高', minus:true },
+];
+// 含み益で取得原価（コスト）を入力する資産
+const COST_ROWS = [
+  { key:'costStocks', fmv:'fmvStocks', name:'株・証券' },
+  { key:'costHome',   fmv:'fmvHome',   name:'自宅（主たる住居）' },
+  { key:'costRE',     fmv:'fmvRE',     name:'その他の投資用不動産' },
+  { key:'costOther',  fmv:'fmvOther',  name:'その他の資産' },
+  { key:'costTrad',   fmv:'fmvTrad',   name:'Traditional IRA の課税済み（after-tax）拠出分', note:'通常は 0。税引前で積んだなら 0 のままで構いません。' },
+  { key:'costRoth',   fmv:'fmvRoth',   name:'Roth IRA の拠出元本', note:'拠出した元本の累計（運用益を除いた額）。' },
+];
+
+const S = { person:null, filing:null, regime:null, income:null, certify:null, rothq:null };
+FMV_ROWS.forEach(function(r){ S[r.key]=NaN; });
+COST_ROWS.forEach(function(r){ S[r.key]=NaN; });
+
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function usd(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+function num(v){ return (isNaN(v)||v<0)?0:v; }
+function toUsd(jpy){ return jpy/RATE_JPY_PER_USD; }
+
+function pickGroup(groupId, key){
+  document.querySelectorAll('#'+groupId+' .opt').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      S[key] = (S[key]===b.dataset.v) ? null : b.dataset.v;
+      document.querySelectorAll('#'+groupId+' .opt').forEach(x=> x.classList.toggle('on', x.dataset.v===S[key]));
+      onChange();
+    });
+  });
+}
+['g-person','g-filing','g-regime','g-income','g-certify'].forEach(id=>{
+  const g=document.querySelector('#'+id+' .opt'); if(g) pickGroup(id, g.dataset.k);
+});
+
+// ---- STEP 2: 時価（円）入力欄を生成 ----
+(function buildFmv(){
+  const wrap=document.getElementById('nwInputs');
+  FMV_ROWS.forEach(function(r){
+    const lab=document.createElement('label'); lab.textContent=r.label; lab.setAttribute('for', r.key);
+    if(r.minus) lab.style.color='var(--tx-danger)';
+    const box=document.createElement('div'); box.className='yenbox';
+    const y=document.createElement('span'); y.textContent='¥';
+    const inp=document.createElement('input'); inp.id=r.key; inp.type='number'; inp.inputMode='numeric';
+    inp.min='0'; inp.step='100000'; inp.placeholder='0';
+    inp.addEventListener('input', function(){ const v=parseFloat(inp.value); S[r.key]=(isNaN(v)||v<0)?NaN:v; onChange(); });
+    box.appendChild(y); box.appendChild(inp);
+    wrap.appendChild(lab); wrap.appendChild(box);
+  });
+})();
+
+// ---- STEP 3: 取得原価（円）入力欄を生成 ----
+(function buildCost(){
+  const wrap=document.getElementById('cfInputs');
+  COST_ROWS.forEach(function(r){
+    const item=document.createElement('div'); item.className='cf-item';
+    const nm=document.createElement('div'); nm.className='cf-name'; nm.textContent=r.name;
+    const ins=document.createElement('div'); ins.className='cf-inputs';
+
+    const c1=document.createElement('div');
+    const l1=document.createElement('label'); l1.textContent='取得原価（コスト・円）';
+    const b1=document.createElement('div'); b1.className='yenbox';
+    const y1=document.createElement('span'); y1.textContent='¥';
+    const i1=document.createElement('input'); i1.type='number'; i1.inputMode='numeric'; i1.min='0'; i1.step='100000'; i1.placeholder='0';
+    i1.addEventListener('input', function(){ const v=parseFloat(i1.value); S[r.key]=(isNaN(v)||v<0)?NaN:v; onChange(); });
+    b1.appendChild(y1); b1.appendChild(i1); c1.appendChild(l1); c1.appendChild(b1);
+
+    const c2=document.createElement('div');
+    const l2=document.createElement('label'); l2.textContent='時価（STEP 2 より）';
+    const v2=document.createElement('div'); v2.id='fmvShow_'+r.fmv; v2.style.cssText='font-size:14px; font-weight:700; color:var(--navy); padding-top:4px;'; v2.textContent='¥0';
+    c2.appendChild(l2); c2.appendChild(v2);
+
+    ins.appendChild(c1); ins.appendChild(c2); item.appendChild(nm); item.appendChild(ins);
+    if(r.note){ const n=document.createElement('p'); n.className='hint'; n.textContent=r.note; item.appendChild(n); }
+
+    // Roth は適格判定を追加
+    if(r.key==='costRoth'){
+      const q=document.createElement('div'); q.style.marginTop='8px';
+      q.innerHTML='<span class="field-label" style="margin-bottom:4px;">Roth は適格（59.5歳以上＋5年保有）ですか？</span>';
+      const row=document.createElement('div'); row.className='row'; row.id='g-rothq';
+      ['yes:適格','no:未適格','unknown:不明'].forEach(function(p){
+        const v=p.split(':'); const btn=document.createElement('button'); btn.className='opt'; btn.dataset.k='rothq'; btn.dataset.v=v[0]; btn.textContent=v[1];
+        row.appendChild(btn);
+      });
+      q.appendChild(row); item.appendChild(q);
+    }
+    wrap.appendChild(item);
+  });
+  pickGroup('g-rothq','rothq');
+})();
+
+// ---- 計算 ----
+function regimeFactor(){ return (S.regime==='community' && S.filing==='mfj') ? 0.5 : 1; }
+
+function netWorth(){
+  // 世帯（またはご自身名義）の資産合計 − 負債
+  let assets=0;
+  FMV_ROWS.forEach(function(r){ if(!r.minus) assets += num(S[r.key]); });
+  const household = assets - num(S.debt);
+  const indiv = household * regimeFactor();
+  return { household:household, indiv:indiv, indivUSD: toUsd(indiv) };
+}
+
+function coveredStatus(){
+  const nw=netWorth();
+  const reasons=[];
+  if(nw.indivUSD > NETWORTH_USD) reasons.push('純資産が $2,000,000 超');
+  if(S.income==='yes') reasons.push('平均所得税額が基準超');
+  if(S.certify==='no') reasons.push('5年の納税証明ができない');
+  const unsure = (S.income==='unknown') || (S.certify==='unknown');
+  let level;
+  if(reasons.length) level='covered';
+  else if(unsure) level='maybe';
+  else level='no';
+  return { level:level, reasons:reasons, nw:nw };
+}
+
+function gains(){
+  const g = function(fmvKey, costKey){ return num(S[fmvKey]) - num(S[costKey]); };
+  const stocks = g('fmvStocks','costStocks');
+  const re     = g('fmvRE','costRE');
+  const other  = g('fmvOther','costOther');
+  const homeRaw= g('fmvHome','costHome');
+  const homeExclJPY = (HOME_EXCL_USD[S.filing] || 0) * RATE_JPY_PER_USD;
+  const homeAfter = Math.max(0, homeRaw - homeExclJPY);
+  const netMTM = stocks + re + other + homeAfter;
+  const exclJPY = MTM_EXCL_USD * RATE_JPY_PER_USD;
+  const taxableMTM = Math.max(0, netMTM - exclJPY);
+
+  const tradTaxable = Math.max(0, num(S.fmvTrad) - num(S.costTrad));
+  const rothEarnings = Math.max(0, num(S.fmvRoth) - num(S.costRoth));
+  const rothTaxable = (S.rothq==='yes') ? 0 : rothEarnings;
+
+  return { stocks:stocks, re:re, other:other, homeRaw:homeRaw, homeExclJPY:homeExclJPY, homeAfter:homeAfter,
+           netMTM:netMTM, exclJPY:exclJPY, taxableMTM:taxableMTM,
+           tradTaxable:tradTaxable, rothEarnings:rothEarnings, rothTaxable:rothTaxable };
+}
+
+// ---- 描画 ----
+function renderFmvShows(){
+  FMV_ROWS.forEach(function(r){
+    const el=document.getElementById('fmvShow_'+r.key); if(el) el.textContent=yen(num(S[r.key]));
+  });
+}
+
+function renderNwStrip(){
+  const strip=document.getElementById('nwStrip');
+  const lead=document.getElementById('nwLead');
+  // 入力ラベルの趣旨を財産制度で出し分け
+  if(S.regime==='community' && S.filing==='mfj'){
+    lead.innerHTML='資産の<b>時価</b>を日本円で。コミュニティ・プロパティ州では<b>夫婦合計</b>で入力してください（半分があなたの持分として判定します）。';
+  } else {
+    lead.innerHTML='資産の<b>時価</b>を日本円で。セパレート州・独身の場合は<b>ご自身名義分</b>を入力してください。';
+  }
+  const nw=netWorth();
+  const anyInput = FMV_ROWS.some(function(r){ return !isNaN(S[r.key]); });
+  if(!anyInput){ strip.style.display='none'; return; }
+  strip.style.display='block';
+  const over = nw.indivUSD > NETWORTH_USD;
+  const meta = over ? ['$2M 超 → 純資産テスト該当','danger'] : ['$2M 以下','success'];
+  const half = (S.regime==='community' && S.filing==='mfj');
+  strip.innerHTML =
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">'+
+      '<div><div style="font-size:12px;color:var(--tx-secondary);">あなたの純資産'+(half?'（夫婦合計の1/2）':'')+'</div>'+
+      '<div style="font-size:18px;font-weight:700;color:var(--navy);">'+yen(nw.indiv)+' <span style="font-size:13px;color:var(--tx-secondary);font-weight:500;">＝ 約 '+usd(nw.indivUSD)+'</span></div></div>'+
+      '<span class="pill" style="background:var(--bg-'+meta[1]+');color:var(--tx-'+meta[1]+');">'+meta[0]+'</span>'+
+    '</div>'+
+    '<div class="hint" style="margin-top:6px;">基準 $2,000,000 ＝ 約 '+yen(NETWORTH_USD*RATE_JPY_PER_USD)+'（1ドル=¥'+RATE_JPY_PER_USD+'）。'+(half?'コミュニティ州のため夫婦合計の半分で判定。':'')+'</div>';
+}
+
+function card(status, title, bodyHtml){
+  const m = status==='need' ? ['danger'] : status==='warn' ? ['warning'] : status==='ok' ? ['success'] : ['info'];
+  return '<div class="card" style="padding:.85rem 1rem; border-left:4px solid var(--tx-'+m[0]+');"><div style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:4px;">'+title+'</div><div style="font-size:12.5px;line-height:1.7;color:var(--tx-secondary);">'+bodyHtml+'</div></div>';
+}
+
+function renderRec(){
+  const el=document.getElementById('rec');
+
+  if(!S.person){
+    el.innerHTML='<div class="card" style="border-style:dashed;"><p style="margin:0;font-size:13px;color:var(--tx-secondary);"><i class="ti ti-forms" aria-hidden="true"></i> STEP 1 で立場を選ぶと判定を開始します。</p></div>';
+    return;
+  }
+  if(S.person==='none'){
+    el.innerHTML='<div class="card" style="border:2px solid var(--bd-info);"><span class="pill" style="background:var(--bg-success);color:var(--tx-success);font-size:14px;padding:5px 14px;"><i class="ti ti-check" aria-hidden="true"></i> 出国税の対象外</span><p style="font-size:13.5px;line-height:1.7;margin:10px 0 0;">出国税（§877A）は、市民権を放棄する米国市民か、長期グリーンカード保持者（過去15年中8年以上）が手放す場合が対象です。どちらでもなければ原則として対象外です。</p></div>';
+    return;
+  }
+
+  const cs=coveredStatus();
+
+  // --- not covered: 申告のみでOK ---
+  if(cs.level==='no'){
+    el.innerHTML='<div class="card" style="border:2px solid var(--bd-info);"><span class="pill" style="background:var(--bg-success);color:var(--tx-success);font-size:14px;padding:5px 14px;"><i class="ti ti-check" aria-hidden="true"></i> covered expatriate に非該当</span>'+
+      '<p style="font-size:13.5px;line-height:1.7;margin:10px 0 0;">3つの要件（純資産 $2M／平均所得税額 $206,000／5年の納税証明）に当てはまらないため、出国税（含み益への課税）は原則かかりません。'+
+      '<b>放棄の年に Form 8854 を提出</b>し、最終年の申告を済ませれば手続きは完了です。</p>'+
+      '<p class="hint" style="margin-top:8px;">※ 純資産は時価で変動します。基準に近い場合は、放棄の前に再確認を。</p></div>';
+    return;
+  }
+
+  // --- covered / maybe: 含み益を計算 ---
+  const g=gains();
+  const head = cs.level==='covered'
+    ? '<span class="pill" style="background:var(--bg-danger);color:var(--tx-danger);font-size:14px;padding:5px 14px;"><i class="ti ti-alert-octagon" aria-hidden="true"></i> covered expatriate に該当</span>'
+    : '<span class="pill" style="background:var(--bg-warning);color:var(--tx-warning);font-size:14px;padding:5px 14px;"><i class="ti ti-alert-triangle" aria-hidden="true"></i> covered の可能性（要確認）</span>';
+  const reasonTxt = cs.reasons.length ? '該当理由: '+cs.reasons.join(' / ') : '「不明」の回答があるため確定できません。所得税額・納税証明の確認を。';
+
+  const taxLikely = g.taxableMTM>0 || g.tradTaxable>0 || g.rothTaxable>0;
+  const verdict = taxLikely
+    ? '<span class="pill" style="background:var(--bg-danger);color:var(--tx-danger);"><i class="ti ti-coin" aria-hidden="true"></i> 出国税が発生しそう</span>'
+    : '<span class="pill" style="background:var(--bg-success);color:var(--tx-success);"><i class="ti ti-check" aria-hidden="true"></i> 現時点では課税は出なさそう</span>';
+
+  let html='<div class="card" style="border:2px solid var(--bd-info);">';
+  html+='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">'+head+'</div>';
+  html+='<p class="hint" style="margin:8px 0 0;">'+reasonTxt+'</p>';
+
+  // mark-to-market サマリー
+  html+='<div style="margin-top:14px; padding:12px; background:var(--bg-secondary); border-radius:var(--r-md);">';
+  html+='<div style="font-size:12px;font-weight:700;color:var(--teal-600);margin-bottom:8px;">含み益（mark-to-market）の計算</div>';
+  html+='<table style="width:100%; font-size:12.5px; border-collapse:collapse;">';
+  function trow(l, v, strong){ return '<tr><td style="padding:3px 0; color:var(--tx-secondary);">'+l+'</td><td style="padding:3px 0; text-align:right; '+(strong?'font-weight:700;color:var(--navy);':'')+'">'+v+'</td></tr>'; }
+  html+=trow('株・証券の含み益', yen(g.stocks));
+  html+=trow('投資不動産の含み益', yen(g.re));
+  html+=trow('その他の含み益', yen(g.other));
+  html+=trow('自宅の含み益（控除前）', yen(g.homeRaw));
+  html+=trow('（−）住宅売却益控除 '+usd(HOME_EXCL_USD[S.filing]||0), '−'+yen(g.homeExclJPY));
+  html+=trow('（−）mark-to-market 控除 '+usd(MTM_EXCL_USD), '−'+yen(g.exclJPY));
+  html+=trow('課税対象の含み益', yen(g.taxableMTM)+'（約 '+usd(toUsd(g.taxableMTM))+'）', true);
+  html+='</table>';
+  html+='<div class="hint" style="margin-top:8px;">含み益（住宅控除後）の合計が <b>'+usd(MTM_EXCL_USD)+'（約 '+yen(MTM_EXCL_USD*RATE_JPY_PER_USD)+'）</b> を超えると、超過分が課税対象になります。</div>';
+  html+='</div>';
+
+  html+='<div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">'+verdict+'</div>';
+
+  // 個別ガイダンス
+  html+='<div style="margin-top:14px; display:grid; gap:8px;">';
+  if(num(S.fmvHome)>0){
+    html+=card('info','🏠 自宅（住宅売却益控除）',
+      '自宅の含み益 '+yen(g.homeRaw)+' に対し、主たる住居なら §121 の控除（'+(S.filing==='mfj'?'夫婦 $500,000':'単身 $250,000')+' ＝ 約 '+yen(g.homeExclJPY)+'）を差し引けます。控除後は <b>'+yen(g.homeAfter)+'</b>。所有・居住の要件（過去5年中2年以上など）を満たす必要があります。');
+  }
+  if(num(S.fmv401)>0){
+    html+=card('warn','💼 401(k)（扱いが複雑）',
+      '401(k) は mark-to-market の対象外です。米国雇用主の<b>適格な繰延報酬</b>なら、出国後の分配時に<b>一律30%の源泉徴収</b>で処理されます（今は課税されない）。非適格だと放棄前日に<b>現在価値を一括で課税</b>。どちらに当たるかで大きく変わるため、事前確認が重要です。残高（時価）: '+yen(num(S.fmv401))+'。');
+  }
+  if(num(S.fmvRoth)>0){
+    var rothMsg = (S.rothq==='yes')
+      ? '適格（59.5歳以上＋5年）なら、みなし分配でも<b>非課税</b>です。'
+      : (S.rothq==='no'
+          ? '未適格のため、運用益 '+yen(g.rothEarnings)+' が課税対象になり得ます。'
+          : '適格かどうか未選択です。未適格だと運用益 '+yen(g.rothEarnings)+' が課税対象になり得ます。');
+    html+=card('info','🌱 Roth IRA',
+      'Roth IRA は「指定繰延口座」として放棄前日に<b>みなし分配</b>として扱われます。'+rothMsg+' 状況によっては、放棄の<b>前</b>に売却・整理しておくほうが有利な場合があります。');
+  }
+  if(num(S.fmvTrad)>0){
+    html+=card('warn','🏦 Traditional IRA・確定拠出年金',
+      '放棄前日に<b>全額みなし分配</b>として、通常所得（ordinary income）課税になります（10%の早期引き出しペナルティは免除）。課税対象 ≈ <b>'+yen(g.tradTaxable)+'</b>（約 '+usd(toUsd(g.tradTaxable))+'）。まとまった所得が一度に立つため、放棄のタイミングが効きます。');
+  }
+  html+='</div>';
+
+  // シェア（金額は含めない）
+  var shareText='Exit Tax（出国税）判定ツールを試しました｜日米の税務をUSCPAが解説 - Watson US CPA';
+  var shareUrl='https://twitter.com/intent/tweet?text='+encodeURIComponent(shareText)+'&url='+encodeURIComponent(location.origin+location.pathname);
+  html+='<div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--bd-tertiary);"><a href="'+shareUrl+'" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:#1b2733; color:#fff; font-size:13px; font-weight:700; text-decoration:none;"><i class="ti ti-brand-x" aria-hidden="true"></i> この結果をXでシェア</a><div style="font-size:11px; color:var(--tx-tertiary); margin-top:7px;"><i class="ti ti-lock" aria-hidden="true"></i> 入力した金額・資産の内容は含まれません。</div></div>';
+
+  html+='<div style="margin-top:12px; padding:10px 12px; background:var(--bg-warning); color:var(--tx-warning); border-radius:var(--r-md); font-size:12px; line-height:1.65;"><i class="ti ti-alert-triangle" aria-hidden="true"></i> ごく粗い目安です。実際の税額は資産の種類・取得時期・為替・条約で変わります。放棄は不可逆のため、実行前に必ず専門家へ。</div>';
+  html+='</div>';
+  el.innerHTML=html;
+}
+
+function onChange(){
+  document.getElementById('incThr').textContent = usd(INCOME_USD);
+  renderFmvShows();
+  renderNwStrip();
+  renderRec();
+  if (window.refreshExitNotes) window.refreshExitNotes();
+}
+onChange();
+
+(function(){
+  var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+  var text='Exit Tax（出国税）判定ツール — 純資産2M判定から含み益・住宅控除・IRA/401kの扱いまで';
+  document.getElementById('shareX').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(location.href);
+})();
+</script>
+
+<!-- note記事データ（自動取得）と連動表示 -->
+<script src="../assets/js/notes.js"></script>
+<script src="../assets/js/content.js?v=20260614a"></script>
+<script>
+(function () {
+  if (!window.WNOTES) return;
+  var EXIT = (window.WCONTENT && window.WCONTENT.EXIT_KEYWORDS) ||
+    ["出国税", "exit tax", "expatriate", "グリーンカード", "放棄"];
+
+  function noteCard(a, tag) {
+    var link = document.createElement('a');
+    link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
+    link.style.cssText = 'display:flex; gap:11px; align-items:center; text-decoration:none; color:var(--tx-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-md); padding:11px 13px; background:var(--bg-primary);';
+    var ico = document.createElement('span'); ico.textContent = 'note';
+    ico.style.cssText = 'flex-shrink:0; display:grid; place-items:center; width:34px; height:34px; border-radius:8px; background:var(--navy); color:#fff; font-size:11px; font-weight:700;';
+    var meta = document.createElement('span'); meta.style.cssText = 'display:flex; flex-direction:column; line-height:1.4;';
+    if (tag) { var tg=document.createElement('span'); tg.textContent=tag; tg.style.cssText='align-self:flex-start; font-size:10.5px; font-weight:700; color:var(--tx-info); background:var(--bg-info); padding:1px 8px; border-radius:999px; margin-bottom:3px;'; meta.appendChild(tg); }
+    var t = document.createElement('strong'); t.textContent = a.title; t.style.cssText = 'font-size:13.5px; font-weight:700;';
+    var s = document.createElement('span'); s.textContent = 'noteで読む →'; s.style.cssText = 'font-size:12px; color:var(--tx-secondary);';
+    meta.appendChild(t); meta.appendChild(s);
+    link.appendChild(ico); link.appendChild(meta);
+    return link;
+  }
+  function firstMatch(keywords){
+    var m = window.WNOTES.match(keywords, 4).filter(function(a){ return a.url; });
+    return m.length ? m[0] : null;
+  }
+  function renderNotes(){
+    if (!window.WNOTES.state.loaded) return;
+    var list=document.getElementById('exitNotesList'); var sec=document.getElementById('relatedNotes');
+    if(!list) return;
+    var shown={}, items=[];
+    // IRA / 401(k) を入力している場合は、その出国税解説noteを優先ピン留め
+    if (typeof S!=='undefined' && (num(S.fmvTrad)>0 || num(S.fmvRoth)>0)){
+      var a=firstMatch(['出国税','ira','roth','traditional']); if(a){ items.push({a:a, tag:'IRA × 出国税'}); shown[a.url]=true; }
+    }
+    if (typeof S!=='undefined' && num(S.fmv401)>0){
+      var b=firstMatch(['401k','401','exit']); if(b && !shown[b.url]){ items.push({a:b, tag:'401(k) × 出国税'}); shown[b.url]=true; }
+    }
+    window.WNOTES.match(EXIT, 8).filter(function(a){ return a.url && !shown[a.url]; })
+      .slice(0, Math.max(0, 6 - items.length))
+      .forEach(function(a){ shown[a.url]=true; items.push({a:a, tag:null}); });
+    list.innerHTML='';
+    items.forEach(function(it){ list.appendChild(noteCard(it.a, it.tag)); });
+    if(sec) sec.style.display = items.length ? '' : 'none';
+  }
+  window.refreshExitNotes = renderNotes;
+  window.WNOTES.ready.then(renderNotes);
+})();
+</script>
+</body>
+</html>
