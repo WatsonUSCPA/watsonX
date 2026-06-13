@@ -190,6 +190,7 @@ const FLOW = {
       "5471・8621 は 8938 の報告とは別に、それぞれ専用の申告書が必要です。出資割合や商品選びの段階で確認しておくと、後の負担を避けられます。",
     ],
     articles: ["form5471", "form8621", "form8938"],
+    tools: ["fbarCheck"],
     note: "Form 5471・8621 は要件もペナルティも重いため、該当しそうな場合は専門家への確認を強くおすすめします。",
   },
   d_delinquent: {
@@ -350,6 +351,9 @@ const KEYWORDS = {
 /* IRAツール用キーワード（ira/index.html から参照） */
 const IRA_KEYWORDS = ["ira", "roth", "traditional", "401k", "転換", "backdoor", "exit tax", "出国税", "年金", "帰国"];
 
+/* FBAR/FATCAツール用キーワード（fbar/index.html から参照） */
+const FATCA_KEYWORDS = ["fbar", "fatca", "8938", "5471", "8621", "pfic", "海外資産", "海外口座", "報告", "開示", "申告漏れ", "投資信託"];
+
 /* -------------------------------------------------------------
  * 4) 判定ツール登録簿
  *    ★ ツールを増やすときは、ここに1件足すだけ。
@@ -371,10 +375,11 @@ const TOOLS = {
   //   ツールが完成したら url を入れて ready:true に変えるだけで公開されます。
   fbarCheck: {
     title: "FBAR / FATCA 提出要否チェック",
-    desc: "海外口座・資産の残高から、FBAR（FinCEN 114）や Form 8938（FATCA）の提出が必要かを確認できるようにする予定です。",
+    desc: "居住地・申告ステータス・口座残高・保有資産から、FBAR・Form 8938（FATCA）・5471・8621 の提出が必要かを順に判定します。",
+    url: "fbar/",
     emoji: "🗂️",
-    ready: false,
-    notesQuery: "FBAR", // ツール完成まで、このキーワードで関連noteを検索できるようにする
+    badge: "無料ツール",
+    ready: true,
   },
   exitTax: {
     title: "Exit Tax（出国税）対象判定",
@@ -386,4 +391,4 @@ const TOOLS = {
 };
 
 /* app.js から参照できるように公開 */
-window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
+window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, FATCA_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
