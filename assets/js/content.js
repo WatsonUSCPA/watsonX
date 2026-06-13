@@ -340,12 +340,14 @@ const TOOLS = {
     desc: "海外口座・資産の残高から、FBAR（FinCEN 114）や Form 8938（FATCA）の提出が必要かを確認できるようにする予定です。",
     emoji: "🗂️",
     ready: false,
+    notesQuery: "FBAR", // ツール完成まで、このキーワードで関連noteを検索できるようにする
   },
   exitTax: {
     title: "Exit Tax（出国税）対象判定",
     desc: "グリーンカードの保有期間や資産規模から、出国税の対象（covered expatriate）に当たるかを確認できるようにする予定です。",
     emoji: "🛫",
     ready: false,
+    notesQuery: "出国税",
   },
 };
 

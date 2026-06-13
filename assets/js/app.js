@@ -35,6 +35,18 @@
     });
   }
 
+  // 準備中ツールから、下のnote検索へキーワードを渡して移動する
+  function gotoNotesSearch(query) {
+    var input = document.getElementById("notesSearch");
+    var section = document.getElementById("notes");
+    if (input) {
+      input.value = query || "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (input) setTimeout(function () { input.focus(); }, 400);
+  }
+
   function renderProgress(step, total) {
     var wrap = el("div", "dx-progress");
     var bar = el("div", "dx-progress-bar");
@@ -130,11 +142,21 @@
         // 準備中のツールは、トップの一覧と同じく押しても反応しない表示にする
         var item = ready ? el("a", "dx-tool") : el("div", "dx-tool is-soon");
         if (ready) { item.href = t.url; } else { item.setAttribute("aria-disabled", "true"); }
+        var dxCta = ready
+          ? '<span class="dx-tool-cta" aria-hidden="true">→</span>'
+          : (t.notesQuery ? '<a class="dx-tool-soonlink" href="#notes">📘 関連note</a>' : "");
         item.innerHTML = '<span class="dx-tool-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
           '<span class="dx-tool-body"><strong>' + escapeHtml(t.title) +
           (ready ? "" : ' <span class="dx-tool-soon">準備中</span>') + "</strong>" +
           "<span>" + escapeHtml(t.desc || "") + "</span></span>" +
-          '<span class="dx-tool-cta" aria-hidden="true">' + (ready ? "→" : "") + "</span>";
+          dxCta;
+        if (!ready && t.notesQuery) {
+          var dxLink = item.querySelector(".dx-tool-soonlink");
+          if (dxLink) dxLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            gotoNotesSearch(t.notesQuery);
+          });
+        }
         tools.appendChild(item);
       });
       card.appendChild(tools);
@@ -274,14 +296,27 @@
       var badge = ready
         ? (t.badge ? '<span class="tool-card-badge">' + escapeHtml(t.badge) + "</span>" : "")
         : '<span class="tool-card-badge is-soon">準備中</span>';
+      // 準備中でも、関連noteは検索できるように導線を出す
+      var cta = ready
+        ? '<span class="tool-card-cta">ツールを開く →</span>'
+        : (t.notesQuery
+            ? '<a class="tool-card-soonlink" href="#notes">📘 関連noteを調べる →</a>'
+            : '<span class="tool-card-cta is-soon">近日公開</span>');
       card.innerHTML =
         '<span class="tool-card-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
         '<span class="tool-card-body">' +
         badge +
         "<strong>" + escapeHtml(t.title) + "</strong>" +
         "<span class=\"tool-card-desc\">" + escapeHtml(t.desc || "") + "</span>" +
-        '<span class="tool-card-cta">' + (ready ? "ツールを開く →" : "近日公開") + "</span>" +
+        cta +
         "</span>";
+      if (!ready && t.notesQuery) {
+        var link = card.querySelector(".tool-card-soonlink");
+        if (link) link.addEventListener("click", function (e) {
+          e.preventDefault();
+          gotoNotesSearch(t.notesQuery);
+        });
+      }
       wrap.appendChild(card);
     });
   })();

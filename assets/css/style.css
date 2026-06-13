@@ -198,6 +198,16 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
 .tool-card.is-soon .tool-card-desc { color: var(--ink-soft); }
 .tool-card-badge.is-soon { color: #8a8a8a; background: #ededed; }
 .tool-card.is-soon .tool-card-cta { color: #9a9a9a; }
+/* 準備中でも関連noteは調べられる導線 */
+.tool-card-soonlink {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal-600);
+  text-decoration: none;
+  cursor: pointer;
+}
+.tool-card-soonlink:hover { text-decoration: underline; }
 
 /* 結果カード内のツール導線 */
 .dx-tools { display: grid; gap: 10px; margin-bottom: 22px; }
@@ -237,6 +247,15 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
   margin-left: 4px;
   vertical-align: middle;
 }
+.dx-tool-soonlink {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--teal-600);
+  text-decoration: none;
+  cursor: pointer;
+}
+.dx-tool-soonlink:hover { text-decoration: underline; }
 
 /* ===== Sections ===== */
 section { padding: 76px 0; }
