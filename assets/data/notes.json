@@ -1,15 +1,2681 @@
 {
   "source": "https://note.com/wtcajptc",
-  "updatedAt": null,
-  "count": 1,
-  "totalCount": null,
+  "updatedAt": "2026-06-13T19:22:43.548Z",
+  "count": 346,
+  "totalCount": 346,
   "articles": [
     {
-      "title": "401K Exit Taxの意外な落とし穴 — 帰国前に知っておくべきこと",
+      "title": "SSN悪用による「なりすまし確定申告」を防ぐ、IRSの「IP PIN」制度とは？",
+      "url": "https://note.com/wtcajptc/n/nbfaa54fbbe5f",
+      "publishAt": "2026-06-11T00:30:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/283532339/rectangle_large_type_2_a7ecd704a3ff769aafd3ba9ca51b83bb.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Home Exclusion の忘れがちな細かいルール",
+      "url": "https://note.com/wtcajptc/n/nafe6aa0086ca",
+      "publishAt": "2026-06-09T00:03:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/210517030/rectangle_large_type_2_85039b3ca56b1fba32f03ed0f069a6fe.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカのTrustと税務申告｜知っておきたい基本構造",
+      "url": "https://note.com/wtcajptc/n/nbc0df7c78c0a",
+      "publishAt": "2026-06-06T00:50:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/281369368/rectangle_large_type_2_2b27ac5cbea21aabc70d41cce35d677a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ISO行使の前に知っておくべき「AMT（代替最低税額）」の仕組みとリスク管理",
+      "url": "https://note.com/wtcajptc/n/n604d13db7900",
+      "publishAt": "2026-06-04T00:00:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/279222212/rectangle_large_type_2_400f27100bec6ad370747d65036400ab.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国投資】不動産や仮想通貨も非課税に？「Self-Directed IRA（SDIRA）」の基礎知識と活用ルール",
+      "url": "https://note.com/wtcajptc/n/nb8780032f28e",
+      "publishAt": "2026-05-30T01:03:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/279218232/rectangle_large_type_2_90b4cac3e354d51cc8f7ddcad92c3885.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国投資・税金】地方債（Municipal Bond）のPremiumとDiscountってどうなる？タックスリターンでの「州税」の落とし穴と計算ルールをわかりやすく解説！",
+      "url": "https://note.com/wtcajptc/n/n91e6e5ae30c6",
+      "publishAt": "2026-05-28T00:42:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/279361069/rectangle_large_type_2_a2efb24ed9a4f428baf8f31a257a12c4.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "「株式寄付」の選択肢：手元資金を抑えて社会貢献と税制メリットを最大化する方法",
+      "url": "https://note.com/wtcajptc/n/nc46ab2ecd927",
+      "publishAt": "2026-05-23T01:10:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/277074230/rectangle_large_type_2_f3dace61c6ceaa08d52dca62af0b60d9.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカで「不妊治療」の福利厚生が変わる？",
+      "url": "https://note.com/wtcajptc/n/n2b9e7a2a9220",
+      "publishAt": "2026-05-21T01:27:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/277077330/rectangle_large_type_2_d00154d537a3ec888b15e9238a11f060.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "リタイアメント貯蓄と「TrumpIRA.gov」の設立",
+      "url": "https://note.com/wtcajptc/n/n73999a09081f",
+      "publishAt": "2026-05-18T23:35:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/277080022/rectangle_large_type_2_5491850c9f72f69281f28fbe81b2b67f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "生命保険の解約に伴う「みなし受取」",
+      "url": "https://note.com/wtcajptc/n/n6cd6f145f619",
+      "publishAt": "2026-05-14T01:03:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/268762263/rectangle_large_type_2_fd1c120ebb96ca07ec8e0d31fe40edef.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの大学費用と税金。あえて「扶養に入れない」方が得をする？",
+      "url": "https://note.com/wtcajptc/n/n3acfab386380",
+      "publishAt": "2026-05-12T01:52:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/272516057/rectangle_large_type_2_2b43fb98d227695e67dfea2d0f100d30.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国スタートアップのExit利益を100%非課税にするQSBSとは？",
+      "url": "https://note.com/wtcajptc/n/n11b70b33ba8a",
+      "publishAt": "2026-05-07T00:28:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/272518285/rectangle_large_type_2_0530dc01d01e2659246ad85702f5bdcf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国大麻再分類による税務実務の変容とカリフォルニア州の動向",
+      "url": "https://note.com/wtcajptc/n/n00ed4f4ae8c5",
+      "publishAt": "2026-05-05T00:57:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/270838547/rectangle_large_type_2_4030103d6333087be340e487eb881dcd.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの子会社から自分に送金する",
+      "url": "https://note.com/wtcajptc/n/n7527f7a0ec20",
+      "publishAt": "2026-05-02T01:12:16+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/213697297/rectangle_large_type_2_9b6aa6f9aae250642dc075e816d7e99b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ギフトの経費計上ガイド：知っておきたい「25ドルの制限」と実務上の留意点",
+      "url": "https://note.com/wtcajptc/n/nb853093808e8",
+      "publishAt": "2026-04-30T01:00:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/270731410/rectangle_large_type_2_7b0108833ec0b946769c0f6e5aa928c3.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国確定申告】「住民税」計上でアメリカの追徴を回避する",
+      "url": "https://note.com/wtcajptc/n/n868e6a469b22",
+      "publishAt": "2026-04-25T01:42:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/266990024/rectangle_large_type_2_16f8f0a73038aea4b641f6f996d0859a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "個人事業主向けSEP IRAとは",
+      "url": "https://note.com/wtcajptc/n/n7adb25b66d0e",
+      "publishAt": "2026-04-23T02:05:39+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/268765646/rectangle_large_type_2_014ca8f6d03a3084371fa334b2efdc04.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "夫婦で資産4Mを超えたら要注意。アメリカ出国税（Exit Tax）の基本と資産別の課税ルール",
+      "url": "https://note.com/wtcajptc/n/n12814e87ed0d",
+      "publishAt": "2026-04-21T00:24:27+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/268760159/rectangle_large_type_2_111143961cffbbaef77e9919db5a397f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#Exittax"
+      ]
+    },
+    {
+      "title": "FBARは自分でやるから会計士には依頼しない！それ、大丈夫？",
+      "url": "https://note.com/wtcajptc/n/n01435b425fd0",
+      "publishAt": "2026-04-18T04:30:43+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/266987568/rectangle_large_type_2_5a33b760b56f8bca30ecbd7ab041afb2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "自宅を「売らずに貸す」選択：米国税務で損をしないための3つのチェックポイント",
+      "url": "https://note.com/wtcajptc/n/nc88c20dee406",
+      "publishAt": "2026-04-16T01:26:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/266989337/rectangle_large_type_2_4514fbd0f6b5ca715099909d398a85e4.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカのTax Return、その延長申請「ほんとに大丈夫？」",
+      "url": "https://note.com/wtcajptc/n/nd1da92030fe1",
+      "publishAt": "2026-04-14T01:38:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/265185812/rectangle_large_type_2_d0d8c97811797566f79b52a809f1cb54.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本人がアメリカに仕事（や旅行）に来るなら気を付けて！「Form 1042」と税務の落とし穴",
+      "url": "https://note.com/wtcajptc/n/nef45c042b2ec",
+      "publishAt": "2026-04-11T00:19:03+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/265188820/rectangle_large_type_2_932dabd3b952aa131fe961f73341e3b9.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国税務申告の締め切りが迫る！4/15に間に合わない時の「2つの救済策」とハワイの最新状況",
+      "url": "https://note.com/wtcajptc/n/nf2977c794f3f",
+      "publishAt": "2026-04-07T03:15:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/265184715/rectangle_large_type_2_0c898214bad5711a0dc2f23b247611e8.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【判例解説】返還した社会保障給付に課税？「権利主張の法理」がもたらす税務の落とし穴",
+      "url": "https://note.com/wtcajptc/n/nd0b1580b4066",
+      "publishAt": "2026-04-04T00:22:31+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/261432937/rectangle_large_type_2_823e18ae84c0a25249b78fbe65fc3daa.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "年金を受け取る際の注意点",
+      "url": "https://note.com/wtcajptc/n/n6439f245d9f9",
+      "publishAt": "2026-03-30T23:24:07+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/203313440/rectangle_large_type_2_9221bc43df331aa28603f755bbaa3b65.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "高所得者のための「Backdoor Roth IRA」完全ガイド：手順と既存口座の注意点",
+      "url": "https://note.com/wtcajptc/n/nb9fb1fd29132",
+      "publishAt": "2026-03-27T23:23:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/261420387/rectangle_large_type_2_4d888760a937c334306fbde52d1df23d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【完全版】米国FBAR（外国金融口座報告）の書き方・申請方法を徹底解説",
+      "url": "https://note.com/wtcajptc/n/n1fdc7bcef36d",
+      "publishAt": "2026-03-25T23:54:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/261425129/rectangle_large_type_2_9874af56bfec8664a7aff7689ef63821.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "不動産購入時の株式売却戦略：NIITとキャピタルゲイン税の落とし穴",
+      "url": "https://note.com/wtcajptc/n/n37df8ea225e7",
+      "publishAt": "2026-03-24T04:39:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/252081917/rectangle_large_type_2_4c70b984e8029f578afc48707125f084.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Prediction Marketの税務上の取り扱い",
+      "url": "https://note.com/wtcajptc/n/n311a0535249f",
+      "publishAt": "2026-03-21T00:23:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/259513914/rectangle_large_type_2_c24f71b881c486594d4e3aa8367239c1.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】529とTrump Account",
+      "url": "https://note.com/wtcajptc/n/n45d172bedb4a",
+      "publishAt": "2026-03-19T01:31:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/259505843/rectangle_large_type_2_52c0ee724b345042967361ed6f7a0db1.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】気を付けたい、iDeCoの取り扱い",
+      "url": "https://note.com/wtcajptc/n/n5bddf50221a6",
+      "publishAt": "2026-03-17T00:03:01+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/259495692/rectangle_large_type_2_bc50db5fa2dea4794c2699de89700fcf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Lossが出ている物件の税務上の取り扱いについて",
+      "url": "https://note.com/wtcajptc/n/n9b18881025ae",
+      "publishAt": "2026-03-14T04:20:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/254012719/rectangle_large_type_2_f66fb253ae1288b0869919bf3a60cfbc.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSからの還付金受領は「承認」ではない――誤還付回収の判例と在米邦人が注意すべき税務リスク",
+      "url": "https://note.com/wtcajptc/n/ned4c4de4947c",
+      "publishAt": "2026-03-12T00:20:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/233254147/rectangle_large_type_2_d79b0945a40d8ebdc7bad6c1d1f85d35.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの次世代貯蓄制度「トランプ口座」とは？$1,000給付の受け取り方と運用ルールを解説",
+      "url": "https://note.com/wtcajptc/n/n4daa1871674d",
+      "publishAt": "2026-03-10T03:02:00+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/255510120/rectangle_large_type_2_cf3f3707a5e7710b4779f851599b4857.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "カリフォルニア州「ビリオネア税」案の全貌",
+      "url": "https://note.com/wtcajptc/n/n93548bbca260",
+      "publishAt": "2026-03-05T04:14:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/255556497/rectangle_large_type_2_9c54e1625e9fa80af4e9c28bbb53fb2e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "渡米前に整理しておくべき「お金と社会保障」の4大チェックリスト",
+      "url": "https://note.com/wtcajptc/n/ncc8a79235958",
+      "publishAt": "2026-03-03T02:16:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/245174869/rectangle_large_type_2_f2eeb793b70c5a1e5ebfc2ffb993210e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "お手伝いさんなどを依頼する場合の注意点",
+      "url": "https://note.com/wtcajptc/n/neb7eff8ea737",
+      "publishAt": "2026-02-28T03:32:57+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/254005983/rectangle_large_type_2_25eb483bbe7000aa951a14bf1d48df22.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "未成年の子供に贈与するなら知っておきたいKiddie Taxのルール",
+      "url": "https://note.com/wtcajptc/n/n9f5202318324",
+      "publishAt": "2026-02-26T01:18:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/254000840/rectangle_large_type_2_875e7ed83b11e7af19dd5a9f46362f06.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国不動産賃貸の税務申告：Schedule EかCか？判断基準と注意点",
+      "url": "https://note.com/wtcajptc/n/n548b99717896",
+      "publishAt": "2026-02-24T00:55:48+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/252080563/rectangle_large_type_2_885fcdd91ca79b32b1a17d3df0b6c4b5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "FBAR以外の海外資産開示義務について",
+      "url": "https://note.com/wtcajptc/n/n9810c89dfddf",
+      "publishAt": "2026-02-21T01:25:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/248580043/rectangle_large_type_2_e5142074a39b9e9ce03364daf17330e8.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【アメリカ税務】日本の投資信託の落とし穴",
+      "url": "https://note.com/wtcajptc/n/n28c11931043f",
+      "publishAt": "2026-02-19T03:03:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/252079126/rectangle_large_type_2_f8a16db2371f73b6820efee26e042d18.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "パートナーシップと税務について",
+      "url": "https://note.com/wtcajptc/n/n419fecbc155e",
+      "publishAt": "2026-02-17T01:49:08+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/243215660/rectangle_large_type_2_becbbe286d5adcc0da6f637959520d5a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】知らないと損する「予定納税」の基本とペナルティ回避のコツ",
+      "url": "https://note.com/wtcajptc/n/n2407ea55a06f",
+      "publishAt": "2026-02-14T02:37:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/239682684/rectangle_large_type_2_3288292ccc5b9cce6aa85445a3ecde3d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【2025年Tax Return】残業代の計算には要注意！",
+      "url": "https://note.com/wtcajptc/n/n1f2947e7f8d3",
+      "publishAt": "2026-02-12T01:34:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/250384097/rectangle_large_type_2_47ca54a2b8dac28301532c5da1a25695.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "配偶者が亡くなった後の売却益が非課税に？Community Propertyが持つ「ステップアップ・ベーシス」の強力なメリット",
+      "url": "https://note.com/wtcajptc/n/n586ad6a6f7ff",
+      "publishAt": "2026-02-10T01:20:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/248584329/rectangle_large_type_2_3f1c0d4cfd0dd7e16bdd0423eaba3de5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "外国の収入を控除するのは意外と細かいです。",
+      "url": "https://note.com/wtcajptc/n/naf88502c3df6",
+      "publishAt": "2026-02-07T02:03:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/236307098/rectangle_large_type_2_9be8bd81f074ea07cd5ac16c0c5a4bb0.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本の銀行で引かれた利息収入の源泉徴収の取り扱い",
+      "url": "https://note.com/wtcajptc/n/n55609aab1629",
+      "publishAt": "2026-02-05T01:36:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/248592823/rectangle_large_type_2_6f7328c75829f6ab99fc7703f939b122.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ハウスハックの税務上の利点",
+      "url": "https://note.com/wtcajptc/n/n6def90693a10",
+      "publishAt": "2026-02-03T01:56:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/246764979/rectangle_large_type_2_7389e783f23d32f3feef6a6776a911e8.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "連邦税と州税で取り扱いが異なる代表的な4つの項目",
+      "url": "https://note.com/wtcajptc/n/n823db333cf43",
+      "publishAt": "2026-01-31T02:09:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/245170809/rectangle_large_type_2_f2f6a3fb4931d2044b695db8930277bf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax returnで「医療費の領収書」は集めるべき？",
+      "url": "https://note.com/wtcajptc/n/na3cc904e61de",
+      "publishAt": "2026-01-29T01:21:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/246755330/rectangle_large_type_2_38bbeaddf87f99607b3f7a66a3a5b119.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】郵送しなければいけない申告書とは",
+      "url": "https://note.com/wtcajptc/n/n01a528df821f",
+      "publishAt": "2026-01-27T01:20:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/246743664/rectangle_large_type_2_e4efd548a14bad327504fa726a8efd2b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "カリフォルニア州税申告の重要ポイント：連邦税と異なる6つの独自ルール",
+      "url": "https://note.com/wtcajptc/n/n04a61cc15bd1",
+      "publishAt": "2026-01-24T03:36:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/245172630/rectangle_large_type_2_38cf2ac23a60f136d9926868b692221f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "州税が課税される「Market Discount」の盲点と地方債との比較",
+      "url": "https://note.com/wtcajptc/n/n9ab0d4353211",
+      "publishAt": "2026-01-22T01:16:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/243240581/rectangle_large_type_2_e1d8ae4dbb90629c01342f922293e0de.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "親子で賢く節税！Downstream Gifting Tax戦略を徹底解説",
+      "url": "https://note.com/wtcajptc/n/nf88e22686f20",
+      "publishAt": "2026-01-20T02:33:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/210539170/rectangle_large_type_2_1e7f7fc96d240a366d2b2cc99e82bbfc.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "本帰国してもアメリカに銀行口座は持ち続けていいの？帰国前に検討すべき「4つの落とし穴」",
+      "url": "https://note.com/wtcajptc/n/nf4d4940c798e",
+      "publishAt": "2026-01-17T04:40:10+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/236301865/rectangle_large_type_2_329b9bb856cba30134b2dbc527eaf059.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "暗号資産の新たな報告様式「Form 1099-DA」の導入について",
+      "url": "https://note.com/wtcajptc/n/n462cdf349ed0",
+      "publishAt": "2026-01-15T01:25:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/243234169/rectangle_large_type_2_0d73f9b50d5009bc78919e1feccca8d1.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】HSAがより身近に。2026年に向けて医療保険を見直すべき理由",
+      "url": "https://note.com/wtcajptc/n/n4405785cb5a8",
+      "publishAt": "2026-01-13T01:22:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/239685424/rectangle_large_type_2_ee1196cb1038c19d7fcc54e6634401ae.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年アメリカ確定申告ガイド：所得計算のプロセスと新設「Schedule 1-A」の役割",
+      "url": "https://note.com/wtcajptc/n/n5e3cd567fb7e",
+      "publishAt": "2026-01-10T02:36:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/241473535/rectangle_large_type_2_92586adfca9a72e7e7f0c167254171c1.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "新設の自動車ローン金利控除（QPVLI）とは？「Above-the-line」で節税できる仕組みを解説",
+      "url": "https://note.com/wtcajptc/n/nc68275733afc",
+      "publishAt": "2026-01-08T00:48:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/241469291/rectangle_large_type_2_1cc574749118c696b044cf409bfa2867.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ラスベガスを楽しむ米国居住者が知っておくべき、ギャンブル収支と税務申告の注意点",
+      "url": "https://note.com/wtcajptc/n/n7e5f5c14b88c",
+      "publishAt": "2026-01-06T01:43:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/239682422/rectangle_large_type_2_6f0dc3e9d98100c0b87a79b15e5ea8c5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【LLCとS Corpの特権】パススルーを理解する。",
+      "url": "https://note.com/wtcajptc/n/n5b5af7afa3ca",
+      "publishAt": "2025-12-30T03:02:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/215306223/rectangle_large_type_2_6309a14e25758ef67e7e18be5bd8b620.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "タンス預金はFBARの対象でしょうか？",
+      "url": "https://note.com/wtcajptc/n/n11fcfb54bffe",
+      "publishAt": "2025-12-25T00:06:05+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/234927027/rectangle_large_type_2_2f16b838dec1f5c4299cd3b1cc1039cf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "赤字があっても制限があります。",
+      "url": "https://note.com/wtcajptc/n/n4ed934c5a96e",
+      "publishAt": "2025-12-23T01:17:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/236297532/rectangle_large_type_2_601decdf3bd1d4844ef78a7d730f4e80.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本の居住者でアメリカの不動産投資を考える上で注意する税務上の手続き",
+      "url": "https://note.com/wtcajptc/n/n3005d610cf8f",
+      "publishAt": "2025-12-20T00:33:14+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/228407215/rectangle_large_type_2_17f30a6e7aade462bc9c1f5ab6732d57.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax Returnと保有株の整理",
+      "url": "https://note.com/wtcajptc/n/n80220baea923",
+      "publishAt": "2025-12-18T01:08:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/233250266/rectangle_large_type_2_aa95cdc247e0a5a76a1200b4f21c7a1b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】離婚協議中・別居中の方の申告書から学ぶFiling Statusの考え方",
+      "url": "https://note.com/wtcajptc/n/na4b58888f9d6",
+      "publishAt": "2025-12-16T01:17:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/234871677/rectangle_large_type_2_787d7a1baf3240fe11ab4a7ad5cfcdc2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプアカウントについて",
+      "url": "https://note.com/wtcajptc/n/nf3013a4b8eda",
+      "publishAt": "2025-12-13T01:21:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/234918396/rectangle_large_type_2_00bc18e93bd3a4060beb600d33372f35.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Social Security Benefitの課税方法知っていますか？",
+      "url": "https://note.com/wtcajptc/n/n7abe6a627500",
+      "publishAt": "2025-12-11T01:15:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/224820463/rectangle_large_type_2_0ac21c6673d2bb687962eb4965650e05.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【アメリカ税務】カジノやギャンブルの税金申告、甘く見ていませんか？ IRSに睨まれる前に知っておきたい「セッション」と「記録」の重要性",
+      "url": "https://note.com/wtcajptc/n/n73de1ee44b6f",
+      "publishAt": "2025-12-09T02:25:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/230044596/rectangle_large_type_2_351dab4d665def45d9869ceba3db402d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税金】子供がいるなら確認必須！税金のメリット・控除まとめ",
+      "url": "https://note.com/wtcajptc/n/ne02fc24e3b04",
+      "publishAt": "2025-12-06T01:29:05+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/231644126/rectangle_large_type_2_ebe35705c745ac20ee656f842c7eeaa4.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国不動産、子供に残すなら「相続」より「売却」？帰国者が知っておくべき資産承継の方法",
+      "url": "https://note.com/wtcajptc/n/n1e62f320078f",
+      "publishAt": "2025-12-04T00:57:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/231639059/rectangle_large_type_2_7cbe26b9748d4f48595d01f5610dc5f2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年の申告書で年末までにするべきこと",
+      "url": "https://note.com/wtcajptc/n/nb20397c5235b",
+      "publishAt": "2025-12-02T01:47:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/233245427/rectangle_large_type_2_f057771e4977f6fee82bff84c425bd63.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 1095-AとPremium Tax Credit",
+      "url": "https://note.com/wtcajptc/n/n04e207ab4c2f",
+      "publishAt": "2025-11-27T01:01:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/230056171/rectangle_large_type_2_c80af5c71fb16d947e12be83340557f3.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "税法上のGCの始まりと終わり",
+      "url": "https://note.com/wtcajptc/n/nc3a8ed28fa52",
+      "publishAt": "2025-11-25T01:39:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/210526768/rectangle_large_type_2_01ea637a6b2b90002927d2f2059b01e7.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】投資手数料は経費になるか？ 連邦税 vs 州税（CA, NY）の相違点",
+      "url": "https://note.com/wtcajptc/n/ne0a7084e56c1",
+      "publishAt": "2025-11-22T01:23:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/228397649/rectangle_large_type_2_d8e4f83cfc34b43383768ef0b3ab0bb9.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Joint account：帰国前に整理すべき「日米の相続」と「持ち分」の落とし穴",
+      "url": "https://note.com/wtcajptc/n/nbe7260488c48",
+      "publishAt": "2025-11-20T01:16:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/230050874/rectangle_large_type_2_2d57c34d77289f4238236e15bc7ae622.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカ国外に住む居住者(GC holder, Citizen)の二重課税の問題に関するアップデート",
+      "url": "https://note.com/wtcajptc/n/n587e60ad1ac8",
+      "publishAt": "2025-11-18T01:45:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/224828998/rectangle_large_type_2_18722ec97a613297c002c58a34b37a18.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "EstaやB visaで出張で働く！？",
+      "url": "https://note.com/wtcajptc/n/n4646a5d69a5b",
+      "publishAt": "2025-11-15T00:15:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/228179463/rectangle_large_type_2_152cf82995617744290379ff7ebb62f5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【アメリカ税務】亡くなった家族の確定申告、サインは誰がする？",
+      "url": "https://note.com/wtcajptc/n/n136eff47b6ab",
+      "publishAt": "2025-11-13T01:46:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/223490452/rectangle_large_type_2_3cc1caf5a68db4c29c697c66a650521f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【CA州】2025年から税法が地味に変わる？Conformity Billのポイント解説",
+      "url": "https://note.com/wtcajptc/n/nc68a683d73f7",
+      "publishAt": "2025-11-11T02:35:43+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/224817402/rectangle_large_type_2_0edb076a59d604f7fc2ddcc4e752df9e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Roth IRA vs Traditional IRA、帰国のタイミングから考える",
+      "url": "https://note.com/wtcajptc/n/n93d78a595a9f",
+      "publishAt": "2025-11-08T02:02:42+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/226512942/rectangle_large_type_2_e49c9ecdd4a0f9fceaf01936bdac6b78.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "「延長申請（Extension）」は得？損？安易な延長をおすすめしない理由",
+      "url": "https://note.com/wtcajptc/n/nfa780039618f",
+      "publishAt": "2025-11-06T03:41:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/226441352/rectangle_large_type_2_533c0da430a58202142d0319f43c3f6e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ドジャースも払ってる！「アスリート税」から学ぶ、恐るべき州税の仕組み",
+      "url": "https://note.com/wtcajptc/n/n302c3ed8742b",
+      "publishAt": "2025-11-04T00:59:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/226505485/rectangle_large_type_2_f99587690e77f15f122d6e8fc1478af5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】株で大損してもTax Returnは提出しましょう！",
+      "url": "https://note.com/wtcajptc/n/n1c389b9ebfaa",
+      "publishAt": "2025-11-01T00:35:01+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/221738575/rectangle_large_type_2_3294627533e2662c1f0ae77f6c3dd19d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Kiddie Taxの基本解説：子供の収入と税金",
+      "url": "https://note.com/wtcajptc/n/nc6e711319c0f",
+      "publishAt": "2025-10-29T23:54:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/223522827/rectangle_large_type_2_0cb4848c4e67920cf070ebaedfe40b88.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】大学学費に関する税制優遇措置（AOTCと529プラン）の最適な活用方法",
+      "url": "https://note.com/wtcajptc/n/nf054b475df04",
+      "publishAt": "2025-10-28T02:40:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/223492679/rectangle_large_type_2_9ee93e01ac5cf6b246f7c0323f4e9223.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国で共働きの子育て世帯が活用できる「Child and Dependent Care Credit」の解説",
+      "url": "https://note.com/wtcajptc/n/n36c0113925ff",
+      "publishAt": "2025-10-25T00:19:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/223517490/rectangle_large_type_2_c5ab6c5d38e7f55fe9bc31440b35c5ce.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国税務】Form 1099 & 1042-S発行ルール",
+      "url": "https://note.com/wtcajptc/n/nabb125ee8fef",
+      "publishAt": "2025-10-23T00:03:19+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/215297453/rectangle_large_type_2_6e51757355d5207c43fa11f18fb8b24e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "赤字事業の取り扱いに気を付けよう",
+      "url": "https://note.com/wtcajptc/n/n5c61587db289",
+      "publishAt": "2025-10-21T00:27:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/218452077/rectangle_large_type_2_22944809eda774cb99a45e23ea3563c1.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#6の赤字が続くというルールで有名なのは"
+      ]
+    },
+    {
+      "title": "失業手当の取り扱い",
+      "url": "https://note.com/wtcajptc/n/nc14ae7ebcba4",
+      "publishAt": "2025-10-18T00:09:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/220076982/rectangle_large_type_2_97bfa7bff984931e9609828a9fde3d91.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国在住者必見】日本の会社株を相続したら？知らなきゃ損するForm 5471の話",
+      "url": "https://note.com/wtcajptc/n/n380805c43049",
+      "publishAt": "2025-10-16T02:00:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/221735101/rectangle_large_type_2_0d6d0831b4ac1cdcd67433b8f7e4a332.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "W-2をSch Cで申告してはいけません。",
+      "url": "https://note.com/wtcajptc/n/nf9482d9d479b",
+      "publishAt": "2025-10-14T06:18:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/220070494/rectangle_large_type_2_923ce96c8fedb1606118e85fb306f299.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本の不動産の売却等について",
+      "url": "https://note.com/wtcajptc/n/n5eb76ad5587b",
+      "publishAt": "2025-10-10T23:52:01+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/218436097/rectangle_large_type_2_992a631ec4d2163a87ccdc31991a369b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本からの配当金の源泉徴収について",
+      "url": "https://note.com/wtcajptc/n/nf543da4d9a90",
+      "publishAt": "2025-10-09T00:02:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/220048171/rectangle_large_type_2_dab5340a7b04a8a0cbc22f3d29c3f033.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【米国在住者向け】日本で遺産相続したら要注意！Form 3520の提出義務とポイント解説",
+      "url": "https://note.com/wtcajptc/n/n4d0ef8ccbd94",
+      "publishAt": "2025-10-07T00:02:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/220045459/rectangle_large_type_2_d27105308198e7126a8cb5c4c8380219.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ギャンブルロスの調べ方",
+      "url": "https://note.com/wtcajptc/n/nb18ff3cbdec6",
+      "publishAt": "2025-10-04T00:00:54+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/212051514/rectangle_large_type_2_5031ced9a53efb6e5ac0dd3d41079690.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "年収250k(夫婦合算)を超えたらかかるNet Investment Income Taxについて",
+      "url": "https://note.com/wtcajptc/n/n484272c3604a",
+      "publishAt": "2025-10-01T23:53:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/218444754/rectangle_large_type_2_118dd4e19594ced7a625e7857fb1010e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】仮想通貨を盗まれた、、、課税される？",
+      "url": "https://note.com/wtcajptc/n/n5db494d37fac",
+      "publishAt": "2025-09-30T00:00:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/218417517/rectangle_large_type_2_5467cbdbdfb772060f455f814a7f78a7.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "騙されてIRAをだまし取られたらPenaltyはどうなる？",
+      "url": "https://note.com/wtcajptc/n/n276cc82a7895",
+      "publishAt": "2025-09-27T00:03:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/212056325/rectangle_large_type_2_845f5d966216b84698c3261ad21d4107.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "FBARについて",
+      "url": "https://note.com/wtcajptc/n/na06e39c267ad",
+      "publishAt": "2025-09-25T00:22:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/217036938/rectangle_large_type_2_ea97e5f39035adc2b82c3963dec37a8f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】Charitable Donationと税金の関係",
+      "url": "https://note.com/wtcajptc/n/ne393f188fbfd",
+      "publishAt": "2025-09-23T04:49:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/217033197/rectangle_large_type_2_1b752cb8a588be2fb3a791611aaca97d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "脱税の王道、寄付の水増し",
+      "url": "https://note.com/wtcajptc/n/nbcd781a88e5c",
+      "publishAt": "2025-09-19T23:39:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/215315775/rectangle_large_type_2_13163a914682e49b0a40c0404360cdd0.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本から得た配当金と利子所得【外国税額控除】",
+      "url": "https://note.com/wtcajptc/n/nf42603cde843",
+      "publishAt": "2025-09-18T00:50:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/215312509/rectangle_large_type_2_12a12b68953b4816239af21e186e07ee.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Child Tax Creditをケース別に考えよう。",
+      "url": "https://note.com/wtcajptc/n/n6e3fbf4a89d6",
+      "publishAt": "2025-09-16T00:03:08+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/209051274/rectangle_large_type_2_5324f29ce41d45ee1d01038fac25abaa.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "グリーンカード放棄のタイミングに関する税務",
+      "url": "https://note.com/wtcajptc/n/n91768658bd18",
+      "publishAt": "2025-09-12T23:31:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/202061747/rectangle_large_type_2_4dba454d2d323a7b96d77b8fb740c901.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "チップ非課税の業種",
+      "url": "https://note.com/wtcajptc/n/n866501a61465",
+      "publishAt": "2025-09-10T23:55:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/213687633/rectangle_large_type_2_116ac822564e7b8a2c680659f6fea507.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年からの自動車ローン金利控除",
+      "url": "https://note.com/wtcajptc/n/n9230ab8ea268",
+      "publishAt": "2025-09-08T23:49:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/213692160/rectangle_large_type_2_3ab34e4a4840601ef45844bf56790eef.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "どんな人がITINを申請する？",
+      "url": "https://note.com/wtcajptc/n/n005c17b63af8",
+      "publishAt": "2025-09-05T23:38:14+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/212040323/rectangle_large_type_2_9e0f557adf43c33e0685bdcc544bed75.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプ税制によりW-2はどう変わる？",
+      "url": "https://note.com/wtcajptc/n/n4058d644b173",
+      "publishAt": "2025-09-04T00:58:16+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/212038107/rectangle_large_type_2_f9e663837d1213f86eef63736cdf28d8.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "HSA(州税の取り扱い)",
+      "url": "https://note.com/wtcajptc/n/n20962eef818c",
+      "publishAt": "2025-09-02T00:45:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/211367972/rectangle_large_type_2_712b4da0b56707415a438c0e2d6dabe6.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国税制におけるCommunity Property（共有財産）と非居住外国人配偶者の税務: 日本在住配偶者のケース",
+      "url": "https://note.com/wtcajptc/n/n8651522e3dc8",
+      "publishAt": "2025-08-29T01:00:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/182786720/rectangle_large_type_2_cc2fd1175a7f00a54c4ff4669d2ff74a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本で不動産を持つ場合のアメリカの注意点",
+      "url": "https://note.com/wtcajptc/n/n9ae446c028a7",
+      "publishAt": "2025-08-28T00:58:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208030240/rectangle_large_type_2_adbdb3c190117be2c3f652deca50943f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Gamble loss について",
+      "url": "https://note.com/wtcajptc/n/n12697ee69723",
+      "publishAt": "2025-08-26T23:49:14+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208208054/rectangle_large_type_2_aeb6c063a75d48656afbeb2f7189b4b5.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】FBARと年金の受け取り",
+      "url": "https://note.com/wtcajptc/n/n8196dfeb136f",
+      "publishAt": "2025-08-25T23:41:27+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/210532827/rectangle_large_type_2_8bf473a130f14026121cd9b251210ce2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "収入がとても少なかったら使えるSaver's Credit",
+      "url": "https://note.com/wtcajptc/n/n2ee04fae6285",
+      "publishAt": "2025-08-23T01:03:57+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208204803/rectangle_large_type_2_f8de145f414bf22516b8b43ffb318b1c.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国税法における還付請求権と時効の法的考察",
+      "url": "https://note.com/wtcajptc/n/nc5705b24fc55",
+      "publishAt": "2025-08-22T04:37:10+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/204708689/rectangle_large_type_2_0378d8ad4994294e49ce9461a036556f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSへの内部告発の制度を知っていますか？",
+      "url": "https://note.com/wtcajptc/n/n5d569c1db8e9",
+      "publishAt": "2025-08-20T23:40:52+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/209035696/rectangle_large_type_2_092b1cc9f01216a42bb4c56e15f6c9ee.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】IRSのほっこりする話。。。",
+      "url": "https://note.com/wtcajptc/n/n05179fc0724b",
+      "publishAt": "2025-08-20T01:20:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208880370/rectangle_large_type_2_8723146334d5bda0f39d20ae8f3dd923.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】日本在住米国籍の方の申告書について",
+      "url": "https://note.com/wtcajptc/n/n9ecefda4c920",
+      "publishAt": "2025-08-19T01:34:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208880544/rectangle_large_type_2_ef10aa0936c3b530691a53e821ca7faa.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#1の税制度を使えない方はすべてこちらを使用します"
+      ]
+    },
+    {
+      "title": "学生ローン利子控除の解説",
+      "url": "https://note.com/wtcajptc/n/nf6ceefd9549e",
+      "publishAt": "2025-08-16T01:21:30+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208022574/rectangle_large_type_2_f71920cbae622d99e2cc9c8d2c6310b3.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日米の税制のねじれを理解する",
+      "url": "https://note.com/wtcajptc/n/naf220eb8930e",
+      "publishAt": "2025-08-15T01:11:01+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/206331907/rectangle_large_type_2_c341811d6f1be8e13dad659d30ea1148.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "僕がRothIRAをおすすめする理由(住宅購入資金の観点から)",
+      "url": "https://note.com/wtcajptc/n/naa2175e7e0d5",
+      "publishAt": "2025-08-14T01:12:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/208014157/rectangle_large_type_2_57adffbec124797180f1e522953f670c.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【税金の落とし穴】自分の収入なのに「夫のせい」!? 米国の珍事件から学ぶ税の教訓",
+      "url": "https://note.com/wtcajptc/n/n027a5c01c978",
+      "publishAt": "2025-08-13T02:09:16+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/206325598/rectangle_large_type_2_903cd71ac6ca01cdcb48d27038046b8a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "居住者とGCの関係～グリーンカードの期限切れは「放棄」じゃない！",
+      "url": "https://note.com/wtcajptc/n/nd88885c47e1e",
+      "publishAt": "2025-08-11T23:57:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/203909539/rectangle_large_type_2_6cabf40a799ec919155038ca15818ddd.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "業務委託の落とし穴",
+      "url": "https://note.com/wtcajptc/n/nee4ee7dd5ea0",
+      "publishAt": "2025-08-09T01:08:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/194807419/rectangle_large_type_2_a4d80eaf7a1fed327d0a493b57150998.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "GeminiにUSCPAの問題解かせてみた",
+      "url": "https://note.com/wtcajptc/n/naa751c5ae07b",
+      "publishAt": "2025-08-08T00:45:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/206329021/rectangle_large_type_2_a7813787950c84eb10184ab05b43e046.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "州税がない州でとれる税金「Sales Tax」",
+      "url": "https://note.com/wtcajptc/n/n527284631407",
+      "publishAt": "2025-08-07T01:44:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/204695399/rectangle_large_type_2_00009daa0b17f4202b887aea8cd7e398.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "HSAとItemized Deduction(Medical Expense)の関係性",
+      "url": "https://note.com/wtcajptc/n/n513f052ce813",
+      "publishAt": "2025-08-06T01:23:14+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/206314201/rectangle_large_type_2_14c7465c3582072397e634af13e944fe.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax Returnとは？",
+      "url": "https://note.com/wtcajptc/n/n5ca51e3a63d4",
+      "publishAt": "2025-08-05T00:47:42+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/194804705/rectangle_large_type_2_12f633a41415b804d76d5ea291f1cb4e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Substantial Testの例外～Closer Connection Exception Statement for Aliens~",
+      "url": "https://note.com/wtcajptc/n/n180721dd40df",
+      "publishAt": "2025-08-02T01:24:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/204699656/rectangle_large_type_2_161307562298748b5ac5f94e69f9799f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "相続したIRAにを寄付に使用したいケース",
+      "url": "https://note.com/wtcajptc/n/n6f30b7b87614",
+      "publishAt": "2025-08-01T01:48:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193622959/rectangle_large_type_2_1e3824b7efde64df7f8de9434732142d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国における国際送金税（Remittance Tax）の概要と適用範囲について",
+      "url": "https://note.com/wtcajptc/n/n4f5815a67e0a",
+      "publishAt": "2025-07-31T02:33:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/204706544/rectangle_large_type_2_99f5eb828dd87314085cf3fd394ebd7e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【2025年最新版】アメリカの529プランが進化！知っておきたい新制度を徹底解説",
+      "url": "https://note.com/wtcajptc/n/n3641a16e2812",
+      "publishAt": "2025-07-30T03:18:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/204689145/rectangle_large_type_2_70a5124300d2bcea7acf65b56b563e10.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "投資物件の相続【Depreciationのリセット】",
+      "url": "https://note.com/wtcajptc/n/ncaae15b06d33",
+      "publishAt": "2025-07-28T23:26:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/203912763/rectangle_large_type_2_1764733a3052761d1ff36ecbad41e150.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "修正申告の注意点【ステータス変更について】",
+      "url": "https://note.com/wtcajptc/n/n9d935a6cfbba",
+      "publishAt": "2025-07-25T23:59:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/203303739/rectangle_large_type_2_301a016bec23106489a83a5d3795de4b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプ氏の「チップ非課税化」は本当に“無税”になるのか？知っておくべきポイント",
+      "url": "https://note.com/wtcajptc/n/n7f12104f9bcd",
+      "publishAt": "2025-07-24T23:58:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/203309669/rectangle_large_type_2_fe69854b56536f51ff936a43fe5a9e5a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "出国税から考えるTraditional IRAとRoth IRA",
+      "url": "https://note.com/wtcajptc/n/n0adfb7e6b157",
+      "publishAt": "2025-07-23T23:56:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193391997/rectangle_large_type_2_c0a88c8f81c59593e6a60f4b1e8e4956.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "創業者株式は「投資」か「報酬」か",
+      "url": "https://note.com/wtcajptc/n/nb8c698080378",
+      "publishAt": "2025-07-22T23:59:08+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/198953356/rectangle_large_type_2_ad28aca158b0f231c79a772cd728d029.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "NOLのCarry backについて",
+      "url": "https://note.com/wtcajptc/n/ndbb76d7a1e6e",
+      "publishAt": "2025-07-21T23:52:29+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200247787/rectangle_large_type_2_dc7f9b8d703b3f2a8a62a638cb13a86d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "EVクレジットがなくなります。購入を急ぎましょう",
+      "url": "https://note.com/wtcajptc/n/n88173d73a48e",
+      "publishAt": "2025-07-18T23:54:04+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/202063926/rectangle_large_type_2_1c7899934dd983edc5147f560ffe01cf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "働くことで受けられる税額控除：知っておくべき3つの重要な制度",
+      "url": "https://note.com/wtcajptc/n/n2fc012535ee9",
+      "publishAt": "2025-07-17T23:55:36+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/199175615/rectangle_large_type_2_14018fbd24e43032b44ce24bbba92968.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Bonus Depreciationの復活！",
+      "url": "https://note.com/wtcajptc/n/ncd91b0ff2872",
+      "publishAt": "2025-07-17T00:51:15+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/202065541/rectangle_large_type_2_99d48fba98e8389638fe07d090277b8c.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2026年からのItemized deduction",
+      "url": "https://note.com/wtcajptc/n/nea6ea7697a4f",
+      "publishAt": "2025-07-15T23:52:48+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/202063130/rectangle_large_type_2_2b4783eb751a53b2084db4a3744ff51c.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "保険の税法上の取り扱いについて",
+      "url": "https://note.com/wtcajptc/n/n169a3c98ecb3",
+      "publishAt": "2025-07-14T23:51:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185218347/rectangle_large_type_2_f8c32c32ae31a2d03a2362e9fd9ef83c.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "年収別でみるIRA vs 401K",
+      "url": "https://note.com/wtcajptc/n/n624c14714475",
+      "publishAt": "2025-07-11T23:54:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200608183/rectangle_large_type_2_3f8826e213104b56cc96da082b737498.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプ税制の解説③",
+      "url": "https://note.com/wtcajptc/n/ne426aaafb2be",
+      "publishAt": "2025-07-10T23:34:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200606879/rectangle_large_type_2_912e1348334ea76952a0c92efbdd2367.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプ税制の解説②",
+      "url": "https://note.com/wtcajptc/n/n915bc9981f0d",
+      "publishAt": "2025-07-10T00:00:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200606720/rectangle_large_type_2_1463630748849c5f8e1dc42675158b46.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "トランプ税制の解説①",
+      "url": "https://note.com/wtcajptc/n/nc5344cd9fd92",
+      "publishAt": "2025-07-08T23:47:27+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200606366/rectangle_large_type_2_1492efd44e13ce131879ce1b10e50a43.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】将来の進学のために準備すること",
+      "url": "https://note.com/wtcajptc/n/n8095f17743fb",
+      "publishAt": "2025-07-07T23:54:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/200605004/rectangle_large_type_2_20c749de31d64361afa950e5849e2c85.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "米国不動産の出口戦略～子供へ残したい～",
+      "url": "https://note.com/wtcajptc/n/n36c2d75af7da",
+      "publishAt": "2025-07-04T00:32:54+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/199030499/rectangle_large_type_2_4c144c41153ad6351f04787c07189922.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "S Corpの損失について理解する",
+      "url": "https://note.com/wtcajptc/n/nab5e01ae0ae2",
+      "publishAt": "2025-07-03T00:37:05+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187964322/rectangle_large_type_2_c723db77b0ea898e5d9080bb82460430.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本の資産別の申告義務について",
+      "url": "https://note.com/wtcajptc/n/nd88365b16f5a",
+      "publishAt": "2025-07-02T00:27:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/198954733/rectangle_large_type_2_3c31d4ee4151cad7e4c20bb10a230521.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "研究者課税の実態と日本人研究者への教訓",
+      "url": "https://note.com/wtcajptc/n/n1918662bd126",
+      "publishAt": "2025-07-01T00:39:36+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/197608236/rectangle_large_type_2_d1480d6d2f0f9a45efde2e6d13f996ed.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "仮想通貨(Form 1099DA)に関する税制の発表について",
+      "url": "https://note.com/wtcajptc/n/na2a8a292c125",
+      "publishAt": "2025-06-27T23:49:46+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/197606334/rectangle_large_type_2_fdc6e3a122aea20ad3ec23fbcb083863.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日米租税条約って何？",
+      "url": "https://note.com/wtcajptc/n/n28a7f2bb2e25",
+      "publishAt": "2025-06-26T23:45:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/197601166/rectangle_large_type_2_e0ece632e7b4dc49269a7bf767080ec0.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "居住地の変更は気を付けよう。",
+      "url": "https://note.com/wtcajptc/n/nc680745e11ec",
+      "publishAt": "2025-06-26T00:19:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/197612645/rectangle_large_type_2_4dc5bf087e1d4736b4f73a1ddaa688b2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 3520を忘れた時の罰金免除は可能？実際の裁判例から学ぶリスクと対策",
+      "url": "https://note.com/wtcajptc/n/nd386c1ecda41",
+      "publishAt": "2025-06-24T23:48:00+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/197616010/rectangle_large_type_2_226fc606e194070d4ddbc9d6020e8dcf.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "空売りしている間に受け取った配当金の取り扱い",
+      "url": "https://note.com/wtcajptc/n/n947b6ec33b30",
+      "publishAt": "2025-06-23T23:53:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/196210765/rectangle_large_type_2_9fafa377c750531e87c2062a4cfffac4.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "究極の節税、、、親への贈与！?",
+      "url": "https://note.com/wtcajptc/n/n8edfb259186b",
+      "publishAt": "2025-06-20T23:52:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/196228888/rectangle_large_type_2_a2df83dc081f66f10fbd59da02d13854.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "J-1ビザ所得で免税されるケースについて",
+      "url": "https://note.com/wtcajptc/n/n18f152a77116",
+      "publishAt": "2025-06-18T23:44:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179465256/rectangle_large_type_2_16cc990c16696e8bbd2df4691fa577ad.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日米租税条約における給与所得と役員報酬の違い - 二重課税を避けるために知っておくべきこと",
+      "url": "https://note.com/wtcajptc/n/nced87f02eae9",
+      "publishAt": "2025-06-18T00:12:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/194800690/rectangle_large_type_2_4997a5adb623a1435f2e3c4e88f3cbf6.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】予定納税について",
+      "url": "https://note.com/wtcajptc/n/nfeb30e825285",
+      "publishAt": "2025-06-16T23:36:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/196227411/rectangle_large_type_2_7fb591096ed6ed6b694c99d465fe94d7.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 1099-Kに気を付けよう",
+      "url": "https://note.com/wtcajptc/n/n4256da9ded4a",
+      "publishAt": "2025-06-13T23:30:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/189928544/rectangle_large_type_2_b9f2133c37ba6cb92e36b7c194869c0d.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Medical Expense -HSAの対象とItemized deduction対象の違い-",
+      "url": "https://note.com/wtcajptc/n/nb0d0f3ca9667",
+      "publishAt": "2025-06-12T23:49:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/194876012/rectangle_large_type_2_0d6f058854caced60dfe711fddf3e60a.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】株式投資の納税",
+      "url": "https://note.com/wtcajptc/n/n275252d9ee88",
+      "publishAt": "2025-06-11T23:51:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/194802991/rectangle_large_type_2_dfaf1acbba8ad69a93192e8ba8da69db.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "1031 Exchangeと在米邦人の注意点",
+      "url": "https://note.com/wtcajptc/n/na599f3be9549",
+      "publishAt": "2025-06-10T23:37:27+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190663809/rectangle_large_type_2_bb4aa11ac4523f001f7d95cd72021522.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Carried interest の税制について",
+      "url": "https://note.com/wtcajptc/n/na3c5888ed5ea",
+      "publishAt": "2025-06-09T23:56:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193413496/rectangle_large_type_2_9484b7f6cba2cff915e2a8b02c1d1b44.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】非居住者の米国内資産の相続税",
+      "url": "https://note.com/wtcajptc/n/nd2b40fd92ee2",
+      "publishAt": "2025-06-07T00:21:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193618618/rectangle_large_type_2_8f7d3676791ec39eb4c5db943288368c.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "401K Exit Tax の意外な落とし穴 - 帰国前に知っておくべきこと",
       "url": "https://note.com/wtcajptc/n/nfc6c076452c7",
-      "publishAt": null,
+      "publishAt": "2025-06-05T23:40:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193021454/rectangle_large_type_2_80e2796c736a3ac8a045d377c5793b76.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 1095-A：アメリカの健康保険と税務申告",
+      "url": "https://note.com/wtcajptc/n/n821e1091d14f",
+      "publishAt": "2025-06-04T23:53:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/192194514/rectangle_large_type_2_c2147313d4ccc4b741593ba14749ed3b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSアカウントの活用方法",
+      "url": "https://note.com/wtcajptc/n/n218c387129cb",
+      "publishAt": "2025-06-03T23:51:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/192059311/rectangle_large_type_2_492d61badb8d7d25ee6dd93285700d26.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】ロボタクシーの申告方法を考える",
+      "url": "https://note.com/wtcajptc/n/ncf61ada5fdd7",
+      "publishAt": "2025-06-02T23:38:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/193401379/rectangle_large_type_2_2b1bc4d305255fb4e748a4a17d9b0c48.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Community Property州でMFS申告する際の知られざる落とし穴",
+      "url": "https://note.com/wtcajptc/n/n3de0adb6c762",
+      "publishAt": "2025-05-30T23:55:04+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/192443691/rectangle_large_type_2_79da9b07e521b7051433be23d3fb88ca.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "同性婚の取り扱い",
+      "url": "https://note.com/wtcajptc/n/n42be206ca48d",
+      "publishAt": "2025-05-29T23:58:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/192055071/rectangle_large_type_2_9b5d996fc78649a366555074bf7fd3ff.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Residency Certificateを知っていますか？",
+      "url": "https://note.com/wtcajptc/n/nf7a87906f20b",
+      "publishAt": "2025-05-28T23:52:48+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/189752467/rectangle_large_type_2_950c614c2e60de8581d38d6b6854e2b3.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tipの非課税化、二つの可能性",
+      "url": "https://note.com/wtcajptc/n/n734b22cfa738",
+      "publishAt": "2025-05-27T23:01:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/192230972/rectangle_large_type_2_b1528ebe23cb6e7ec173d29992ab3743.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【解説】QBIの変更と解説",
+      "url": "https://note.com/wtcajptc/n/n120725027c66",
+      "publishAt": "2025-05-23T23:51:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190708831/rectangle_large_type_2_d15c73d5acadec4cdd4eb4b598764ad6.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【Itemized Deduction】Mortgageの上限額",
+      "url": "https://note.com/wtcajptc/n/nd03feb8a1058",
+      "publishAt": "2025-05-22T23:50:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190667609/rectangle_large_type_2_fc13b69ef5f3179c218ced810afc38c2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "会社が提供するRetirement Planの違いを理解していますか？",
+      "url": "https://note.com/wtcajptc/n/n62d355eaa27a",
+      "publishAt": "2025-05-21T23:55:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190139653/rectangle_large_type_2_8b8278415bab26dc6cb770966a324862.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【解説】SALT控除上限回避策がなくなるかもしれません。",
+      "url": "https://note.com/wtcajptc/n/n24421ae7681d",
+      "publishAt": "2025-05-20T23:24:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190705499/rectangle_large_type_2_8172cb2443d71ca8b7557143c1c157dd.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【法案解説】MAGA Accountについて",
+      "url": "https://note.com/wtcajptc/n/n1baade59877c",
+      "publishAt": "2025-05-19T23:50:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/190671048/rectangle_large_type_2_1129bd504be5a37de814c06dc9120f2f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ハウスハッキングの税務情報",
+      "url": "https://note.com/wtcajptc/n/nd440cf7b4346",
+      "publishAt": "2025-05-16T23:57:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/189936229/rectangle_large_type_2_64a99b29e203ddd35fbffbb42a85d625.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IVFと代理出産費用に関するItemized deductionの対象範囲",
+      "url": "https://note.com/wtcajptc/n/nfd2b0ac7acb9",
+      "publishAt": "2025-05-15T23:52:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187959666/rectangle_large_type_2_485fdc3e8ddeb3380340d402631bd361.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2026年以降の個人の税制案(5/13/2025時点)",
+      "url": "https://note.com/wtcajptc/n/n7798a9d4d211",
+      "publishAt": "2025-05-15T00:39:16+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/189757603/rectangle_large_type_2_aed80b8e5c8afbea4854fa3eaa814d6f.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】日本在住の親族からの贈与",
+      "url": "https://note.com/wtcajptc/n/n61d9c37cf36b",
+      "publishAt": "2025-05-14T00:53:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/189747566/rectangle_large_type_2_374748217a4e07c109bea5c1718140d3.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "先物取引の税制メリット",
+      "url": "https://note.com/wtcajptc/n/n20f80fb68f77",
+      "publishAt": "2025-05-13T00:17:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185437723/rectangle_large_type_2_d0a93227a1476bb8d9278805ff988e05.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Itemized deduction、連邦と州の違い",
+      "url": "https://note.com/wtcajptc/n/ne9d26ab99dd3",
+      "publishAt": "2025-05-09T23:34:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187950222/rectangle_large_type_2_d8f000a64852412e9041e942310aa34e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "二重の負担：日本年金受給で発生するアメリカSE Tax問題",
+      "url": "https://note.com/wtcajptc/n/n9a54dba2b225",
+      "publishAt": "2025-05-08T23:29:39+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/181524411/rectangle_large_type_2_f90921bb85091c25d5d22d2b038d2745.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 8843の重要性を理解する。",
+      "url": "https://note.com/wtcajptc/n/n2962a998a049",
+      "publishAt": "2025-05-07T23:46:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187954431/rectangle_large_type_2_3d91d70e5be50d0a68af12e3adefc357.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "MFJ(共同申告)の落とし穴",
+      "url": "https://note.com/wtcajptc/n/n8c0ad0ea7bdf",
+      "publishAt": "2025-05-07T00:01:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187961859/rectangle_large_type_2_03cd1f925c448bf152fa030db1ab8e39.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】F2555のRevokeについて",
+      "url": "https://note.com/wtcajptc/n/nebae541b5b23",
+      "publishAt": "2025-05-05T23:45:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187943754/rectangle_large_type_2_6246eeadc8ef138d64084f349ade0d6b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "ハーバード大学の税制優遇とその変化：501(c)(3)免税資格と寄付基金課税の影響",
+      "url": "https://note.com/wtcajptc/n/na2d899ca7e5d",
+      "publishAt": "2025-05-03T01:32:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/187287711/rectangle_large_type_2_9099730ac93417ea4761311bae519349.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Traditional IRAの出口戦略",
+      "url": "https://note.com/wtcajptc/n/n6b2e16cced64",
+      "publishAt": "2025-05-02T01:22:08+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/186711570/rectangle_large_type_2_c037823d8173de974fe3a320d3dd8875.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Sales taxとUse taxについて学ぶ",
+      "url": "https://note.com/wtcajptc/n/n16a9adb7adde",
+      "publishAt": "2025-05-01T00:09:10+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185445234/rectangle_large_type_2_a8c493baba06d35b4592973842831cb6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】親子の税務戦略",
+      "url": "https://note.com/wtcajptc/n/nf04fe2cc84e9",
+      "publishAt": "2025-04-29T23:35:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/186714298/rectangle_large_type_2_f98885702e6f26065702664d35f81ee6.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "移動費用に注意しよう。",
+      "url": "https://note.com/wtcajptc/n/n129884befc1d",
+      "publishAt": "2025-04-29T00:35:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/183992350/rectangle_large_type_2_b960a13bd91bf8c3059c34aab3f15676.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Wash salesには注意",
+      "url": "https://note.com/wtcajptc/n/nd9b48e358fa3",
+      "publishAt": "2025-04-26T01:34:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185432551/rectangle_large_type_2_bce132f1b436898cfcfd8df9681205f9.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "大学生の子供のアルバイト収入と親の税金申告：知っておくべき重要ポイント",
+      "url": "https://note.com/wtcajptc/n/n0637e1131de4",
+      "publishAt": "2025-04-24T23:41:04+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/184000893/rectangle_large_type_2_20b52b48ea6147ae7e4299e059822f66.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの帳簿付けに関する注意事項",
+      "url": "https://note.com/wtcajptc/n/nfd1281f70f5a",
+      "publishAt": "2025-04-23T23:28:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185442144/rectangle_large_type_2_f003af110bdf5b5181f0c14776888a6d.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "リモートワークの落とし穴：州をまたいだ就労の税務と法的リスク",
+      "url": "https://note.com/wtcajptc/n/n1c60301a51d4",
+      "publishAt": "2025-04-23T00:25:42+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/183979680/rectangle_large_type_2_832b3a590701cbb5173a16ca8428c64d.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSへの内部告発",
+      "url": "https://note.com/wtcajptc/n/n0651b2094120",
+      "publishAt": "2025-04-22T00:31:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/185215246/rectangle_large_type_2_af32df489def159c137598cb42be9c3a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年末で期限が切れる税法を確認する",
+      "url": "https://note.com/wtcajptc/n/n228d1fd27df5",
+      "publishAt": "2025-04-19T01:13:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/182790422/rectangle_large_type_2_29c652d31a8ef5a748d6a489bd45f685.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "W-2収入のみなのに納税が必要になる？原因と対策を徹底解説",
+      "url": "https://note.com/wtcajptc/n/ne42ab7df4a58",
+      "publishAt": "2025-04-18T01:53:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/183984887/rectangle_large_type_2_cbb9c7cf91998dbd872f122e83ac8f26.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "子供税額控除と扶養家族控除のガイド",
+      "url": "https://note.com/wtcajptc/n/n850ac147ba1f",
+      "publishAt": "2025-04-17T01:52:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/183997217/rectangle_large_type_2_541993d76beb2e07f920ca2059c2296a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Checkの支払/還付に制限がかけられるかもしれません。",
+      "url": "https://note.com/wtcajptc/n/nefb3f02a2ebf",
+      "publishAt": "2025-04-15T23:25:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/181543622/rectangle_large_type_2_8c07a7bf5bca0196039ac18321ba7353.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】非居住者のBackdoor Roth IRA",
+      "url": "https://note.com/wtcajptc/n/n29d46d4a064e",
+      "publishAt": "2025-04-14T23:45:42+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/183976268/rectangle_large_type_2_55df38798f79c9482e5b86a3ba0660be.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "副業トレーダーの申告について",
+      "url": "https://note.com/wtcajptc/n/n27c06ff2a947",
+      "publishAt": "2025-04-11T23:37:19+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/182794071/rectangle_large_type_2_1390829d10252ccaab5c39bc1950d21a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "税率の低い国に法人を持っていたら要注意-CFC とGILTI Tax-",
+      "url": "https://note.com/wtcajptc/n/n368f2faca823",
+      "publishAt": "2025-04-11T01:57:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179616464/rectangle_large_type_2_fa131b9d97170fbddb9a0c67d2a5d9f9.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本から受け取る年金は申告の対象です",
+      "url": "https://note.com/wtcajptc/n/ne15f3bd6f94e",
+      "publishAt": "2025-04-09T23:49:43+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175998286/rectangle_large_type_2_408e97609fcf34e695f9502fcf778299.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Traditional IRA入門：米国の税制を活用した賢い資産形成戦略",
+      "url": "https://note.com/wtcajptc/n/n5fb7b5e6d7f6",
+      "publishAt": "2025-04-08T23:43:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/182783484/rectangle_large_type_2_0fb5e32e08580c0522ab9810849a7ade.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "離婚時などに問題になるCommunity Property の考え方",
+      "url": "https://note.com/wtcajptc/n/nb27d5d39a83d",
+      "publishAt": "2025-04-07T23:46:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175985132/rectangle_large_type_2_a3d075a455e2c70ba460a93bab6c2ce2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本に会社を持っている場合も申告が必要です。",
+      "url": "https://note.com/wtcajptc/n/n095492689dab",
+      "publishAt": "2025-04-07T03:33:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178055121/rectangle_large_type_2_f07f9e452e25b002ee7e1da712fffe78.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "申告書の支払い遅延と申告遅延に関するPenaltyとInterestについて",
+      "url": "https://note.com/wtcajptc/n/neabb34a3fb32",
+      "publishAt": "2025-04-04T23:54:19+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178699081/rectangle_large_type_2_77adb42369246bfa562fa10815a90f3a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】親子の不動産賃貸",
+      "url": "https://note.com/wtcajptc/n/n2cfbf1f4ac15",
+      "publishAt": "2025-04-03T22:52:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/181537453/rectangle_large_type_2_fd296f21311e6a4a6d54a752a76f8bea.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【税金の基本】DeductionとCreditの違い",
+      "url": "https://note.com/wtcajptc/n/n8b3164fd9303",
+      "publishAt": "2025-04-02T22:52:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/181541471/rectangle_large_type_2_6d0f5d5cde07fd0996ca5717a1b4ce5b.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "仮想通貨のFBARについて",
+      "url": "https://note.com/wtcajptc/n/n7a3e7d1f1556",
+      "publishAt": "2025-04-01T22:58:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179309575/rectangle_large_type_2_d7be0df418e26b21ab19a9f922d966f2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】仮想通貨で利益が大きく出た場合。",
+      "url": "https://note.com/wtcajptc/n/n7db2b7fdc154",
+      "publishAt": "2025-03-31T22:47:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/181519285/rectangle_large_type_2_396093d8ce1bf92968eaf242b930a57c.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "盗難などのLossについて",
+      "url": "https://note.com/wtcajptc/n/n4b0c762e099f",
+      "publishAt": "2025-03-31T00:30:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179470204/rectangle_large_type_2_9643f3d8dbc7b6cb4e6685f9b1ff9021.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本で保有している会社の口座もFBARの対象です。",
+      "url": "https://note.com/wtcajptc/n/n2f6c79183484",
+      "publishAt": "2025-03-30T06:18:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180387568/rectangle_large_type_2_113de42943f2f88cfe5515e9b866cedd.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【判例解説】没収された退職金口座は課税対象となるのか？ - Hubbard v. Commissioner判決の解説",
+      "url": "https://note.com/wtcajptc/n/nb52a59319b06",
+      "publishAt": "2025-03-28T22:37:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180383808/rectangle_large_type_2_152f21b28d7f496d06ba9d4a243723c2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Royalty Incomeの申告の方法",
+      "url": "https://note.com/wtcajptc/n/n7d9b69e809ee",
+      "publishAt": "2025-03-27T22:52:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180378981/rectangle_large_type_2_4c92afc4f1f537c61571197c26ab882f.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】Citizenの子供が帰国した場合の注意点",
+      "url": "https://note.com/wtcajptc/n/nb92a92274612",
+      "publishAt": "2025-03-26T22:58:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180353447/rectangle_large_type_2_f8538c5e7f48d03a00f775dd4ae5a925.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Social Security以外に収入があると申告が必要かもしれません。",
+      "url": "https://note.com/wtcajptc/n/nf96377d42692",
+      "publishAt": "2025-03-25T22:20:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176790308/rectangle_large_type_2_06809ddaea7050fc41c47d57ea48d927.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "一気に利益が出るとかかる税金Net Investment Income Tax(NIIT)とは？",
+      "url": "https://note.com/wtcajptc/n/n00f0c2e76756",
+      "publishAt": "2025-03-24T22:36:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175208352/rectangle_large_type_2_a910b3626f0318268e44df951ddd992a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】初めての住宅購入と税金のメリット：知っておくべきことすべて",
+      "url": "https://note.com/wtcajptc/n/nd1c661cce7f4",
+      "publishAt": "2025-03-24T01:12:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180349122/rectangle_large_type_2_b9864288ccc8a3eab8e8253b79309821.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】経費の考え方",
+      "url": "https://note.com/wtcajptc/n/n5540ca7c9816",
+      "publishAt": "2025-03-23T06:54:52+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/180344512/rectangle_large_type_2_4dfbe79553b0665d90222a270d0d6140.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日米租税条約第２０条の改正について",
+      "url": "https://note.com/wtcajptc/n/n4f116f495020",
+      "publishAt": "2025-03-21T23:09:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179463299/rectangle_large_type_2_aaedb7121d74b5326a1a4d1c23575368.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Alimonyについて",
+      "url": "https://note.com/wtcajptc/n/n2d6bdaa505cf",
+      "publishAt": "2025-03-20T23:08:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178060657/rectangle_large_type_2_78b17c2e24a6d198e82c999d20a06fb3.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】個人事業主の申告について",
+      "url": "https://note.com/wtcajptc/n/n9486941dd24e",
+      "publishAt": "2025-03-19T23:09:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179619817/rectangle_large_type_2_c31d6a200b87d9de6991d02ef2c0b8fd.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】アメリカのExit Tax（出国税）とは？—— 帰国・米国籍（永住権）放棄前に知っておきたい重要ポイント",
+      "url": "https://note.com/wtcajptc/n/n8b40665d44c5",
+      "publishAt": "2025-03-18T23:54:00+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/179305194/rectangle_large_type_2_ac9cf82364cf217e522b4e0b5cba6f2f.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 1042とForm1099、何それ？",
+      "url": "https://note.com/wtcajptc/n/nb81e7add9c42",
+      "publishAt": "2025-03-17T23:38:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175211293/rectangle_large_type_2_1243fb250393443863c43e6a7066aa5e.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答できなかったもの】",
+      "url": "https://note.com/wtcajptc/n/ne6a7e5296590",
+      "publishAt": "2025-03-17T03:47:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178698339/rectangle_large_type_2_e663f4a1889bb8d6515c12e231f18467.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "コードを書く仕事でも要注意？州をまたぐビジネスの税金と「所得の源泉」の考え方",
+      "url": "https://note.com/wtcajptc/n/nb997adbca3ec",
+      "publishAt": "2025-03-16T04:25:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178059694/rectangle_large_type_2_2d2f5e2212ad5c7ee08688d296b5c2f6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】Form 2555について",
+      "url": "https://note.com/wtcajptc/n/nb3599b386299",
+      "publishAt": "2025-03-14T23:52:42+09:00",
       "eyecatch": null,
       "hashtags": []
+    },
+    {
+      "title": "【まとめ】HSAをすべて理解する。",
+      "url": "https://note.com/wtcajptc/n/n7db2b1869be4",
+      "publishAt": "2025-03-14T00:05:27+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173348976/rectangle_large_type_2_9fcbb42986c3979c1bba43206eeb85d2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】K-1について",
+      "url": "https://note.com/wtcajptc/n/nfa4773ea7c4f",
+      "publishAt": "2025-03-12T23:51:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/178692902/rectangle_large_type_2_7688f4dc4244478596bd06e9f2edbcca.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】USCPAの勉強方法",
+      "url": "https://note.com/wtcajptc/n/nbc9541df1bb2",
+      "publishAt": "2025-03-11T23:54:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/177061674/rectangle_large_type_2_0d69cd47fa9d94e9e96e9db93e4306c4.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "老後の資金はIRAから引き出したほうがいいのでは？",
+      "url": "https://note.com/wtcajptc/n/n1dbf0b8f7e03",
+      "publishAt": "2025-03-10T23:53:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175213180/rectangle_large_type_2_6595f7654cbe094ddc29171311c5f74f.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Step Up in Basisを理解する。",
+      "url": "https://note.com/wtcajptc/n/n20f52d5080d7",
+      "publishAt": "2025-03-10T04:35:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169841304/rectangle_large_type_2_c185d185b940f77e24d21724094d3fe6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】非居住者のFBAR申請",
+      "url": "https://note.com/wtcajptc/n/nbc9425cdc922",
+      "publishAt": "2025-03-09T03:38:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/177993569/rectangle_large_type_2_32277ddd51c8d5990396175f426272f6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】529 Planについて",
+      "url": "https://note.com/wtcajptc/n/n98898f2d309f",
+      "publishAt": "2025-03-08T01:18:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/177456264/rectangle_large_type_2_fcf480b40d152b53114f77c5ff906748.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "お金持ちの節税方法調査【違法①】",
+      "url": "https://note.com/wtcajptc/n/ndbda54191d17",
+      "publishAt": "2025-03-07T05:24:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176321564/rectangle_large_type_2_8c9f9653d574aa1830baadb509ece5bd.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【判例】IRSのレターを無視した人の末路",
+      "url": "https://note.com/wtcajptc/n/n82f5780660f4",
+      "publishAt": "2025-03-06T02:43:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172118365/rectangle_large_type_2_6da87b9654336348891dc9db40b29aaa.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "FBARと申告書は別物",
+      "url": "https://note.com/wtcajptc/n/n6763b4466c58",
+      "publishAt": "2025-03-05T00:51:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/177058011/rectangle_large_type_2_c6eea31b8f6444f7f20b1311a905186a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカ出張の税法を理解する。",
+      "url": "https://note.com/wtcajptc/n/ne24154bda3ef",
+      "publishAt": "2025-03-04T02:43:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176316395/rectangle_large_type_2_3c583ed6d46b675fa62a5a25d2f45143.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】企業年金等の収入について",
+      "url": "https://note.com/wtcajptc/n/n386fb0fe4a41",
+      "publishAt": "2025-03-03T03:52:43+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/177059052/rectangle_large_type_2_231c90fa7fd7d0ee0f51e1907ded3a91.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】銀行口座について",
+      "url": "https://note.com/wtcajptc/n/n1d444fb95d64",
+      "publishAt": "2025-03-02T05:42:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176793173/rectangle_large_type_2_081848e422daedd01dcdef4de9dfd521.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "単身赴任でも奥さんのITINは取得した方が良い可能性が高いです。",
+      "url": "https://note.com/wtcajptc/n/n7c0beb41180b",
+      "publishAt": "2025-03-01T00:56:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175507602/rectangle_large_type_2_fadbab9de07511192fa4fdd62bb41a1b.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "グリーンカードにもデメリットはあります。",
+      "url": "https://note.com/wtcajptc/n/n455c7f7f910a",
+      "publishAt": "2025-02-28T00:56:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176626469/rectangle_large_type_2_c4a0d92d999367b2cca5b76839fa0d0e.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】Fビザの申告書について",
+      "url": "https://note.com/wtcajptc/n/n446860858df0",
+      "publishAt": "2025-02-27T00:48:45+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/176324222/rectangle_large_type_2_217a24a2e7d7705aeece8857cc829000.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax Returnに必要なFormのおさらい",
+      "url": "https://note.com/wtcajptc/n/n3c3ec09e35ff",
+      "publishAt": "2025-02-26T01:02:25+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175212405/rectangle_large_type_2_1569cc531478caa9c513f5ddc8726acf.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "社費留学でアメリカに来た。州税支払っていますか？",
+      "url": "https://note.com/wtcajptc/n/n81da088f3ed6",
+      "publishAt": "2025-02-25T00:35:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173068850/rectangle_large_type_2_1c3d3a508b8b5cc64df17598c9e56016.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】アメリカ初年度の確定申告",
+      "url": "https://note.com/wtcajptc/n/nb04fadbacc50",
+      "publishAt": "2025-02-24T01:13:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175996227/rectangle_large_type_2_b0e51020c5731aa8ef9d3158bd668b4d.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本で受け取った給付金は課税対象？",
+      "url": "https://note.com/wtcajptc/n/n0bae15021f4c",
+      "publishAt": "2025-02-23T04:53:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175504861/rectangle_large_type_2_d421ac253175676bb97a70d3a5bbb0ad.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "実は知らない？「修正申告書」と「通常の申告書」の驚くべき違い",
+      "url": "https://note.com/wtcajptc/n/n6fea01812db3",
+      "publishAt": "2025-02-22T00:53:03+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171802712/rectangle_large_type_2_c6d7e64e84601bbdbbcb4d1168f9a3a4.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "「適格な保存目的寄付」を正しく理解する(Donationについて)",
+      "url": "https://note.com/wtcajptc/n/nab44347b7825",
+      "publishAt": "2025-02-21T01:49:40+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171804761/rectangle_large_type_2_87526e5298db920a3d413cf19c78de03.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSへPenaltyを払わなくてはいけないとき~First-time Abatementの活用",
+      "url": "https://note.com/wtcajptc/n/n4e599b8f5814",
+      "publishAt": "2025-02-20T00:54:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173931023/rectangle_large_type_2_49fd6539db467ff548bc4881a535dff8.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Independent Office of Appealの扱いが明文化されました。",
+      "url": "https://note.com/wtcajptc/n/nd8ce37bf67b7",
+      "publishAt": "2025-02-19T01:40:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170177133/rectangle_large_type_2_3db398f9a714d4169539da5f9b2f41a1.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】ストックオプションについて",
+      "url": "https://note.com/wtcajptc/n/n6b3dd1e745f6",
+      "publishAt": "2025-02-18T01:02:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/175058452/rectangle_large_type_2_ab1ae3756f971b192d69203ea22f442a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSからの罰金は先に支払おう",
+      "url": "https://note.com/wtcajptc/n/n3d6eb50fb124",
+      "publishAt": "2025-02-17T03:19:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173065434/rectangle_large_type_2_4f37f4fc066a1424f8007c0ee5b22463.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Itemized Deductionを理解する。",
+      "url": "https://note.com/wtcajptc/n/n6d4d0861f146",
+      "publishAt": "2025-02-16T03:34:59+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/174821974/rectangle_large_type_2_e106c99bf8f60c89a6d28f4e4ef11fac.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Standard Deductionの計算方法",
+      "url": "https://note.com/wtcajptc/n/nf3353f198612",
+      "publishAt": "2025-02-15T00:55:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171805107/rectangle_large_type_2_d72f279da1ebdbf2a968c73f7e8f79b6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Statue of Limitation-時効の考え方",
+      "url": "https://note.com/wtcajptc/n/n4cb7e13ce7c5",
+      "publishAt": "2025-02-14T00:42:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173912089/rectangle_large_type_2_a4323abda980d064e80cd916395f9aba.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】贈与のむずかしさ・・・・",
+      "url": "https://note.com/wtcajptc/n/n250b5522f871",
+      "publishAt": "2025-02-13T00:52:45+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173932267/rectangle_large_type_2_e113bfdd08755b6201c997a6efad9a66.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】Living trustと生前贈与について",
+      "url": "https://note.com/wtcajptc/n/nc62aacc7ccb1",
+      "publishAt": "2025-02-12T01:00:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/174122329/rectangle_large_type_2_2a2403a5ae54b9da24dba0132571a52f.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "申告のStatusによる税金への影響について",
+      "url": "https://note.com/wtcajptc/n/n93145c455dea",
+      "publishAt": "2025-02-11T00:34:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170437354/rectangle_large_type_2_6886237781355fefc42e532578c6aa3b.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】過去の申告の還付金",
+      "url": "https://note.com/wtcajptc/n/n6babec01e4be",
+      "publishAt": "2025-02-10T06:23:48+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173906483/rectangle_large_type_2_7c4d6c2129efcea4ce218d07ca701170.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "子供への不動産賃貸を行う場合の注意点",
+      "url": "https://note.com/wtcajptc/n/n56ffa3ecd9b3",
+      "publishAt": "2025-02-09T05:51:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172897745/rectangle_large_type_2_672b224728ab67572099ce443d85c150.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【判例】借金の肩代わりは所得・・・",
+      "url": "https://note.com/wtcajptc/n/na1c775548a28",
+      "publishAt": "2025-02-08T01:04:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172120802/rectangle_large_type_2_286f3b5a58737732ac17d2a00d8e6481.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの税金は誰が払っているのか。",
+      "url": "https://note.com/wtcajptc/n/n75eb52332aa1",
+      "publishAt": "2025-02-07T01:12:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173212473/rectangle_large_type_2_850ebd4a16cf10e2da52411a9bbc4081.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#日本",
+        "#米国",
+        "#富裕層",
+        "#所得税"
+      ]
+    },
+    {
+      "title": "Earned Income Tax Creditについて",
+      "url": "https://note.com/wtcajptc/n/n609286366643",
+      "publishAt": "2025-02-06T00:31:31+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171702030/rectangle_large_type_2_23ed042f5247ed344bdff47150bc41e0.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#申告",
+        "#投資収入",
+        "#EITC"
+      ]
+    },
+    {
+      "title": "【質問箱回答】送金による為替差損について",
+      "url": "https://note.com/wtcajptc/n/n4ddb9f9b2ddc",
+      "publishAt": "2025-02-05T00:28:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/173071241/rectangle_large_type_2_90d92c6974e5b01f851a3c7544b1f071.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#レート",
+        "#送金",
+        "#申告"
+      ]
+    },
+    {
+      "title": "国や州を跨いで活躍する方のアメリカ国内における税務申告",
+      "url": "https://note.com/wtcajptc/n/na476967eca65",
+      "publishAt": "2025-02-04T01:55:01+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#アメリカ",
+        "#収入"
+      ]
+    },
+    {
+      "title": "【質問箱回答】50ドルの利息でも申告が必要？W-8BEN提出とForm 1042-Sへの切り替えがポイント",
+      "url": "https://note.com/wtcajptc/n/n01fcca73a4b2",
+      "publishAt": "2025-02-03T03:14:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172358916/rectangle_large_type_2_b7502b185f7bce9bc0778e32f0343a44.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "家のリノベで一部税金が返ってくるかもしれません。",
+      "url": "https://note.com/wtcajptc/n/nc1014fb12195",
+      "publishAt": "2025-02-02T00:49:06+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170869286/rectangle_large_type_2_3e9770475ebab409f09965e1c2d24b80.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#エネルギー",
+        "#税金",
+        "#断熱材"
+      ]
+    },
+    {
+      "title": "【質問箱回答】予定納税について",
+      "url": "https://note.com/wtcajptc/n/n6940efea02d0",
+      "publishAt": "2025-02-01T01:43:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171994803/rectangle_large_type_2_8dca37e845223b55ccc58b691aa01910.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#支払",
+        "#ペナルティ",
+        "#予定納税"
+      ]
+    },
+    {
+      "title": "日本に住んでいる親がアメリカに資産持ったまま他界してしまった。",
+      "url": "https://note.com/wtcajptc/n/nffac7240430c",
+      "publishAt": "2025-01-31T00:45:21+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172122487/rectangle_large_type_2_cbd248426a4a9b4cf9a0518ef89cf8cd.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Mileage rateって何？",
+      "url": "https://note.com/wtcajptc/n/n7911cd03e88b",
+      "publishAt": "2025-01-30T00:52:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/172122039/rectangle_large_type_2_7059d749365ab8181b8d9ebb71861538.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#ビジネス",
+        "#費用",
+        "#修理費"
+      ]
+    },
+    {
+      "title": "ITINを正しく理解する。",
+      "url": "https://note.com/wtcajptc/n/nd434123d10a7",
+      "publishAt": "2025-01-29T01:45:09+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171802666/rectangle_large_type_2_b20701ec4e4d091c16ef3ba7deb348c7.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【質問箱回答】W4の書き方",
+      "url": "https://note.com/wtcajptc/n/n360d0ce1dd6a",
+      "publishAt": "2025-01-28T01:33:33+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171818831/rectangle_large_type_2_956e158de8f5507786b19d3358f03d5e.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【税金の基本】Ordinary incomeを理解する",
+      "url": "https://note.com/wtcajptc/n/n0bc1ca164b25",
+      "publishAt": "2025-01-27T01:21:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169127457/rectangle_large_type_2_36e677ad250c734194f74dbd93aec65d.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "違法収入にも税金は発生します。",
+      "url": "https://note.com/wtcajptc/n/nab13c04c6e59",
+      "publishAt": "2025-01-26T00:32:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/171388438/rectangle_large_type_2_e80f3d8df7763a6209beeb417334e287.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "クレジットカードのRewardとTax Returnの関係",
+      "url": "https://note.com/wtcajptc/n/n68fb50110057",
+      "publishAt": "2025-01-25T00:22:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170440668/rectangle_large_type_2_adf3d078cafc23cfd01090555577047a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "IRSは、、、怖い、、、",
+      "url": "https://note.com/wtcajptc/n/n6b466a7a23f3",
+      "publishAt": "2025-01-24T03:23:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170723240/rectangle_large_type_2_5e0f141bf2800745b9261d334fcadacb.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "相続したIRAってどうしたらいいの？",
+      "url": "https://note.com/wtcajptc/n/ne9650d9b9145",
+      "publishAt": "2025-01-23T01:15:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/168903318/rectangle_large_type_2_946d9f76540b590cb9606ddf6f17b119.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "National Tax Payer AdvocateのAnnual Reportを読んでみる。",
+      "url": "https://note.com/wtcajptc/n/ncb08234392e1",
+      "publishAt": "2025-01-22T01:05:05+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169738268/rectangle_large_type_2_679dfc509a0d87e9569763e7308f6f00.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【アメリカ国外在住の方】FBARを申告していなかった。",
+      "url": "https://note.com/wtcajptc/n/n9ffb18a35cfc",
+      "publishAt": "2025-01-21T00:31:58+09:00",
+      "eyecatch": null,
+      "hashtags": []
+    },
+    {
+      "title": "RSUとRestricted Stock～何が違ってなぜ課税されるタイミングが違うの？～",
+      "url": "https://note.com/wtcajptc/n/n3cbe8ecba4a0",
+      "publishAt": "2025-01-20T01:51:52+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#株価",
+        "#株式",
+        "#課税",
+        "#ストックオプション",
+        "#給与所得"
+      ]
+    },
+    {
+      "title": "【脳内の棚卸】人的資本に限界を感じた",
+      "url": "https://note.com/wtcajptc/n/nf57bbd985e5a",
+      "publishAt": "2025-01-19T15:53:24+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169835847/rectangle_large_type_2_83db3fe375e9a396ee814e356914ae6e.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#自分",
+        "#副業",
+        "#人的資本"
+      ]
+    },
+    {
+      "title": "Rental incomeの落とし穴、14日ルール",
+      "url": "https://note.com/wtcajptc/n/n5721e8c3df94",
+      "publishAt": "2025-01-19T00:42:36+09:00",
+      "eyecatch": null,
+      "hashtags": []
+    },
+    {
+      "title": "Paid Family and Medical Leaveの州税の取り扱いについて",
+      "url": "https://note.com/wtcajptc/n/ne1c2defe99a3",
+      "publishAt": "2025-01-18T00:40:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170299765/rectangle_large_type_2_03054abd7ffaeff28e87ef7878f3e327.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年から始まるDirect Fileを知っていますか？",
+      "url": "https://note.com/wtcajptc/n/n772aa0bd829d",
+      "publishAt": "2025-01-17T00:23:03+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169825971/rectangle_large_type_2_f3ac17ffd03e3bc916309c4847f1d901.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "お金持ちの相続税の穴が埋まったようです。【アメリカ】",
+      "url": "https://note.com/wtcajptc/n/n44e8e47b2a31",
+      "publishAt": "2025-01-16T00:24:32+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/170036524/rectangle_large_type_2_4cb3e2cd229323972ed2ab96fb374df2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【アメリカ在住の方】FBARを申告し忘れた場合",
+      "url": "https://note.com/wtcajptc/n/n6534a3252305",
+      "publishAt": "2025-01-15T00:34:30+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169839323/rectangle_large_type_2_95b0e1d096970c3e8a7769d6c8476e1c.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカで活躍する日本人プロ野球選手の税務事情を考察",
+      "url": "https://note.com/wtcajptc/n/n7c1b5aa3a3a3",
+      "publishAt": "2025-01-14T00:38:03+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163822814/rectangle_large_type_2_c646430a1984a78290f89e34747ed3bc.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Form 1099 DIVについての解説",
+      "url": "https://note.com/wtcajptc/n/n9511d55086a6",
+      "publishAt": "2025-01-13T05:15:55+09:00",
+      "eyecatch": null,
+      "hashtags": []
+    },
+    {
+      "title": "カリフォルニア南部山火事後の税金の対応について",
+      "url": "https://note.com/wtcajptc/n/n09703a125988",
+      "publishAt": "2025-01-12T14:37:35+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169725808/rectangle_large_type_2_ccd76bc0ac38365264930f8b24fb5df1.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "具体例でみる富裕層の節税方法、Buy Borrow and Die",
+      "url": "https://note.com/wtcajptc/n/n35013a1d824e",
+      "publishAt": "2025-01-12T02:13:18+09:00",
+      "eyecatch": null,
+      "hashtags": []
+    },
+    {
+      "title": "疑義のある取引は自ら開示する必要があります。",
+      "url": "https://note.com/wtcajptc/n/n47b5ff280c84",
+      "publishAt": "2025-01-11T00:25:57+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169061481/rectangle_large_type_2_d95d32d1f8769e980cad648ac75d37b1.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカの贈与税知っていますか？",
+      "url": "https://note.com/wtcajptc/n/n90a65e6329db",
+      "publishAt": "2025-01-10T00:03:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/166074521/rectangle_large_type_2_0ca327dc5806cb332ea45fe22a962ab2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【2025年版】W-2フォームの見方とForm 1040への反映方法",
+      "url": "https://note.com/wtcajptc/n/nde0be7182830",
+      "publishAt": "2025-01-09T00:53:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/168568633/rectangle_large_type_2_967691f0bec5b6dac548b84f451cff26.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【税金の基本】Earned incomeとUnearned income",
+      "url": "https://note.com/wtcajptc/n/n8b29acd4d109",
+      "publishAt": "2025-01-08T00:47:05+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/169130799/rectangle_large_type_2_fdf58b5b8ca93939a1945cf6a179d475.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax Returnの超基本！初めての方向け",
+      "url": "https://note.com/wtcajptc/n/nae34fd721a4c",
+      "publishAt": "2025-01-07T00:53:47+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/168991604/rectangle_large_type_2_e815b5eff901f3ecdc5dbb243f714d8b.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "日本の親族が亡くなり、日本で相続を受け取りました。",
+      "url": "https://note.com/wtcajptc/n/n596b5138eccd",
+      "publishAt": "2025-01-06T10:09:07+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/168881567/rectangle_large_type_2_a8e36c6468c37df0dbf3b2d4fa5581bb.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "2025年の抱負：強くなる。",
+      "url": "https://note.com/wtcajptc/n/nc14d2c84cdcc",
+      "publishAt": "2025-01-04T08:27:36+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/168563576/rectangle_large_type_2_e318e131f7f79dc03811a916786841c3.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "Tax ReturnでIRAやHSAの確認方法",
+      "url": "https://note.com/wtcajptc/n/nfbe0a4ccd119",
+      "publishAt": "2025-01-03T01:26:13+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/166712102/rectangle_large_type_2_ea13fffa32833151c4175fea5551fc34.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【税金の基本】AGIを理解する",
+      "url": "https://note.com/wtcajptc/n/nefabdcf23bcc",
+      "publishAt": "2024-12-31T02:17:25+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#アメリカ",
+        "#確定申告"
+      ]
+    },
+    {
+      "title": "Kiddie Taxと扶養控除：子どもの収入にどのように課税される？",
+      "url": "https://note.com/wtcajptc/n/nb7b0520eb1bf",
+      "publishAt": "2024-12-28T05:12:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163443691/rectangle_large_type_2_2c3fcb45eeb30c07b33014b1217028f3.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "アメリカ在住日本人のための税法上の「居住者」を理解する",
+      "url": "https://note.com/wtcajptc/n/n7f715130159a",
+      "publishAt": "2024-12-22T11:25:19+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#アメリカ",
+        "#米国",
+        "#確定申告",
+        "#居住者"
+      ]
+    },
+    {
+      "title": "アメリカで活動する日本人ポーカープレイヤーの税務に関する頭の体操",
+      "url": "https://note.com/wtcajptc/n/n97bdd9c4eb75",
+      "publishAt": "2024-12-17T10:21:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163059330/rectangle_large_type_2_37c75bc16d7aa7b2beac80f292b66b4f.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "退職金口座の早期引き出し方法について",
+      "url": "https://note.com/wtcajptc/n/na5647cfa4249",
+      "publishAt": "2024-12-15T05:02:58+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/165779368/rectangle_large_type_2_a2161b53802a699de00a164ca8ac9b71.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#留学",
+        "#ルール",
+        "#税金",
+        "#ビザ",
+        "#ペナルティ",
+        "#401"
+      ]
+    },
+    {
+      "title": "W-8BENフォームを提出しないと損をするかもしれません。",
+      "url": "https://note.com/wtcajptc/n/n04bb0fa5b069",
+      "publishAt": "2024-12-12T14:39:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/165449855/rectangle_large_type_2_0809bb82091b3b6349693dd6ff6d41fa.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "FBARとForm 8938の違いを解説：知らないと高額ペナルティのリスクも",
+      "url": "https://note.com/wtcajptc/n/n72bd8e632a9c",
+      "publishAt": "2024-12-08T03:08:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163777141/rectangle_large_type_2_9fa5da24b7b409c43307eb3f7905c9c4.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#FBAR"
+      ]
+    },
+    {
+      "title": "Form 1116とForm 2555の違いを徹底解説！",
+      "url": "https://note.com/wtcajptc/n/ndb4e99343d05",
+      "publishAt": "2024-12-03T03:27:50+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163944332/rectangle_large_type_2_5b689be022e2b0db3255e901719ab9d2.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#日本",
+        "#米国"
+      ]
+    },
+    {
+      "title": "アメリカ留学中の収入に関する税務リスク：学生ビザでの情報発信とその代償",
+      "url": "https://note.com/wtcajptc/n/nd41595746014",
+      "publishAt": "2024-11-30T11:08:04+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163009940/rectangle_large_type_2_8dae5d240e0271a617401c4a561021fe.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#留学",
+        "#収入",
+        "#申告"
+      ]
+    },
+    {
+      "title": "家を買いたい。でも、買えない。",
+      "url": "https://note.com/wtcajptc/n/n20662c848e14",
+      "publishAt": "2024-11-30T06:56:01+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163150971/rectangle_large_type_2_6d923bc5309842032deb7a914033996a.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#購入",
+        "#ローン",
+        "#計算"
+      ]
+    },
+    {
+      "title": "#12【Tax Return】アメリカでの減価償却はSec 179と特別減価償却で賢く節税",
+      "url": "https://note.com/wtcajptc/n/nd34a9c117a43",
+      "publishAt": "2024-11-27T00:25:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163266157/rectangle_large_type_2_3d297a7eb9db6b5b068bea879a60efde.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#ビザ",
+        "#179控除",
+        "#特別減価償却"
+      ]
+    },
+    {
+      "title": "自己紹介",
+      "url": "https://note.com/wtcajptc/n/n3ba89eafa415",
+      "publishAt": "2024-11-25T10:30:52+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/163164586/rectangle_large_type_2_7e21c185c5e102d2f8891249d144a114.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#資産形成",
+        "#情報発信",
+        "#税金"
+      ]
+    },
+    {
+      "title": "#11【Tax Return】S corp設立による節税",
+      "url": "https://note.com/wtcajptc/n/nf645f1510c18",
+      "publishAt": "2024-11-24T04:55:03+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#ビジネス",
+        "#アメリカ",
+        "#税金"
+      ]
+    },
+    {
+      "title": "#10【Tax Return】ドナーアドバイスドファンド（DAF）の活用方法：寄付を最大限に活かすために",
+      "url": "https://note.com/wtcajptc/n/nc5209044f42b",
+      "publishAt": "2024-11-23T01:22:28+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/162635467/rectangle_large_type_2_347c1cfa01effa4288c09eb0a74f79b9.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#確定申告",
+        "#ビザ"
+      ]
+    },
+    {
+      "title": "人と違うことの心地よさ",
+      "url": "https://note.com/wtcajptc/n/n551e54d2968f",
+      "publishAt": "2024-11-23T01:20:53+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/162632356/rectangle_large_type_2_31c0c6ccd3233cb9d32eeee3c0a24366.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#仕事",
+        "#アメリカ",
+        "#留学",
+        "#ビザ"
+      ]
+    },
+    {
+      "title": "#9【Tax Return】HSAを最大限に活用する方法：税制上のメリットと基本要件",
+      "url": "https://note.com/wtcajptc/n/nd2d2979fc4d6",
+      "publishAt": "2024-11-22T00:24:36+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/162633981/rectangle_large_type_2_f7d72fd3fb8d1b2d7a62381e84fe35f6.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#ビザ",
+        "#非課税",
+        "#グリーンカード"
+      ]
+    },
+    {
+      "title": "#8【Tax Return】収入がない年や外国所得控除を活用したロスコンバージョンのメリットと具体例",
+      "url": "https://note.com/wtcajptc/n/nb5af1737d000",
+      "publishAt": "2024-11-21T03:46:26+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/162393743/rectangle_large_type_2_a3b65f7c2d88ff0996d07f629c1751a5.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#情報",
+        "#税金",
+        "#ビザ"
+      ]
+    },
+    {
+      "title": "#7【Tax Return】タックスゲインハーベスティング（Tax Gain Harvesting）とは？所得が低い時期に資産売却で税負担を軽減する方法",
+      "url": "https://note.com/wtcajptc/n/n36bf47b2d6e2",
+      "publishAt": "2024-11-20T06:48:00+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161812669/rectangle_large_type_2_b0f961ec27a82657afac6535b2f68c52.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#キャピタルゲイン"
+      ]
+    },
+    {
+      "title": "#6【Tax Return】（Tax Loss Harvesting）とは？具体例でわかる節税方法",
+      "url": "https://note.com/wtcajptc/n/n5e4edca7a680",
+      "publishAt": "2024-11-19T03:50:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161811853/rectangle_large_type_2_70c0942a1c84d76ed5d3e607ce2d7b60.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#確定申告",
+        "#株式",
+        "#損失"
+      ]
+    },
+    {
+      "title": "#5 【Tax Return】Qualified Charitable Distribution (QCD)とは？70歳半以上の方がIRAからの寄付で税負担を軽減する方法",
+      "url": "https://note.com/wtcajptc/n/n4ee8d1c4d706",
+      "publishAt": "2024-11-18T04:01:41+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/162267554/rectangle_large_type_2_5b3f9a1169b6f9b1c41a02661eafceec.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#節税",
+        "#ビザ"
+      ]
+    },
+    {
+      "title": "#4【Tax Return】Donationの最適化：株式寄付で税負担を軽減し、寄付効果を最大化する方法",
+      "url": "https://note.com/wtcajptc/n/ne52454cbd1be",
+      "publishAt": "2024-11-17T02:47:38+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161808624/rectangle_large_type_2_9c75ba44a412bb3e0ccaf4dde8719035.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#株式",
+        "#キャピタルゲイン",
+        "#寄付金控除"
+      ]
+    },
+    {
+      "title": "#3 【Tax Return】高所得者向け！2024年版Backdoor Roth戦略と具体例",
+      "url": "https://note.com/wtcajptc/n/naebf7282944d",
+      "publishAt": "2024-11-16T00:55:56+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161763730/rectangle_large_type_2_eb1dcdcb6eaa6ec626a35825d5bedaeb.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#会計事務所",
+        "#IRA"
+      ]
+    },
+    {
+      "title": "イーロン・マスクがスイングステートで1,700万ドルを配布した背景と税務的な視点",
+      "url": "https://note.com/wtcajptc/n/n7e2dff0f91ba",
+      "publishAt": "2024-11-15T07:10:37+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161885155/rectangle_large_type_2_101a79c269854132571daaceb3be52dd.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#キャンペーン",
+        "#イーロン・マスク",
+        "#法的"
+      ]
+    },
+    {
+      "title": "#2【Tax Return】高所得者必見！2024年版Mega Backdoor Roth戦略と具体例",
+      "url": "https://note.com/wtcajptc/n/n1fa340c059f6",
+      "publishAt": "2024-11-15T01:01:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161763530/rectangle_large_type_2_232a13043de6087def617594ab3c8c62.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#節税",
+        "#IRA"
+      ]
+    },
+    {
+      "title": "番外編【Tax Return】J1ビザ保持者向け確定申告ガイド",
+      "url": "https://note.com/wtcajptc/n/ndb9b3976db10",
+      "publishAt": "2024-11-14T16:06:20+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161814327/rectangle_large_type_2_f45787a06f470f20840f5841e635939e.png?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "#1【Tax Return】節税の基礎！Retirement Accountを見直そう",
+      "url": "https://note.com/wtcajptc/n/n65c76a8959b2",
+      "publishAt": "2024-11-14T04:54:11+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161762739/rectangle_large_type_2_e58bbecaf381a36e39f616052a5f0852.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#税金",
+        "#taxreturn"
+      ]
+    },
+    {
+      "title": "気づけばアメリカに来て2年/USCPAを持って3年経ちそうです",
+      "url": "https://note.com/wtcajptc/n/n10ca76035ecf",
+      "publishAt": "2024-11-12T15:55:02+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/161566817/rectangle_large_type_2_2c401f734ba24b84f40208c8be3ed53d.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#資格",
+        "#USCPA"
+      ]
+    },
+    {
+      "title": "アメリカに行った場合の資産運用とかってどうしてますか？？",
+      "url": "https://note.com/wtcajptc/n/nf61330c3eeb8",
+      "publishAt": "2022-04-10T22:56:49+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/76170075/rectangle_large_type_2_d0f8753f4b7c6c1ceb96b395f09b51bc.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#英語学習",
+        "#アメリカ",
+        "#アメリカ生活",
+        "#USCPA",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "USCPAのライセンス取得に関する手続きについて",
+      "url": "https://note.com/wtcajptc/n/n4a4625fe983e",
+      "publishAt": "2022-04-01T23:21:51+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/75317732/rectangle_large_type_2_09040c672b1ee2b45c4ed349419409b9.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#日記",
+        "#英語学習",
+        "#アメリカ",
+        "#アメリカ生活",
+        "#USCPA",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "J1ビザのスポンサー面談をしました！",
+      "url": "https://note.com/wtcajptc/n/n42ac4b9cda93",
+      "publishAt": "2022-03-27T14:47:44+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/74802421/rectangle_large_type_2_ed134d2f915051f84cf38890c71b85ce.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#日記",
+        "#英語学習",
+        "#アメリカ",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "J1ビザのお金を支払いました。",
+      "url": "https://note.com/wtcajptc/n/ncb855aac92ec",
+      "publishAt": "2022-03-18T22:38:03+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/74305475/rectangle_large_type_2_4d5455f853ca635385c9d68021414d83.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#写真",
+        "#英語",
+        "#英語学習",
+        "#アメリカ",
+        "#英語勉強",
+        "#アメリカ生活",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "英語を覚えるのに必要なのは反復だけじゃない・・・",
+      "url": "https://note.com/wtcajptc/n/n1c1c5fe16246",
+      "publishAt": "2022-03-12T22:25:22+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/74117653/rectangle_large_type_2_ff7b3d026531d3855e1eb4ed6d01417c.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#英語",
+        "#英語学習",
+        "#英語勉強",
+        "#USCPA",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "社会人のリカレント教育について思うこと",
+      "url": "https://note.com/wtcajptc/n/n77fb3e94e3ea",
+      "publishAt": "2022-03-06T23:02:27+09:00",
+      "eyecatch": null,
+      "hashtags": [
+        "#写真",
+        "#アメリカ",
+        "#新生活をたのしく",
+        "#キャリアデザイン",
+        "#USCPA",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "ゴールから逆算しなくてもいいんじゃないですか・・・？",
+      "url": "https://note.com/wtcajptc/n/n489e5763c1b2",
+      "publishAt": "2022-02-26T21:30:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/73106210/rectangle_large_type_2_71199838168bd812c86406ba0737896c.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#転職",
+        "#キャリア",
+        "#アメリカ",
+        "#キャリアデザイン",
+        "#USCPA",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "【USCPA】倫理試験に合格した話。",
+      "url": "https://note.com/wtcajptc/n/n634676bd4530",
+      "publishAt": "2022-02-19T22:22:04+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/72310259/rectangle_large_type_2_73e675ce07cd38136a1edf1ec57f85ef.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#転職",
+        "#USCPA",
+        "#ジョブホッパー",
+        "#アメリカで働く",
+        "#LA生活",
+        "#独立行政法人",
+        "#j1ビザ",
+        "#倫理試験"
+      ]
+    },
+    {
+      "title": "LAの会計事務所に行くことにした理由(2/2)",
+      "url": "https://note.com/wtcajptc/n/nb1e1e84b3635",
+      "publishAt": "2022-02-11T01:33:18+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/71789228/rectangle_large_type_2_5a4889c2cee2de939a6b94a41508c0d8.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#転職",
+        "#海外転職",
+        "#ジョブホッパー",
+        "#アメリカで働く",
+        "#LA生活",
+        "#独立行政法人",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "LAの会計事務所に行くことにした理由(1/2)",
+      "url": "https://note.com/wtcajptc/n/nc3cf2a982d63",
+      "publishAt": "2022-02-05T17:01:55+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/71467624/rectangle_large_type_2_3ae1a300a0bccec63528ebcab69651ca.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#英語",
+        "#転職",
+        "#社会人",
+        "#公務員",
+        "#USCPA",
+        "#ジョブホッパー",
+        "#アメリカで働く",
+        "#LA生活",
+        "#独立行政法人",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "J1インターンの準備開始(1)〜費用〜",
+      "url": "https://note.com/wtcajptc/n/nbe5da9984f75",
+      "publishAt": "2022-01-29T11:55:17+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/70962170/rectangle_large_type_2_148ebe4581d75d4afdcc79bd7b3b35cf.png?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#転職",
+        "#アメリカ",
+        "#USCPA",
+        "#この仕事を選んだわけ",
+        "#元銀行員",
+        "#ジョブホッパー",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "USCPAって何！？取ろうと思った理由と期間",
+      "url": "https://note.com/wtcajptc/n/nc4ef37aec524",
+      "publishAt": "2022-01-28T00:08:12+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/70865524/rectangle_large_type_2_24d6a0a2884c16e036366f5d87a57df0.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#この仕事を選んだわけ",
+        "#元銀行員",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
+    },
+    {
+      "title": "なぜ半年後にLAへ！？自己紹介編",
+      "url": "https://note.com/wtcajptc/n/n7aa1f03472d0",
+      "publishAt": "2022-01-15T16:53:23+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/64883761/rectangle_large_type_2_262f09fcc111c6c5eaf6e1a1a78d0b1b.jpg?fit=bounds&quality=85&width=1280",
+      "hashtags": [
+        "#アメリカ",
+        "#USCPA",
+        "#この仕事を選んだわけ",
+        "#元銀行員",
+        "#アメリカで働く",
+        "#j1ビザ"
+      ]
     }
   ]
 }
