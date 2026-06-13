@@ -13,6 +13,7 @@
   var FLOW = data.FLOW;
   var ARTICLES = data.ARTICLES;
   var KEYWORDS = data.KEYWORDS || {};
+  var TOOLS = data.TOOLS || {};
   var NOTE_PROFILE = data.NOTE_PROFILE;
   var CONTACT_URL = data.CONTACT_URL;
 
@@ -116,6 +117,24 @@
     // 補足メモ
     if (node.note) {
       card.appendChild(el("div", "dx-disclaimer", escapeHtml(node.note)));
+    }
+
+    // 関連ツール（このテーマで使える判定ツールへの導線）
+    var toolKeys = (node.tools || []).filter(function (k) { return TOOLS[k]; });
+    if (toolKeys.length) {
+      card.appendChild(el("p", "dx-articles-head", "🧰 自分のケースで判定する"));
+      var tools = el("div", "dx-tools");
+      toolKeys.forEach(function (k) {
+        var t = TOOLS[k];
+        var a = el("a", "dx-tool");
+        a.href = t.url;
+        a.innerHTML = '<span class="dx-tool-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
+          '<span class="dx-tool-body"><strong>' + escapeHtml(t.title) + "</strong>" +
+          "<span>" + escapeHtml(t.desc || "") + "</span></span>" +
+          '<span class="dx-tool-cta" aria-hidden="true">→</span>';
+        tools.appendChild(a);
+      });
+      card.appendChild(tools);
     }
 
     // 関連note（厳選ピン留め＋タイトル連動の自動補充を「1つのリスト」に統合）
@@ -236,6 +255,28 @@
 
   // 初期描画
   go("start");
+
+  // ===== トップの判定ツール一覧（TOOLS登録簿から自動生成） =====
+  (function renderToolsList() {
+    var wrap = document.getElementById("tools-list");
+    if (!wrap) return;
+    var keys = Object.keys(TOOLS);
+    if (!keys.length) { var s = document.getElementById("tools"); if (s) s.style.display = "none"; return; }
+    keys.forEach(function (k) {
+      var t = TOOLS[k];
+      var a = el("a", "tool-card");
+      a.href = t.url;
+      a.innerHTML =
+        '<span class="tool-card-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
+        '<span class="tool-card-body">' +
+        (t.badge ? '<span class="tool-card-badge">' + escapeHtml(t.badge) + "</span>" : "") +
+        "<strong>" + escapeHtml(t.title) + "</strong>" +
+        "<span class=\"tool-card-desc\">" + escapeHtml(t.desc || "") + "</span>" +
+        '<span class="tool-card-cta">ツールを開く →</span>' +
+        "</span>";
+      wrap.appendChild(a);
+    });
+  })();
 
   // ===== note記事検索（#notesSearch があるページのみ） =====
   (function initNotesSearch() {

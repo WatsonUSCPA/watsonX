@@ -65,10 +65,7 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
 .brand-mark {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  object-fit: cover;
-  background: var(--bg-tertiary, #ecebe3);
-  border: 1px solid var(--line);
+  object-fit: contain;
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
 .brand-text strong { font-size: 17px; }
@@ -150,38 +147,65 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
 
 /* ===== Featured tool ===== */
 .tools { background: var(--bg); padding-top: 0; }
-.tool-feature {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  max-width: 880px;
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+  max-width: 920px;
   margin: 0 auto;
+}
+.tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 4px solid var(--teal);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 26px 28px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.06s ease, border-color 0.15s ease;
 }
-.tool-feature-icon {
-  flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-  border-radius: 14px;
-  object-fit: cover;
-  background: #ecebe3;
-  border: 1px solid var(--line);
-}
-.tool-feature-eyebrow {
-  margin: 0 0 4px;
-  font-size: 12px;
+.tool-card:hover { transform: translateY(-2px); border-left-color: var(--gold); }
+.tool-card-emoji { font-size: 30px; line-height: 1; flex-shrink: 0; }
+.tool-card-body { display: flex; flex-direction: column; }
+.tool-card-badge {
+  align-self: flex-start;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--teal-600);
+  background: #e8f6f6;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
 }
-.tool-feature-body h2 { margin: 0 0 8px; font-size: clamp(18px, 2.4vw, 22px); color: var(--navy); }
-.tool-feature-body p { margin: 0 0 16px; color: var(--ink-soft); font-size: 14px; }
-.tool-feature-body .btn { font-size: 14px; padding: 11px 22px; }
+.tool-card-body strong { font-size: 16px; color: var(--navy); }
+.tool-card-desc { font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 12px; line-height: 1.65; }
+.tool-card-cta { font-size: 13.5px; font-weight: 700; color: var(--teal-600); }
+
+/* 結果カード内のツール導線 */
+.dx-tools { display: grid; gap: 10px; margin-bottom: 22px; }
+.dx-tool {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--teal);
+  border-radius: 12px;
+  background: #f3fbfb;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.15s ease;
+}
+.dx-tool:hover { background: #e8f6f6; }
+.dx-tool-emoji { font-size: 24px; flex-shrink: 0; }
+.dx-tool-body { display: flex; flex-direction: column; flex: 1; }
+.dx-tool-body strong { font-size: 14.5px; color: var(--navy); }
+.dx-tool-body span { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.55; }
+.dx-tool-cta { color: var(--teal); font-weight: 700; flex-shrink: 0; }
 
 /* ===== Sections ===== */
 section { padding: 76px 0; }
@@ -467,10 +491,7 @@ section { padding: 76px 0; }
   flex-shrink: 0;
   width: 96px;
   height: 96px;
-  border-radius: 18px;
-  object-fit: cover;
-  background: #ecebe3;
-  border: 1px solid var(--line);
+  object-fit: contain;
 }
 .about-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0 0; }
 @media (max-width: 560px) {

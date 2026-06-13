@@ -92,6 +92,7 @@ const FLOW = {
       "「帰国直前のまとまった引き出し」は税率が跳ね上がりやすいポイント。タイミングと金額の設計で結果が大きく変わります。",
     ],
     articles: ["exitTax401k", "ira401k", "returnChecklist"],
+    tools: ["iraType"],
   },
   r_exit: {
     result: true,
@@ -103,6 +104,7 @@ const FLOW = {
       "放棄のタイミング・前年までの申告整備で結果が変わるため、放棄を決める前の事前設計が肝心です。",
     ],
     articles: ["exitTax401k", "greenCardAbandon"],
+    tools: ["iraType"],
   },
   r_assets: {
     result: true,
@@ -246,6 +248,7 @@ const FLOW = {
       "RothとTraditionalで課税の前後関係が逆になります。種類ごとに最適な引き出し戦略が違います。",
     ],
     articles: ["ira401k", "exitTax401k"],
+    tools: ["iraType"],
     note: "IRA関連は順次コンテンツを拡充予定です。最新はnoteでご確認ください。",
   },
   ret_ss: {
@@ -313,5 +316,23 @@ const KEYWORDS = {
 /* IRAツール用キーワード（ira/index.html から参照） */
 const IRA_KEYWORDS = ["ira", "roth", "traditional", "401k", "転換", "backdoor", "exit tax", "出国税", "年金", "帰国"];
 
+/* -------------------------------------------------------------
+ * 4) 判定ツール登録簿
+ *    ★ ツールを増やすときは、ここに1件足すだけ。
+ *      - トップの「判定ツール」一覧に自動で並びます
+ *      - FLOWの結果ノードの tools:[キー] で、テーマからも導線が出ます
+ * ----------------------------------------------------------- */
+const TOOLS = {
+  iraType: {
+    title: "Roth か Traditional IRA 判定ツール",
+    desc: "帰国・Exit Tax（出国税）・拠出の適格性・退職後の税率まで踏まえて、自分に向いた IRA を5ステップで判定します。",
+    url: "ira/",
+    emoji: "⚖️",
+    badge: "無料ツール",
+  },
+  // 例) 次のツールを足すとき:
+  // fbarCheck: { title:"FBAR 提出要否チェック", desc:"...", url:"fbar/", emoji:"🗂️", badge:"無料ツール" },
+};
+
 /* app.js から参照できるように公開 */
-window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, NOTE_PROFILE, CONTACT_URL };
+window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
