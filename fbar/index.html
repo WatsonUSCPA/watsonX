@@ -173,17 +173,19 @@
 <!-- STEP 4 -->
 <div class="step">
   <div class="label"><i class="ti ti-coins" aria-hidden="true"></i> STEP 4 — 海外資産・株式・ファンド（Form 8938 / 5471 / 8621）</div>
-  <p class="lead">確定申告に添付する Form 8938 は、口座だけでなく外国の株式・ファンド・解約返戻金のある保険なども対象です。下の合計には、それらも含めて<b>日本円</b>で入力してください（米ドル換算して基準額と比較します）。</p>
-  <div style="display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-    <div>
-      <label class="field-label" for="assetsYearEnd">年末時点の海外資産の合計（円）</label>
-      <input id="assetsYearEnd" type="number" inputmode="numeric" placeholder="例: 9000000" min="0" step="100000" />
-    </div>
-    <div>
-      <label class="field-label" for="assetsMax">年間で最も多かったときの海外資産の合計（円）</label>
-      <input id="assetsMax" type="number" inputmode="numeric" placeholder="例: 13000000" min="0" step="100000" />
-    </div>
+  <p class="lead">Form 8938 は「<b>年内で最も多かったとき</b>の合計」と「<b>年末時点</b>の合計」の2つで判定し、<b>どちらか一方でも</b>基準を超えれば対象です。</p>
+
+  <!-- 年間最高：STEP 3（FBAR）の合計を自動で流用 -->
+  <div class="card" style="padding:.8rem 1rem; margin-bottom:12px; background:var(--bg-secondary);">
+    <div style="font-size:12px; color:var(--tx-secondary);">① 年間で最も多かったときの合計（STEP 3 の海外口座から自動取得）</div>
+    <div id="assetsMaxFromFbar" style="font-size:16px; font-weight:700; color:var(--navy); margin-top:2px;">—</div>
+    <p class="hint" style="margin-top:6px;">STEP 3 でチェックした口座・資産の合計をそのまま使います。口座に入っていない外国株式などがあれば、下のチェックで補ってください。</p>
   </div>
+
+  <!-- 年末残高：新規入力＋説明 -->
+  <label class="field-label" for="assetsYearEnd">② 年末時点（12/31）の海外資産の合計（円）</label>
+  <input id="assetsYearEnd" type="number" inputmode="numeric" placeholder="例: 9000000" min="0" step="100000" />
+  <p class="hint" style="margin-top:6px;"><b>「年末残高」とは：</b> 12月31日時点での海外資産の合計です。8938 は「年内の最高」だけでなく「年末時点」も別に見るため、ここで年末の数字を確認します。年の途中で大きく動いて年末は減っていた、という人も拾えるようにする仕組みで、<b>年末が基準以下でも年内最高が基準を超えれば対象</b>になります。逆に、年末時点でまとまった残高があれば年内最高が低めでも対象になり得ます。</p>
   <div style="margin-top:12px; display:grid; gap:6px;">
     <label class="chk" data-mod="insurance"><i class="ti ti-umbrella" aria-hidden="true"></i><span>解約返戻金（cash value）のある外国の保険・年金保険を持っている<br><span class="hint">8938 上の特定外国金融資産として報告対象になり得ます（掛け捨て型は一般に対象外）</span></span></label>
     <label class="chk" data-mod="corp"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>日本など外国の会社の株式を一定割合以上（目安10%）持っている<br><span class="hint">外国法人の「米国株主」は Form 5471 の対象になり得ます（取得・追加5%で別カテゴリーも）</span></span></label>
@@ -249,7 +251,7 @@ const FBAR_CATS = [
 
 const S = { person:null, residence:null, filing:null,
   cats:{},                 // FBAR: key -> { on:bool, jpy:number }
-  assetsYearEndJPY:NaN, assetsMaxJPY:NaN, insurance:false, corp:false, pfic:false };
+  assetsYearEndJPY:NaN, insurance:false, corp:false, pfic:false };
 FBAR_CATS.forEach(function(c){ S.cats[c.key] = { on:false, jpy:NaN }; });
 
 // Form 8938 のしきい値 [年末, 年中いつでも]（2024/2025年・USD）
@@ -282,7 +284,6 @@ function bindNum(id, field){
   });
 }
 bindNum('assetsYearEnd','assetsYearEndJPY');
-bindNum('assetsMax','assetsMaxJPY');
 
 // FBAR: 該当しそうな口座のチェックリスト（金額は日本円）を生成
 (function buildFbarCats(){
@@ -338,9 +339,9 @@ function evaluate(){
   const forms=[];
   const ft = fbarTotals();
   const yeJPY = isNaN(S.assetsYearEndJPY)?0:S.assetsYearEndJPY;
-  const mxJPY = isNaN(S.assetsMaxJPY)?0:S.assetsMaxJPY;
+  const mxJPY = ft.jpy;            // 8938の「年間最高」は STEP 3（FBAR）の合計を流用
   const ye = yeJPY/RATE_JPY_PER_USD;
-  const mx = mxJPY/RATE_JPY_PER_USD;
+  const mx = ft.usd;
   const t = T8938[S.residence][S.filing];
   const thr10k = yen(10000*RATE_JPY_PER_USD);
 
@@ -478,9 +479,16 @@ function renderRec(){
   el.innerHTML=html;
 }
 
+function renderAssetsMax(){
+  const el=document.getElementById('assetsMaxFromFbar'); if(!el) return;
+  const ft=fbarTotals();
+  el.textContent = ft.anyOn ? (yen(ft.jpy)+' ＝ 約 '+usd(ft.usd)) : '— STEP 3 で口座を選ぶと自動表示します';
+}
+
 function onChange(){
   renderThreshInfo();
   renderFbarTotal();
+  renderAssetsMax();
   renderRec();
 }
 onChange();
