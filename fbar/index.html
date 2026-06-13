@@ -233,8 +233,8 @@
 </footer>
 
 <script>
-// 2025年の換算レート（目安）。正式な FBAR / 8938 換算は財務省（Treasury）の年末レートを使います。
-const RATE_JPY_PER_USD = 150;
+// 2025年末（12/31/2025）の財務省（Treasury）公表レート。FBAR / 8938 の正式換算に使用。
+const RATE_JPY_PER_USD = 156.61;
 
 // FBAR の対象になりやすい海外口座のチェックリスト
 const FBAR_CATS = [
@@ -429,7 +429,7 @@ function renderFbarTotal(){
       '<div style="font-size:19px;font-weight:700;color:var(--navy);">'+yen(ft.jpy)+' <span style="font-size:13px;color:var(--tx-secondary);font-weight:500;">＝ 約 '+usd(ft.usd)+'</span></div></div>'+
       '<span class="pill" style="background:var(--bg-'+meta[1]+');color:var(--tx-'+meta[1]+');">'+meta[0]+'</span>'+
     '</div>'+
-    '<div class="hint" style="margin-top:8px;"><i class="ti ti-coin" aria-hidden="true"></i> 2025年の換算レート（目安）: 1ドル = ¥'+RATE_JPY_PER_USD+'（FBARの正式換算は財務省の年末レート）。'+
+    '<div class="hint" style="margin-top:8px;"><i class="ti ti-coin" aria-hidden="true"></i> 換算レート: 1ドル = ¥'+RATE_JPY_PER_USD+'（2025年末の米財務省レート）。'+
     (ft.missing? ' <span style="color:var(--tx-warning);">金額未入力の口座が '+ft.missing+' 件あります。</span>':'')+'</div>';
 }
 
