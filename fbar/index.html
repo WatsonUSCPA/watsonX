@@ -187,7 +187,7 @@
   <input id="assetsYearEnd" type="text" inputmode="numeric" placeholder="例: 9,000,000" autocomplete="off" />
   <p class="hint" style="margin-top:6px;"><b>「年末残高」とは：</b> 12月31日時点での海外資産の合計です。8938 は「年内の最高」だけでなく「年末時点」も別に見るため、ここで年末の数字を確認します。年の途中で大きく動いて年末は減っていた、という人も拾えるようにする仕組みで、<b>年末が基準以下でも年内最高が基準を超えれば対象</b>になります。逆に、年末時点でまとまった残高があれば年内最高が低めでも対象になり得ます。</p>
   <div style="margin-top:12px; display:grid; gap:6px;">
-    <label class="chk" data-mod="corp"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>日本など外国の会社の株式を一定割合以上（目安10%）持っている<br><span class="hint">外国法人の「米国株主」は Form 5471 の対象になり得ます（取得・追加5%で別カテゴリーも）</span></span></label>
+    <label class="chk" data-mod="corp"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>日本など外国の会社の株式を持っている（少しでも・家族の保有を含む）<br><span class="hint">10%以上の「米国株主」が Form 5471 の基準ですが、親・配偶者・子など家族の持ち分も合算（みなし保有）されるため、自分の直接保有が数%でも対象になることがあります。</span></span></label>
     <label class="chk" data-mod="pfic"><i class="ti ti-chart-pie" aria-hidden="true"></i><span>海外の投資信託・ETF・ファンドに投資している<br><span class="hint">米国税務上 PFIC に該当することが多く、その場合は Form 8621 の対象です</span></span></label>
   </div>
 </div>
@@ -393,10 +393,10 @@ function evaluate(){
 
   // Form 5471（外国法人の保有）
   forms.push(S.corp
-    ? { name:'Form 5471（外国法人の株式保有）', status:'need',
-        desc:'外国法人の株式を一定割合（目安：議決権または価値の10%以上の米国株主、取得・追加5%が絡むと別カテゴリー）保有しているため、Form 5471 の提出が必要になる可能性が高いです。どのカテゴリーに当たるかは要確認です。' }
+    ? { name:'Form 5471（外国法人の株式保有）', status:'maybe',
+        desc:'外国法人の株式を保有しているため、Form 5471 の対象になり得ます。基準は「米国株主（議決権または価値の10%以上）」ですが、所有割合は<b>親・配偶者・子など家族の持ち分を合算したみなし保有（constructive ownership／§318・§958(b)）</b>で判定するため、自分の直接保有が1〜数%でも対象になることがあります。ただし、家族が<b>非居住外国人（NRA）</b>の場合は、その持ち分を合算しない例外（§958(b)(1)）があり、結論が分かれます。カテゴリー判定とあわせて専門家にご確認ください。' }
     : { name:'Form 5471（外国法人の株式保有）', status:'none',
-        desc:'外国法人の大口保有がないため、現時点では対象外の可能性が高いです。' });
+        desc:'外国法人の株式保有がないため、現時点では対象外の可能性が高いです。ご自身の直接保有がなくても、家族保有分の合算（みなし保有）で対象になる場合があります。' });
 
   // Form 8621（PFIC）
   forms.push(S.pfic
