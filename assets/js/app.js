@@ -12,6 +12,7 @@
 
   var FLOW = data.FLOW;
   var ARTICLES = data.ARTICLES;
+  var KEYWORDS = data.KEYWORDS || {};
   var NOTE_PROFILE = data.NOTE_PROFILE;
   var CONTACT_URL = data.CONTACT_URL;
 
@@ -97,6 +98,21 @@
     return link;
   }
 
+  // notes.json の記事オブジェクト（title/url）→ リンクDOM
+  function noteArticleLink(a) {
+    var link = el("a", "dx-article");
+    link.href = a.url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    var ico = el("span", "ico", "note");
+    var meta = el("span", "meta");
+    meta.appendChild(el("strong", null, escapeHtml(a.title)));
+    meta.appendChild(el("span", null, "noteで読む →"));
+    link.appendChild(ico);
+    link.appendChild(meta);
+    return link;
+  }
+
   function renderResult(nodeId) {
     var node = FLOW[nodeId];
     mount.innerHTML = "";
@@ -119,7 +135,8 @@
       card.appendChild(el("div", "dx-disclaimer", escapeHtml(node.note)));
     }
 
-    // 関連note
+    // 関連note（手書きカタログ）
+    var shownUrls = {};
     var keys = (node.articles || []).filter(function (k) { return ARTICLES[k]; });
     if (keys.length) {
       card.appendChild(el("p", "dx-articles-head", "📘 もっと深掘りする（関連note）"));
@@ -127,8 +144,26 @@
       keys.forEach(function (k) {
         var link = articleLink(k);
         if (link) list.appendChild(link);
+        if (ARTICLES[k] && ARTICLES[k].url) shownUrls[ARTICLES[k].url] = true;
       });
       card.appendChild(list);
+    }
+
+    // 関連note（noteから自動取得・タイトルキーワードで連動）
+    if (window.WNOTES) {
+      var autoHead = el("p", "dx-articles-head", "📰 関連する最新のnote記事");
+      var autoList = el("div", "dx-articles");
+      autoHead.style.display = "none";
+      card.appendChild(autoHead);
+      card.appendChild(autoList);
+      window.WNOTES.ready.then(function () {
+        var matched = window.WNOTES.match(KEYWORDS[nodeId] || [], 5).filter(function (a) {
+          return a.url && !shownUrls[a.url];
+        });
+        if (!matched.length) return;
+        autoHead.style.display = "";
+        matched.forEach(function (a) { autoList.appendChild(noteArticleLink(a)); });
+      });
     }
 
     // CTA
@@ -196,6 +231,35 @@
 
   // 初期描画
   go("start");
+
+  // ===== note記事検索（#notesSearch があるページのみ） =====
+  (function initNotesSearch() {
+    var input = document.getElementById("notesSearch");
+    var listEl = document.getElementById("notesList");
+    var metaEl = document.getElementById("notesMeta");
+    if (!input || !listEl || !window.WNOTES) return;
+
+    function render(query) {
+      var items = window.WNOTES.search(query, 24);
+      listEl.innerHTML = "";
+      items.forEach(function (a) { listEl.appendChild(noteArticleLink(a)); });
+      if (metaEl) {
+        var total = window.WNOTES.state.totalCount;
+        if (!query) {
+          metaEl.textContent = total ? "公開中の記事 " + total + " 件（新着順）" : "";
+        } else {
+          metaEl.textContent = items.length ? items.length + " 件ヒット" : "該当する記事が見つかりませんでした。別のキーワードでお試しください。";
+        }
+      }
+    }
+
+    window.WNOTES.ready.then(function () { render(""); });
+    var timer = null;
+    input.addEventListener("input", function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { render(input.value); }, 150);
+    });
+  })();
 
   // フッターの年号
   var y = document.getElementById("year");

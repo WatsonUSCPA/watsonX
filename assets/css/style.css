@@ -391,6 +391,24 @@ section { padding: 76px 0; }
   vertical-align: middle;
 }
 
+/* ===== Notes search ===== */
+.notes-search { background: var(--surface); }
+.notes-box { max-width: 760px; margin: 0 auto; }
+#notesSearch {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.15s ease;
+}
+#notesSearch:focus { outline: none; border-color: var(--teal); }
+.notes-meta { margin: 14px 2px 16px; font-size: 13px; color: var(--ink-soft); }
+
 /* ===== About ===== */
 .about { background: var(--surface); }
 .about-inner { max-width: 760px; margin: 0 auto; }

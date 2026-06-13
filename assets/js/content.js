@@ -286,5 +286,32 @@ const FLOW = {
   },
 };
 
+/* -------------------------------------------------------------
+ * 3) 結果ノード → 関連note抽出キーワード
+ *    notes.json（自動取得した全記事）のタイトルに、ここのキーワードが
+ *    含まれる記事を「関連note」として自動表示します。
+ *    ★ 記事が増えても編集不要。マッチ精度を上げたいときだけ語を足す。
+ * ----------------------------------------------------------- */
+const KEYWORDS = {
+  r_401k:        ["401k", "ira", "退職金", "退職口座", "帰国", "引き出し", "年金"],
+  r_exit:        ["exit tax", "出国税", "exit", "グリーンカード", "市民権", "放棄", "expatriate"],
+  r_assets:      ["売却", "不動産", "証券", "資産", "firpta", "帰国", "整理"],
+  r_filing:      ["確定申告", "申告", "dual", "二重", "帰国", "居住"],
+  d_us_resident: ["fbar", "fatca", "8938", "海外口座", "報告", "開示"],
+  d_jp_resident: ["市民権", "グリーンカード", "全世界所得", "申告義務", "非居住"],
+  d_delinquent: ["申告漏れ", "ストリームライン", "自主開示", "delinquent", "ペナルティ", "遅延"],
+  i_salary:      ["給与", "駐在", "手当", "外国税額控除", "国外所得"],
+  i_investment:  ["配当", "利子", "キャピタルゲイン", "pfic", "投資", "株"],
+  i_rental:      ["賃貸", "不動産", "家賃", "減価償却"],
+  i_doubletax:   ["二重課税", "外国税額控除", "租税条約", "ftc"],
+  ret_ira:       ["ira", "401k", "roth", "traditional", "年金", "引き出し", "転換"],
+  ret_ss:        ["ソーシャルセキュリティ", "social security", "年金", "公的年金"],
+  ret_treaty:    ["租税条約", "年金", "条約"],
+  overview:      ["帰国", "海外資産", "二重課税", "fbar", "ira", "税金"],
+};
+
+/* IRAツール用キーワード（ira/index.html から参照） */
+const IRA_KEYWORDS = ["ira", "roth", "traditional", "401k", "転換", "backdoor", "exit tax", "出国税", "年金", "帰国"];
+
 /* app.js から参照できるように公開 */
-window.WCONTENT = { FLOW, ARTICLES, NOTE_PROFILE, CONTACT_URL };
+window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, NOTE_PROFILE, CONTACT_URL };

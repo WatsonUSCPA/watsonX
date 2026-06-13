@@ -32,6 +32,7 @@
         <a href="#diagnosis">節税診断</a>
         <a href="#cases">対応ケース</a>
         <a href="ira/">IRA判定</a>
+        <a href="#notes">記事を探す</a>
         <a href="#about">運営者</a>
         <a class="nav-cta" href="https://note.com/wtcajptc" target="_blank" rel="noopener">noteを読む</a>
       </nav>
@@ -105,6 +106,21 @@
       </div>
     </section>
 
+    <!-- ===== Notes search ===== -->
+    <section id="notes" class="notes-search">
+      <div class="container">
+        <header class="section-head">
+          <h2>note記事を探す</h2>
+          <p>キーワードで、公開中のnote記事から関連する解説を検索できます。</p>
+        </header>
+        <div class="notes-box">
+          <input id="notesSearch" type="search" placeholder="例: IRA / FBAR / 帰国 / 二重課税 / Exit Tax" autocomplete="off" />
+          <p id="notesMeta" class="notes-meta"></p>
+          <div id="notesList" class="dx-articles"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== About ===== -->
     <section id="about" class="about">
       <div class="container about-inner">
@@ -145,6 +161,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/notes.js"></script>
   <script src="assets/js/content.js"></script>
   <script src="assets/js/app.js"></script>
 </body>

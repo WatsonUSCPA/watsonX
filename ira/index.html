@@ -290,6 +290,12 @@
   </div>
 </div>
 
+<div class="step" id="relatedNotes" style="display:none;">
+  <div class="label"><i class="ti ti-notebook" aria-hidden="true"></i> 関連する note 記事</div>
+  <p class="lead">IRA・帰国・Exit Tax まわりの解説です。公開中の最新記事から自動で表示しています。</p>
+  <div id="iraNotesList" style="display:grid; gap:8px;"></div>
+</div>
+
 <p style="font-size:11px; color:var(--tx-tertiary); margin-top:1.25rem; line-height:1.65;">
   ※ 本ツールは2025年税法に基づく教育情報で、税務・投資アドバイスではありません。所得閾値はMAGIに基づき毎年改定されます（IRS Pub 590-A/B）。日本のRoth課税・日米租税条約17条の留保条項（米国市民は米国でも課税されうる）・Backdoorのpro-rataルール・§877A Exit Tax は複雑で見解が分かれます。実行前に米国CPA、帰国予定者は日米両国に詳しい専門家へ必ずご相談ください。
 </p>
@@ -560,6 +566,39 @@ onChange();
   var text = 'Roth か Traditional IRA 判定ツール — 日本帰国・Exit Tax まで考慮して、はい/いいえで一発判定';
   document.getElementById('shareX').href =
     'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(location.href);
+})();
+</script>
+
+<!-- note記事データ（自動取得）と連動表示 -->
+<script src="../assets/js/notes.js"></script>
+<script src="../assets/js/content.js"></script>
+<script>
+(function () {
+  if (!window.WNOTES) return;
+  var kw = (window.WCONTENT && window.WCONTENT.IRA_KEYWORDS) ||
+    ["ira", "roth", "traditional", "401k", "転換", "backdoor", "出国税", "年金", "帰国"];
+  function noteCard(a) {
+    var link = document.createElement('a');
+    link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
+    link.style.cssText = 'display:flex; gap:11px; align-items:center; text-decoration:none; color:var(--tx-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-md); padding:11px 13px; background:var(--bg-primary);';
+    var ico = document.createElement('span');
+    ico.textContent = 'note';
+    ico.style.cssText = 'flex-shrink:0; display:grid; place-items:center; width:34px; height:34px; border-radius:8px; background:var(--navy); color:#fff; font-size:11px; font-weight:700;';
+    var meta = document.createElement('span');
+    meta.style.cssText = 'display:flex; flex-direction:column; line-height:1.4;';
+    var t = document.createElement('strong'); t.textContent = a.title; t.style.cssText = 'font-size:13.5px; font-weight:700;';
+    var s = document.createElement('span'); s.textContent = 'noteで読む →'; s.style.cssText = 'font-size:12px; color:var(--tx-secondary);';
+    meta.appendChild(t); meta.appendChild(s);
+    link.appendChild(ico); link.appendChild(meta);
+    return link;
+  }
+  window.WNOTES.ready.then(function () {
+    var matched = window.WNOTES.match(kw, 6).filter(function (a) { return a.url; });
+    if (!matched.length) return;
+    var list = document.getElementById('iraNotesList');
+    matched.forEach(function (a) { list.appendChild(noteCard(a)); });
+    document.getElementById('relatedNotes').style.display = '';
+  });
 })();
 </script>
 </body>
