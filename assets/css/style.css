@@ -185,6 +185,19 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
 .tool-card-body strong { font-size: 16px; color: var(--navy); }
 .tool-card-desc { font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 12px; line-height: 1.65; }
 .tool-card-cta { font-size: 13.5px; font-weight: 700; color: var(--teal-600); }
+/* 準備中ツール：クリック不可・トーンを落とす */
+.tool-card.is-soon {
+  cursor: default;
+  border-left-color: var(--line);
+  background: #fafafa;
+  box-shadow: none;
+}
+.tool-card.is-soon:hover { transform: none; border-left-color: var(--line); }
+.tool-card.is-soon .tool-card-emoji { opacity: 0.5; filter: grayscale(1); }
+.tool-card.is-soon strong,
+.tool-card.is-soon .tool-card-desc { color: var(--ink-soft); }
+.tool-card-badge.is-soon { color: #8a8a8a; background: #ededed; }
+.tool-card.is-soon .tool-card-cta { color: #9a9a9a; }
 
 /* 結果カード内のツール導線 */
 .dx-tools { display: grid; gap: 10px; margin-bottom: 22px; }
@@ -206,6 +219,24 @@ h1, h2, h3 { line-height: 1.4; letter-spacing: 0.01em; }
 .dx-tool-body strong { font-size: 14.5px; color: var(--navy); }
 .dx-tool-body span { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.55; }
 .dx-tool-cta { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+.dx-tool.is-soon {
+  cursor: default;
+  border-color: var(--line);
+  background: #fafafa;
+}
+.dx-tool.is-soon:hover { background: #fafafa; }
+.dx-tool.is-soon .dx-tool-emoji { opacity: 0.5; filter: grayscale(1); }
+.dx-tool.is-soon .dx-tool-body strong { color: var(--ink-soft); }
+.dx-tool-soon {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #8a8a8a;
+  background: #ededed;
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
 
 /* ===== Sections ===== */
 section { padding: 76px 0; }

@@ -329,9 +329,24 @@ const TOOLS = {
     url: "ira/",
     emoji: "⚖️",
     badge: "無料ツール",
+    ready: true, // ← 公開済み。url を開けるようにする
   },
-  // 例) 次のツールを足すとき:
-  // fbarCheck: { title:"FBAR 提出要否チェック", desc:"...", url:"fbar/", emoji:"🗂️", badge:"無料ツール" },
+
+  // ▼準備中のツール（ready:false）。まだ中身ができていないので、
+  //   トップやテーマ結果では「準備中」と表示され、押しても反応しません。
+  //   ツールが完成したら url を入れて ready:true に変えるだけで公開されます。
+  fbarCheck: {
+    title: "FBAR / FATCA 提出要否チェック",
+    desc: "海外口座・資産の残高から、FBAR（FinCEN 114）や Form 8938（FATCA）の提出が必要かを確認できるようにする予定です。",
+    emoji: "🗂️",
+    ready: false,
+  },
+  exitTax: {
+    title: "Exit Tax（出国税）対象判定",
+    desc: "グリーンカードの保有期間や資産規模から、出国税の対象（covered expatriate）に当たるかを確認できるようにする予定です。",
+    emoji: "🛫",
+    ready: false,
+  },
 };
 
 /* app.js から参照できるように公開 */

@@ -126,13 +126,16 @@
       var tools = el("div", "dx-tools");
       toolKeys.forEach(function (k) {
         var t = TOOLS[k];
-        var a = el("a", "dx-tool");
-        a.href = t.url;
-        a.innerHTML = '<span class="dx-tool-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
-          '<span class="dx-tool-body"><strong>' + escapeHtml(t.title) + "</strong>" +
+        var ready = t.ready !== false;
+        // 準備中のツールは、トップの一覧と同じく押しても反応しない表示にする
+        var item = ready ? el("a", "dx-tool") : el("div", "dx-tool is-soon");
+        if (ready) { item.href = t.url; } else { item.setAttribute("aria-disabled", "true"); }
+        item.innerHTML = '<span class="dx-tool-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
+          '<span class="dx-tool-body"><strong>' + escapeHtml(t.title) +
+          (ready ? "" : ' <span class="dx-tool-soon">準備中</span>') + "</strong>" +
           "<span>" + escapeHtml(t.desc || "") + "</span></span>" +
-          '<span class="dx-tool-cta" aria-hidden="true">→</span>';
-        tools.appendChild(a);
+          '<span class="dx-tool-cta" aria-hidden="true">' + (ready ? "→" : "") + "</span>";
+        tools.appendChild(item);
       });
       card.appendChild(tools);
     }
@@ -264,17 +267,22 @@
     if (!keys.length) { var s = document.getElementById("tools"); if (s) s.style.display = "none"; return; }
     keys.forEach(function (k) {
       var t = TOOLS[k];
-      var a = el("a", "tool-card");
-      a.href = t.url;
-      a.innerHTML =
+      var ready = t.ready !== false;
+      // 準備中（ready:false）のツールはリンクにせず、押しても反応しないカードにする
+      var card = ready ? el("a", "tool-card") : el("div", "tool-card is-soon");
+      if (ready) { card.href = t.url; } else { card.setAttribute("aria-disabled", "true"); }
+      var badge = ready
+        ? (t.badge ? '<span class="tool-card-badge">' + escapeHtml(t.badge) + "</span>" : "")
+        : '<span class="tool-card-badge is-soon">準備中</span>';
+      card.innerHTML =
         '<span class="tool-card-emoji" aria-hidden="true">' + (t.emoji || "🧮") + "</span>" +
         '<span class="tool-card-body">' +
-        (t.badge ? '<span class="tool-card-badge">' + escapeHtml(t.badge) + "</span>" : "") +
+        badge +
         "<strong>" + escapeHtml(t.title) + "</strong>" +
         "<span class=\"tool-card-desc\">" + escapeHtml(t.desc || "") + "</span>" +
-        '<span class="tool-card-cta">ツールを開く →</span>' +
+        '<span class="tool-card-cta">' + (ready ? "ツールを開く →" : "近日公開") + "</span>" +
         "</span>";
-      wrap.appendChild(a);
+      wrap.appendChild(card);
     });
   })();
 
