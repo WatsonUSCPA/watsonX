@@ -46,7 +46,15 @@ function normalize(c) {
 
 async function fetchPage(page) {
   const api = `https://note.com/api/v2/creators/${URLNAME}/contents?kind=note&page=${page}`;
-  const res = await fetch(api, { headers: { "User-Agent": UA, Accept: "application/json" } });
+  // 1リクエストが応答しないと無人ジョブが固まるため、20秒で打ち切る
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 20000);
+  let res;
+  try {
+    res = await fetch(api, { headers: { "User-Agent": UA, Accept: "application/json" }, signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
   if (!res.ok) throw new Error(`HTTP ${res.status} on page ${page}`);
   const json = await res.json();
   const d = json.data || json;
