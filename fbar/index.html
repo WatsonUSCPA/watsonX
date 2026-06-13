@@ -489,6 +489,7 @@ function onChange(){
   renderFbarTotal();
   renderAssetsMax();
   renderRec();
+  if (window.refreshFbarNotes) window.refreshFbarNotes();
 }
 onChange();
 
@@ -505,9 +506,10 @@ onChange();
 <script>
 (function () {
   if (!window.WNOTES) return;
-  var kw = (window.WCONTENT && window.WCONTENT.FATCA_KEYWORDS) ||
-    ["fbar", "fatca", "8938", "海外資産", "海外口座", "申告", "報告"];
-  function noteCard(a) {
+  var FATCA = (window.WCONTENT && window.WCONTENT.FATCA_KEYWORDS) ||
+    ["fbar", "fatca", "8938", "海外資産", "海外口座", "報告"];
+
+  function noteCard(a, tag) {
     var link = document.createElement('a');
     link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
     link.style.cssText = 'display:flex; gap:11px; align-items:center; text-decoration:none; color:var(--tx-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-md); padding:11px 13px; background:var(--bg-primary);';
@@ -516,19 +518,53 @@ onChange();
     ico.style.cssText = 'flex-shrink:0; display:grid; place-items:center; width:34px; height:34px; border-radius:8px; background:var(--navy); color:#fff; font-size:11px; font-weight:700;';
     var meta = document.createElement('span');
     meta.style.cssText = 'display:flex; flex-direction:column; line-height:1.4;';
+    if (tag) {
+      var tg = document.createElement('span'); tg.textContent = tag;
+      tg.style.cssText = 'align-self:flex-start; font-size:10.5px; font-weight:700; color:var(--tx-info); background:var(--bg-info); padding:1px 8px; border-radius:999px; margin-bottom:3px;';
+      meta.appendChild(tg);
+    }
     var t = document.createElement('strong'); t.textContent = a.title; t.style.cssText = 'font-size:13.5px; font-weight:700;';
     var s = document.createElement('span'); s.textContent = 'noteで読む →'; s.style.cssText = 'font-size:12px; color:var(--tx-secondary);';
     meta.appendChild(t); meta.appendChild(s);
     link.appendChild(ico); link.appendChild(meta);
     return link;
   }
-  window.WNOTES.ready.then(function () {
-    var matched = window.WNOTES.match(kw, 6).filter(function (a) { return a.url; });
-    if (!matched.length) return;
+
+  function firstMatch(keywords) {
+    var m = window.WNOTES.match(keywords, 4).filter(function (a) { return a.url; });
+    return m.length ? m[0] : null;
+  }
+
+  function renderNotes() {
+    if (!window.WNOTES.state.loaded) return;
     var list = document.getElementById('fbarNotesList');
-    matched.forEach(function (a) { list.appendChild(noteCard(a)); });
-    document.getElementById('relatedNotes').style.display = '';
-  });
+    var sec = document.getElementById('relatedNotes');
+    if (!list) return;
+    var shown = {}, items = [];
+
+    // 5471 / 8621 が該当しそうなら、その解説noteを必ず1件ずつ先頭にピン留め
+    if (typeof S !== 'undefined' && S.corp) {
+      var a5471 = firstMatch(["5471", "cfc", "gilti", "外国法人"]);
+      if (a5471) { items.push({ a: a5471, tag: 'Form 5471' }); shown[a5471.url] = true; }
+    }
+    if (typeof S !== 'undefined' && S.pfic) {
+      var a8621 = firstMatch(["8621", "pfic", "投資信託"]);
+      if (a8621 && !shown[a8621.url]) { items.push({ a: a8621, tag: 'Form 8621' }); shown[a8621.url] = true; }
+    }
+
+    // 残り枠を FATCA 全般の関連noteで補充（重複除外・最大6件）
+    window.WNOTES.match(FATCA, 8)
+      .filter(function (a) { return a.url && !shown[a.url]; })
+      .slice(0, Math.max(0, 6 - items.length))
+      .forEach(function (a) { shown[a.url] = true; items.push({ a: a, tag: null }); });
+
+    list.innerHTML = '';
+    items.forEach(function (it) { list.appendChild(noteCard(it.a, it.tag)); });
+    if (sec) sec.style.display = items.length ? '' : 'none';
+  }
+
+  window.refreshFbarNotes = renderNotes;     // ツールの入力変更時に main 側から再描画
+  window.WNOTES.ready.then(renderNotes);
 })();
 </script>
 </body>
