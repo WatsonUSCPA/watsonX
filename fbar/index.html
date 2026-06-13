@@ -164,27 +164,24 @@
 <!-- STEP 3 -->
 <div class="step">
   <div class="label"><i class="ti ti-building-bank" aria-hidden="true"></i> STEP 3 — 海外の金融口座（FBAR）</div>
-  <p class="lead">海外（米国外）の銀行・証券・暗号資産取引所などの口座について。FBAR は「口座残高の合計が年間のどこかで1万ドルを超えたか」で判定します。</p>
-  <label class="field-label" for="fbarMax">海外口座の残高が、年間で最も多かったときの合計（USD）</label>
-  <input id="fbarMax" type="number" inputmode="numeric" placeholder="例: 12000" min="0" step="100" />
-  <div style="margin-top:12px; display:grid; gap:6px;">
-    <label class="chk" data-mod="sigAuth"><i class="ti ti-signature" aria-hidden="true"></i><span>自分名義でなくても、署名権限（signature authority）のある口座がある<br><span class="hint">勤務先や自分の会社など、法人名義の口座を動かせる場合も FBAR の対象になり得ます</span></span></label>
-    <label class="chk" data-mod="cryptoForeign"><i class="ti ti-currency-bitcoin" aria-hidden="true"></i><span>海外の取引所に暗号資産（仮想通貨）の口座がある<br><span class="hint">自分のウォレットでの自己保管だけなら扱いは別。海外取引所の「口座」は合算対象になり得ます</span></span></label>
-  </div>
+  <p class="lead">FBAR は「海外口座の<b>合計</b>が年間のどこかで1万ドルを超えたか」で判定します。該当しそうな口座にチェックを入れ、年間で最も多かったときの残高を<b>日本円</b>で入力してください。合計と米ドル換算（2025年レート）を自動表示します。</p>
+  <div id="fbarCats" style="display:grid; gap:8px;"></div>
+  <div id="fbarTotal" class="card" style="display:none; margin-top:12px; padding:.9rem 1.1rem;"></div>
+  <p class="hint"><i class="ti ti-info-circle" aria-hidden="true"></i> 署名権限のある法人口座や、海外取引所の暗号資産口座も合算対象です（自己保管のみのウォレットは扱いが別）。</p>
 </div>
 
 <!-- STEP 4 -->
 <div class="step">
   <div class="label"><i class="ti ti-coins" aria-hidden="true"></i> STEP 4 — 海外資産・株式・ファンド（Form 8938 / 5471 / 8621）</div>
-  <p class="lead">確定申告に添付する Form 8938 は、口座だけでなく外国の株式・ファンド・解約返戻金のある保険なども対象です。下の合計には、それらも含めてください。</p>
+  <p class="lead">確定申告に添付する Form 8938 は、口座だけでなく外国の株式・ファンド・解約返戻金のある保険なども対象です。下の合計には、それらも含めて<b>日本円</b>で入力してください（米ドル換算して基準額と比較します）。</p>
   <div style="display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
     <div>
-      <label class="field-label" for="assetsYearEnd">年末時点の海外資産の合計（USD）</label>
-      <input id="assetsYearEnd" type="number" inputmode="numeric" placeholder="例: 60000" min="0" step="1000" />
+      <label class="field-label" for="assetsYearEnd">年末時点の海外資産の合計（円）</label>
+      <input id="assetsYearEnd" type="number" inputmode="numeric" placeholder="例: 9000000" min="0" step="100000" />
     </div>
     <div>
-      <label class="field-label" for="assetsMax">年間で最も多かったときの海外資産の合計（USD）</label>
-      <input id="assetsMax" type="number" inputmode="numeric" placeholder="例: 90000" min="0" step="1000" />
+      <label class="field-label" for="assetsMax">年間で最も多かったときの海外資産の合計（円）</label>
+      <input id="assetsMax" type="number" inputmode="numeric" placeholder="例: 13000000" min="0" step="100000" />
     </div>
   </div>
   <div style="margin-top:12px; display:grid; gap:6px;">
@@ -236,9 +233,24 @@
 </footer>
 
 <script>
+// 2025年の換算レート（目安）。正式な FBAR / 8938 換算は財務省（Treasury）の年末レートを使います。
+const RATE_JPY_PER_USD = 150;
+
+// FBAR の対象になりやすい海外口座のチェックリスト
+const FBAR_CATS = [
+  { key:'bank',      label:'日本の銀行口座（普通・定期預金）' },
+  { key:'brokerage', label:'証券・ブローカー口座' },
+  { key:'fund',      label:'投資信託・ファンドの口座' },
+  { key:'insurance', label:'解約返戻金のある保険（生命保険・年金保険）' },
+  { key:'crypto',    label:'暗号資産（仮想通貨）の取引所口座' },
+  { key:'corp',      label:'署名権限のある法人・事業の口座' },
+  { key:'other',     label:'その他の海外金融口座' },
+];
+
 const S = { person:null, residence:null, filing:null,
-  fbarMax:NaN, sigAuth:false, cryptoForeign:false,
-  assetsYearEnd:NaN, assetsMax:NaN, insurance:false, corp:false, pfic:false };
+  cats:{},                 // FBAR: key -> { on:bool, jpy:number }
+  assetsYearEndJPY:NaN, assetsMaxJPY:NaN, insurance:false, corp:false, pfic:false };
+FBAR_CATS.forEach(function(c){ S.cats[c.key] = { on:false, jpy:NaN }; });
 
 // Form 8938 のしきい値 [年末, 年中いつでも]（2024/2025年・USD）
 const T8938 = {
@@ -264,13 +276,52 @@ document.querySelectorAll('label.chk[data-mod]').forEach(l=>{
     const m=l.dataset.mod; S[m]=!S[m]; l.classList.toggle('on', S[m]); onChange();
   });
 });
-function bindNum(id){
+function bindNum(id, field){
   document.getElementById(id).addEventListener('input', e=>{
-    const v=parseFloat(e.target.value); S[id]= (isNaN(v)||v<0)?NaN:v; onChange();
+    const v=parseFloat(e.target.value); S[field]= (isNaN(v)||v<0)?NaN:v; onChange();
   });
 }
-['fbarMax','assetsYearEnd','assetsMax'].forEach(bindNum);
+bindNum('assetsYearEnd','assetsYearEndJPY');
+bindNum('assetsMax','assetsMaxJPY');
 
+// FBAR: 該当しそうな口座のチェックリスト（金額は日本円）を生成
+(function buildFbarCats(){
+  const wrap=document.getElementById('fbarCats');
+  FBAR_CATS.forEach(function(c){
+    const row=document.createElement('div');
+    const lbl=document.createElement('label'); lbl.className='chk'; lbl.style.alignItems='center';
+    const cb=document.createElement('input'); cb.type='checkbox'; cb.style.marginTop='0';
+    const sp=document.createElement('span'); sp.textContent=c.label;
+    lbl.appendChild(cb); lbl.appendChild(sp);
+    const amt=document.createElement('div');
+    amt.style.cssText='display:none; align-items:center; gap:6px; margin:6px 0 4px 8px;';
+    const yenmark=document.createElement('span'); yenmark.textContent='¥'; yenmark.style.cssText='font-size:14px; color:var(--tx-secondary);';
+    const inp=document.createElement('input'); inp.type='number'; inp.inputMode='numeric';
+    inp.min='0'; inp.step='10000'; inp.placeholder='年間で最も多かったときの残高（円）';
+    amt.appendChild(yenmark); amt.appendChild(inp);
+    cb.addEventListener('change', function(){
+      S.cats[c.key].on=cb.checked; lbl.classList.toggle('on', cb.checked);
+      amt.style.display=cb.checked?'flex':'none';
+      if(!cb.checked){ inp.value=''; S.cats[c.key].jpy=NaN; }
+      onChange();
+    });
+    inp.addEventListener('input', function(){
+      const v=parseFloat(inp.value); S.cats[c.key].jpy=(isNaN(v)||v<0)?NaN:v; onChange();
+    });
+    row.appendChild(lbl); row.appendChild(amt); wrap.appendChild(row);
+  });
+})();
+
+function fbarTotals(){
+  let jpy=0, missing=0, anyOn=false;
+  FBAR_CATS.forEach(function(c){
+    const it=S.cats[c.key];
+    if(it.on){ anyOn=true; if(isNaN(it.jpy)) missing++; else jpy+=it.jpy; }
+  });
+  return { jpy:jpy, usd:jpy/RATE_JPY_PER_USD, missing:missing, anyOn:anyOn };
+}
+
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
 function usd(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
 function filingLabel(){ return S.filing==='single'?'独身':S.filing==='mfj'?'夫婦合算（MFJ）':'夫婦個別（MFS）'; }
 function resLabel(){ return S.residence==='us'?'米国居住':'国外居住'; }
@@ -285,27 +336,33 @@ function evaluate(){
   if(miss.length) return { ready:false, missing:miss };
 
   const forms=[];
-  const fbarMax = isNaN(S.fbarMax)?0:S.fbarMax;
-  const ye = isNaN(S.assetsYearEnd)?0:S.assetsYearEnd;
-  const mx = isNaN(S.assetsMax)?0:S.assetsMax;
+  const ft = fbarTotals();
+  const yeJPY = isNaN(S.assetsYearEndJPY)?0:S.assetsYearEndJPY;
+  const mxJPY = isNaN(S.assetsMaxJPY)?0:S.assetsMaxJPY;
+  const ye = yeJPY/RATE_JPY_PER_USD;
+  const mx = mxJPY/RATE_JPY_PER_USD;
   const t = T8938[S.residence][S.filing];
+  const thr10k = yen(10000*RATE_JPY_PER_USD);
 
   // FBAR（FinCEN Form 114）
   (function(){
     let status, desc;
-    if(fbarMax > 10000){
+    const amt = yen(ft.jpy)+'（約 '+usd(ft.usd)+'）';
+    if(ft.usd > 10000){
       status='need';
-      desc='海外の金融口座の合計が、年間のどこかで1万ドルを超えています。FBAR（FinCEN Form 114）の提出が必要です（申告書ではなく FinCEN へ電子提出）。';
-    } else if(S.sigAuth || S.cryptoForeign){
+      desc='海外口座の合計 '+amt+' が、1万ドル（約 '+thr10k+'）を超えています。FBAR（FinCEN Form 114）の提出が必要です（申告書ではなく FinCEN へ電子提出）。';
+    } else if(ft.missing > 0){
       status='maybe';
-      const extra = [S.sigAuth?'署名権限のある法人口座':'', S.cryptoForeign?'海外取引所の口座':''].filter(Boolean).join('・');
-      desc='ご自身名義の口座は1万ドル以下ですが、'+extra+'も合算対象です。これらを合わせて1万ドルを超えるなら提出が必要です。';
-    } else if(fbarMax >= 8000){
+      desc='チェックした口座のうち金額未入力が '+ft.missing+' 件あります。入力済みの合計は '+amt+'。すべて合わせて1万ドル（約 '+thr10k+'）を超えるなら提出が必要です。';
+    } else if(ft.usd >= 8000){
       status='maybe';
-      desc='1万ドルの基準に近い水準です。為替や年内の残高変動で一度でも超えれば、提出が必要になります。';
+      desc='合計 '+amt+' は1万ドル（約 '+thr10k+'）の基準に近い水準です。為替や年内の残高変動で一度でも超えれば、提出が必要になります。';
+    } else if(ft.anyOn){
+      status='none';
+      desc='海外口座の合計 '+amt+' は1万ドル（約 '+thr10k+'）を下回るため、現時点では提出不要の可能性が高いです。';
     } else {
       status='none';
-      desc='海外口座の合計が1万ドルを下回るため、現時点では提出不要の可能性が高いです。';
+      desc='海外口座のチェックがありません。該当する口座があれば STEP 3 で選び、残高（円）を入れてください。';
     }
     forms.push({ name:'FBAR（FinCEN Form 114）', status, desc });
   })();
@@ -313,16 +370,17 @@ function evaluate(){
   // Form 8938（FATCA）
   (function(){
     let status, desc;
-    const base = `${resLabel()}・${filingLabel()}の基準は、年末 ${usd(t[0])}／年中いつでも ${usd(t[1])} 超`;
+    const base = resLabel()+'・'+filingLabel()+'の基準は、年末 '+usd(t[0])+'（約 '+yen(t[0]*RATE_JPY_PER_USD)+'）／年中いつでも '+usd(t[1])+'（約 '+yen(t[1]*RATE_JPY_PER_USD)+'）超';
+    const conv = '入力（年末 '+yen(yeJPY)+'／年中 '+yen(mxJPY)+' ＝ 約 '+usd(ye)+'／'+usd(mx)+'）';
     if(ye > t[0] || mx > t[1]){
       status='need';
-      desc=`${base}。入力された資産がこれを超えています。確定申告に添付する Form 8938（FATCA）の提出が必要です。`;
+      desc=base+'。'+conv+'がこれを超えています。確定申告に添付する Form 8938（FATCA）の提出が必要です。';
     } else if(ye > t[0]*0.8 || mx > t[1]*0.8 || S.insurance || S.corp || S.pfic){
       status='maybe';
-      desc=`${base}。基準に近い、または保険・外国株式・ファンドなど 8938 の対象資産があります。これらも合算して基準を超えるなら提出が必要です。`;
+      desc=base+'。基準に近い、または保険・外国株式・ファンドなど 8938 の対象資産があります。これらも合算して基準を超えるなら提出が必要です。';
     } else {
       status='none';
-      desc=`${base}。入力された資産はこれを下回るため、現時点では提出不要の可能性が高いです。`;
+      desc=base+'。'+conv+'はこれを下回るため、現時点では提出不要の可能性が高いです。';
     }
     forms.push({ name:'Form 8938（FATCA）', status, desc });
   })();
@@ -355,7 +413,24 @@ function renderThreshInfo(){
   if(!S.residence || !S.filing){ info.style.display='none'; return; }
   const t=T8938[S.residence][S.filing];
   info.style.display='block';
-  info.innerHTML='<i class="ti ti-info-circle" aria-hidden="true"></i> あなたの 8938 基準額: 年末 <b>'+usd(t[0])+'</b>／年中いつでも <b>'+usd(t[1])+'</b> 超で対象。';
+  info.innerHTML='<i class="ti ti-info-circle" aria-hidden="true"></i> あなたの 8938 基準額: 年末 <b>'+usd(t[0])+'</b>（約 '+yen(t[0]*RATE_JPY_PER_USD)+'）／年中いつでも <b>'+usd(t[1])+'</b>（約 '+yen(t[1]*RATE_JPY_PER_USD)+'）超で対象。';
+}
+
+function renderFbarTotal(){
+  const box=document.getElementById('fbarTotal');
+  const ft=fbarTotals();
+  if(!ft.anyOn){ box.style.display='none'; return; }
+  box.style.display='block';
+  const over = ft.usd > 10000;
+  const meta = over ? ['1万ドル超 → 対象','danger'] : ['1万ドル以下','success'];
+  box.innerHTML =
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">'+
+      '<div><div style="font-size:12px;color:var(--tx-secondary);">海外口座の合計（年間最高）</div>'+
+      '<div style="font-size:19px;font-weight:700;color:var(--navy);">'+yen(ft.jpy)+' <span style="font-size:13px;color:var(--tx-secondary);font-weight:500;">＝ 約 '+usd(ft.usd)+'</span></div></div>'+
+      '<span class="pill" style="background:var(--bg-'+meta[1]+');color:var(--tx-'+meta[1]+');">'+meta[0]+'</span>'+
+    '</div>'+
+    '<div class="hint" style="margin-top:8px;"><i class="ti ti-coin" aria-hidden="true"></i> 2025年の換算レート（目安）: 1ドル = ¥'+RATE_JPY_PER_USD+'（FBARの正式換算は財務省の年末レート）。'+
+    (ft.missing? ' <span style="color:var(--tx-warning);">金額未入力の口座が '+ft.missing+' 件あります。</span>':'')+'</div>';
 }
 
 function renderRec(){
@@ -405,6 +480,7 @@ function renderRec(){
 
 function onChange(){
   renderThreshInfo();
+  renderFbarTotal();
   renderRec();
 }
 onChange();
