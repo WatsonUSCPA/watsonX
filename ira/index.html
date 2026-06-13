@@ -71,7 +71,7 @@
   .chk{ display:flex; align-items:flex-start; gap:9px; padding:9px 11px; border:1px solid var(--bd-tertiary); border-radius:var(--r-md); cursor:pointer; font-size:13px; line-height:1.5; background:var(--bg-primary); }
   .chk.on{ border-color:var(--bd-info); background:var(--bg-info); color:var(--tx-info); }
   .chk i{ font-size:18px; margin-top:1px; }
-  input[type=number]{ width:100%; max-width:240px; height:40px; padding:8px 11px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); }
+  input[type=number], input[type=text]{ width:100%; max-width:240px; height:40px; padding:8px 11px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); }
   .pill{ display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:500; }
   .badge{ display:inline-flex; align-items:center; gap:5px; padding:4px 11px; border-radius:999px; font-size:12px; font-weight:500; background:var(--bg-warning); color:var(--tx-warning); }
   .card{ background:var(--bg-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-lg); padding:1rem 1.25rem; }
@@ -168,7 +168,7 @@
     <button class="opt" data-k="filing" data-v="mfs">夫婦別（MFS）</button>
   </div>
   <label style="font-size:13px; color:var(--tx-secondary); display:block; margin-bottom:6px;">調整後総所得 MAGI（年額・USD）</label>
-  <input id="magi" type="number" inputmode="numeric" placeholder="例: 180000" min="0" step="1000" />
+  <input id="magi" type="text" inputmode="numeric" placeholder="例: 180,000" autocomplete="off" />
   <div style="margin-top:12px;">
     <label class="chk" id="covWrap" style="max-width:420px;">
       <input type="checkbox" id="covered" style="margin-top:2px;" />
@@ -352,7 +352,14 @@ document.querySelectorAll('label.chk[data-mod]').forEach(l=>{
     const m=l.dataset.mod; S.mods[m]=!S.mods[m]; l.classList.toggle('on', S.mods[m]); onChange();
   });
 });
-document.getElementById('magi').addEventListener('input', e=>{ S.magi=parseFloat(e.target.value); onChange(); });
+(function(){ var m=document.getElementById('magi');
+  m.addEventListener('input', function(){
+    var raw=m.value.replace(/[^\d]/g,'');
+    m.value = raw==='' ? '' : parseInt(raw,10).toLocaleString('en-US');
+    S.magi = raw==='' ? NaN : parseInt(raw,10);
+    onChange();
+  });
+})();
 document.getElementById('covered').addEventListener('change', e=>{ S.covered=e.target.checked; onChange(); });
 document.getElementById('spouseCovered').addEventListener('change', e=>{ S.spouseCovered=e.target.checked; onChange(); });
 document.getElementById('toggleProCon').addEventListener('click', ()=>{

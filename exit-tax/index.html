@@ -75,7 +75,7 @@
   .amt > label{ font-size:13px; color:var(--tx-primary); }
   .yenbox{ display:flex; align-items:center; gap:5px; }
   .yenbox span{ font-size:13px; color:var(--tx-secondary); }
-  input[type=number]{ width:160px; max-width:46vw; height:38px; padding:7px 10px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); text-align:right; }
+  input[type=number], input[type=text]{ width:160px; max-width:46vw; height:38px; padding:7px 10px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); text-align:right; }
   .grid-cf{ display:grid; grid-template-columns:1fr; gap:10px; }
   .cf-item{ border:1px solid var(--bd-tertiary); border-radius:var(--r-md); padding:10px 12px; }
   .cf-item .cf-name{ font-size:13px; font-weight:700; color:var(--navy); margin-bottom:7px; }
@@ -124,7 +124,7 @@
   <i class="ti ti-plane-departure" style="font-size:24px; color:var(--tx-secondary)" aria-hidden="true"></i>
   <h1>Exit Tax（出国税）判定ツール</h1>
 </div>
-<p class="lead">市民権・長期グリーンカードを手放すと、<b>全世界の資産を時価で売ったものとみなして</b>課税される場合があります（§877A）。まず対象者（covered expatriate）かを判定し、該当する場合は含み益を計算して、出国税がかかりそうかまでご案内します。金額は<b>日本円</b>で入力してください（2025年末レート 1ドル=¥156.61 で米ドル基準と比較）。</p>
+<p class="lead">市民権・長期グリーンカードを手放すと、<b>全世界の資産を時価で売ったものとみなして</b>課税される場合があります（§877A）。まず対象者（covered expatriate）かを判定し、該当する場合は含み益を計算して、出国税がかかりそうかまでご案内します。米国資産が中心のため、金額は<b>米ドル（USD）</b>で入力してください。</p>
 
 <!-- STEP 1 -->
 <div class="step">
@@ -159,7 +159,7 @@
 <!-- STEP 2 -->
 <div class="step">
   <div class="label"><i class="ti ti-scale" aria-hidden="true"></i> STEP 2 — 純資産テスト（$2M）と他の2要件</div>
-  <p id="nwLead" class="lead">資産の<b>時価（現在の価値）</b>を日本円で入力してください。合計から負債を引いた純資産で判定します。</p>
+  <p id="nwLead" class="lead">資産の<b>時価（現在の価値）</b>を米ドルで入力してください。合計から負債を引いた純資産で判定します。</p>
   <div class="amt" id="nwInputs"></div>
   <div id="nwStrip" class="card" style="display:none; margin-top:12px; padding:.9rem 1.1rem;"></div>
 
@@ -185,7 +185,7 @@
 <!-- STEP 3 -->
 <div class="step">
   <div class="label"><i class="ti ti-trending-up" aria-hidden="true"></i> STEP 3 — 含み益の入力（covered に該当する場合）</div>
-  <p class="lead">covered expatriate に該当すると、含み益（時価−取得原価）に課税され得ます。各資産の<b>取得原価（コスト）</b>を日本円で入力してください（時価は STEP 2 の入力を使います）。</p>
+  <p class="lead">covered expatriate に該当すると、含み益（時価−取得原価）に課税され得ます。各資産の<b>取得原価（コスト）</b>を米ドルで入力してください（時価は STEP 2 の入力を使います）。</p>
   <div id="cfInputs" class="grid-cf"></div>
   <p class="hint"><i class="ti ti-info-circle" aria-hidden="true"></i> 401(k)・IRA は mark-to-market（時価課税）とは別ルールで扱われるため、含み益の合計には入れず、STEP 4 で個別にご案内します。</p>
 </div>
@@ -232,7 +232,6 @@
 
 <script>
 // ===== 2025年の基準（USD）。1か所で管理 =====
-const RATE_JPY_PER_USD = 156.61;   // 2025年末の米財務省レート
 const NETWORTH_USD = 2000000;      // 純資産テスト $2M
 const INCOME_USD   = 206000;       // 平均所得税額テスト（2025）
 const MTM_EXCL_USD = 890000;       // mark-to-market 控除額（2025）
@@ -263,10 +262,18 @@ const S = { person:null, filing:null, regime:null, income:null, certify:null, ro
 FMV_ROWS.forEach(function(r){ S[r.key]=NaN; });
 COST_ROWS.forEach(function(r){ S[r.key]=NaN; });
 
-function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
 function usd(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
 function num(v){ return (isNaN(v)||v<0)?0:v; }
-function toUsd(jpy){ return jpy/RATE_JPY_PER_USD; }
+// 入力欄に桁区切り（カンマ）を表示しながら数値をSへ格納
+function commafy(raw){ return raw==='' ? '' : parseInt(raw,10).toLocaleString('en-US'); }
+function attachAmount(inp, setter){
+  inp.addEventListener('input', function(){
+    var raw = inp.value.replace(/[^\d]/g,'');
+    inp.value = commafy(raw);
+    setter(raw==='' ? NaN : parseInt(raw,10));
+    onChange();
+  });
+}
 
 function pickGroup(groupId, key){
   document.querySelectorAll('#'+groupId+' .opt').forEach(b=>{
@@ -288,10 +295,10 @@ function pickGroup(groupId, key){
     const lab=document.createElement('label'); lab.textContent=r.label; lab.setAttribute('for', r.key);
     if(r.minus) lab.style.color='var(--tx-danger)';
     const box=document.createElement('div'); box.className='yenbox';
-    const y=document.createElement('span'); y.textContent='¥';
-    const inp=document.createElement('input'); inp.id=r.key; inp.type='number'; inp.inputMode='numeric';
-    inp.min='0'; inp.step='100000'; inp.placeholder='0';
-    inp.addEventListener('input', function(){ const v=parseFloat(inp.value); S[r.key]=(isNaN(v)||v<0)?NaN:v; onChange(); });
+    const y=document.createElement('span'); y.textContent='$';
+    const inp=document.createElement('input'); inp.id=r.key; inp.type='text'; inp.inputMode='numeric';
+    inp.autocomplete='off'; inp.placeholder='0';
+    attachAmount(inp, function(v){ S[r.key]=v; });
     box.appendChild(y); box.appendChild(inp);
     wrap.appendChild(lab); wrap.appendChild(box);
   });
@@ -306,16 +313,16 @@ function pickGroup(groupId, key){
     const ins=document.createElement('div'); ins.className='cf-inputs';
 
     const c1=document.createElement('div');
-    const l1=document.createElement('label'); l1.textContent='取得原価（コスト・円）';
+    const l1=document.createElement('label'); l1.textContent='取得原価（コスト・USD）';
     const b1=document.createElement('div'); b1.className='yenbox';
-    const y1=document.createElement('span'); y1.textContent='¥';
-    const i1=document.createElement('input'); i1.type='number'; i1.inputMode='numeric'; i1.min='0'; i1.step='100000'; i1.placeholder='0';
-    i1.addEventListener('input', function(){ const v=parseFloat(i1.value); S[r.key]=(isNaN(v)||v<0)?NaN:v; onChange(); });
+    const y1=document.createElement('span'); y1.textContent='$';
+    const i1=document.createElement('input'); i1.type='text'; i1.inputMode='numeric'; i1.autocomplete='off'; i1.placeholder='0';
+    attachAmount(i1, function(v){ S[r.key]=v; });
     b1.appendChild(y1); b1.appendChild(i1); c1.appendChild(l1); c1.appendChild(b1);
 
     const c2=document.createElement('div');
     const l2=document.createElement('label'); l2.textContent='時価（STEP 2 より）';
-    const v2=document.createElement('div'); v2.id='fmvShow_'+r.fmv; v2.style.cssText='font-size:14px; font-weight:700; color:var(--navy); padding-top:4px;'; v2.textContent='¥0';
+    const v2=document.createElement('div'); v2.id='fmvShow_'+r.fmv; v2.style.cssText='font-size:14px; font-weight:700; color:var(--navy); padding-top:4px;'; v2.textContent='$0';
     c2.appendChild(l2); c2.appendChild(v2);
 
     ins.appendChild(c1); ins.appendChild(c2); item.appendChild(nm); item.appendChild(ins);
@@ -346,7 +353,7 @@ function netWorth(){
   FMV_ROWS.forEach(function(r){ if(!r.minus) assets += num(S[r.key]); });
   const household = assets - num(S.debt);
   const indiv = household * regimeFactor();
-  return { household:household, indiv:indiv, indivUSD: toUsd(indiv) };
+  return { household:household, indiv:indiv, indivUSD: indiv };
 }
 
 function coveredStatus(){
@@ -369,25 +376,25 @@ function gains(){
   const re     = g('fmvRE','costRE');
   const other  = g('fmvOther','costOther');
   const homeRaw= g('fmvHome','costHome');
-  const homeExclJPY = (HOME_EXCL_USD[S.filing] || 0) * RATE_JPY_PER_USD;
-  const homeAfter = Math.max(0, homeRaw - homeExclJPY);
+  const homeExcl = (HOME_EXCL_USD[S.filing] || 0);
+  const homeAfter = Math.max(0, homeRaw - homeExcl);
   const netMTM = stocks + re + other + homeAfter;
-  const exclJPY = MTM_EXCL_USD * RATE_JPY_PER_USD;
-  const taxableMTM = Math.max(0, netMTM - exclJPY);
+  const excl = MTM_EXCL_USD;
+  const taxableMTM = Math.max(0, netMTM - excl);
 
   const tradTaxable = Math.max(0, num(S.fmvTrad) - num(S.costTrad));
   const rothEarnings = Math.max(0, num(S.fmvRoth) - num(S.costRoth));
   const rothTaxable = (S.rothq==='yes') ? 0 : rothEarnings;
 
-  return { stocks:stocks, re:re, other:other, homeRaw:homeRaw, homeExclJPY:homeExclJPY, homeAfter:homeAfter,
-           netMTM:netMTM, exclJPY:exclJPY, taxableMTM:taxableMTM,
+  return { stocks:stocks, re:re, other:other, homeRaw:homeRaw, homeExcl:homeExcl, homeAfter:homeAfter,
+           netMTM:netMTM, excl:excl, taxableMTM:taxableMTM,
            tradTaxable:tradTaxable, rothEarnings:rothEarnings, rothTaxable:rothTaxable };
 }
 
 // ---- 描画 ----
 function renderFmvShows(){
   FMV_ROWS.forEach(function(r){
-    const el=document.getElementById('fmvShow_'+r.key); if(el) el.textContent=yen(num(S[r.key]));
+    const el=document.getElementById('fmvShow_'+r.key); if(el) el.textContent=usd(num(S[r.key]));
   });
 }
 
@@ -396,9 +403,9 @@ function renderNwStrip(){
   const lead=document.getElementById('nwLead');
   // 入力ラベルの趣旨を財産制度で出し分け
   if(S.regime==='community' && S.filing==='mfj'){
-    lead.innerHTML='資産の<b>時価</b>を日本円で。コミュニティ・プロパティ州では<b>夫婦合計</b>で入力してください（半分があなたの持分として判定します）。';
+    lead.innerHTML='資産の<b>時価</b>を米ドルで。コミュニティ・プロパティ州では<b>夫婦合計</b>で入力してください（半分があなたの持分として判定します）。';
   } else {
-    lead.innerHTML='資産の<b>時価</b>を日本円で。セパレート州・独身の場合は<b>ご自身名義分</b>を入力してください。';
+    lead.innerHTML='資産の<b>時価</b>を米ドルで。セパレート州・独身の場合は<b>ご自身名義分</b>を入力してください。';
   }
   const nw=netWorth();
   const anyInput = FMV_ROWS.some(function(r){ return !isNaN(S[r.key]); });
@@ -410,10 +417,10 @@ function renderNwStrip(){
   strip.innerHTML =
     '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">'+
       '<div><div style="font-size:12px;color:var(--tx-secondary);">あなたの純資産'+(half?'（夫婦合計の1/2）':'')+'</div>'+
-      '<div style="font-size:18px;font-weight:700;color:var(--navy);">'+yen(nw.indiv)+' <span style="font-size:13px;color:var(--tx-secondary);font-weight:500;">＝ 約 '+usd(nw.indivUSD)+'</span></div></div>'+
+      '<div style="font-size:18px;font-weight:700;color:var(--navy);">'+usd(nw.indiv)+'</div></div>'+
       '<span class="pill" style="background:var(--bg-'+meta[1]+');color:var(--tx-'+meta[1]+');">'+meta[0]+'</span>'+
     '</div>'+
-    '<div class="hint" style="margin-top:6px;">基準 $2,000,000 ＝ 約 '+yen(NETWORTH_USD*RATE_JPY_PER_USD)+'（1ドル=¥'+RATE_JPY_PER_USD+'）。'+(half?'コミュニティ州のため夫婦合計の半分で判定。':'')+'</div>';
+    '<div class="hint" style="margin-top:6px;">基準 $2,000,000。'+(half?'コミュニティ州のため夫婦合計の半分で判定。':'')+'</div>';
 }
 
 function card(status, title, bodyHtml){
@@ -465,15 +472,15 @@ function renderRec(){
   html+='<div style="font-size:12px;font-weight:700;color:var(--teal-600);margin-bottom:8px;">含み益（mark-to-market）の計算</div>';
   html+='<table style="width:100%; font-size:12.5px; border-collapse:collapse;">';
   function trow(l, v, strong){ return '<tr><td style="padding:3px 0; color:var(--tx-secondary);">'+l+'</td><td style="padding:3px 0; text-align:right; '+(strong?'font-weight:700;color:var(--navy);':'')+'">'+v+'</td></tr>'; }
-  html+=trow('株・証券の含み益', yen(g.stocks));
-  html+=trow('投資不動産の含み益', yen(g.re));
-  html+=trow('その他の含み益', yen(g.other));
-  html+=trow('自宅の含み益（控除前）', yen(g.homeRaw));
-  html+=trow('（−）住宅売却益控除 '+usd(HOME_EXCL_USD[S.filing]||0), '−'+yen(g.homeExclJPY));
-  html+=trow('（−）mark-to-market 控除 '+usd(MTM_EXCL_USD), '−'+yen(g.exclJPY));
-  html+=trow('課税対象の含み益', yen(g.taxableMTM)+'（約 '+usd(toUsd(g.taxableMTM))+'）', true);
+  html+=trow('株・証券の含み益', usd(g.stocks));
+  html+=trow('投資不動産の含み益', usd(g.re));
+  html+=trow('その他の含み益', usd(g.other));
+  html+=trow('自宅の含み益（控除前）', usd(g.homeRaw));
+  html+=trow('（−）住宅売却益控除 '+usd(HOME_EXCL_USD[S.filing]||0), '−'+usd(g.homeExcl));
+  html+=trow('（−）mark-to-market 控除 '+usd(MTM_EXCL_USD), '−'+usd(g.excl));
+  html+=trow('課税対象の含み益', usd(g.taxableMTM), true);
   html+='</table>';
-  html+='<div class="hint" style="margin-top:8px;">含み益（住宅控除後）の合計が <b>'+usd(MTM_EXCL_USD)+'（約 '+yen(MTM_EXCL_USD*RATE_JPY_PER_USD)+'）</b> を超えると、超過分が課税対象になります。</div>';
+  html+='<div class="hint" style="margin-top:8px;">含み益（住宅控除後）の合計が <b>'+usd(MTM_EXCL_USD)+'</b> を超えると、超過分が課税対象になります。</div>';
   html+='</div>';
 
   html+='<div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">'+verdict+'</div>';
@@ -482,24 +489,24 @@ function renderRec(){
   html+='<div style="margin-top:14px; display:grid; gap:8px;">';
   if(num(S.fmvHome)>0){
     html+=card('info','🏠 自宅（住宅売却益控除）',
-      '自宅の含み益 '+yen(g.homeRaw)+' に対し、主たる住居なら §121 の控除（'+(S.filing==='mfj'?'夫婦 $500,000':'単身 $250,000')+' ＝ 約 '+yen(g.homeExclJPY)+'）を差し引けます。控除後は <b>'+yen(g.homeAfter)+'</b>。所有・居住の要件（過去5年中2年以上など）を満たす必要があります。');
+      '自宅の含み益 '+usd(g.homeRaw)+' に対し、主たる住居なら §121 の控除（'+(S.filing==='mfj'?'夫婦 $500,000':'単身 $250,000')+'）を差し引けます。控除後は <b>'+usd(g.homeAfter)+'</b>。所有・居住の要件（過去5年中2年以上など）を満たす必要があります。');
   }
   if(num(S.fmv401)>0){
     html+=card('warn','💼 401(k)（扱いが複雑）',
-      '401(k) は mark-to-market の対象外です。米国雇用主の<b>適格な繰延報酬</b>なら、出国後の分配時に<b>一律30%の源泉徴収</b>で処理されます（今は課税されない）。非適格だと放棄前日に<b>現在価値を一括で課税</b>。どちらに当たるかで大きく変わるため、事前確認が重要です。残高（時価）: '+yen(num(S.fmv401))+'。');
+      '401(k) は mark-to-market の対象外です。米国雇用主の<b>適格な繰延報酬</b>なら、出国後の分配時に<b>一律30%の源泉徴収</b>で処理されます（今は課税されない）。非適格だと放棄前日に<b>現在価値を一括で課税</b>。どちらに当たるかで大きく変わるため、事前確認が重要です。残高（時価）: '+usd(num(S.fmv401))+'。');
   }
   if(num(S.fmvRoth)>0){
     var rothMsg = (S.rothq==='yes')
       ? '適格（59.5歳以上＋5年）なら、みなし分配でも<b>非課税</b>です。'
       : (S.rothq==='no'
-          ? '未適格のため、運用益 '+yen(g.rothEarnings)+' が課税対象になり得ます。'
-          : '適格かどうか未選択です。未適格だと運用益 '+yen(g.rothEarnings)+' が課税対象になり得ます。');
+          ? '未適格のため、運用益 '+usd(g.rothEarnings)+' が課税対象になり得ます。'
+          : '適格かどうか未選択です。未適格だと運用益 '+usd(g.rothEarnings)+' が課税対象になり得ます。');
     html+=card('info','🌱 Roth IRA',
       'Roth IRA は「指定繰延口座」として放棄前日に<b>みなし分配</b>として扱われます。'+rothMsg+' 状況によっては、放棄の<b>前</b>に売却・整理しておくほうが有利な場合があります。');
   }
   if(num(S.fmvTrad)>0){
     html+=card('warn','🏦 Traditional IRA・確定拠出年金',
-      '放棄前日に<b>全額みなし分配</b>として、通常所得（ordinary income）課税になります（10%の早期引き出しペナルティは免除）。課税対象 ≈ <b>'+yen(g.tradTaxable)+'</b>（約 '+usd(toUsd(g.tradTaxable))+'）。まとまった所得が一度に立つため、放棄のタイミングが効きます。');
+      '放棄前日に<b>全額みなし分配</b>として、通常所得（ordinary income）課税になります（10%の早期引き出しペナルティは免除）。課税対象 ≈ <b>'+usd(g.tradTaxable)+'</b>。まとまった所得が一度に立つため、放棄のタイミングが効きます。');
   }
   html+='</div>';
 

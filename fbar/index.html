@@ -72,7 +72,7 @@
   .chk{ display:flex; align-items:flex-start; gap:9px; padding:9px 11px; border:1px solid var(--bd-tertiary); border-radius:var(--r-md); cursor:pointer; font-size:13px; line-height:1.5; background:var(--bg-primary); }
   .chk.on{ border-color:var(--bd-info); background:var(--bg-info); color:var(--tx-info); }
   .chk i{ font-size:18px; margin-top:1px; }
-  input[type=number]{ width:100%; max-width:240px; height:40px; padding:8px 11px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); }
+  input[type=number], input[type=text]{ width:100%; max-width:240px; height:40px; padding:8px 11px; font-family:inherit; font-size:14px; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--bd-secondary); border-radius:var(--r-md); }
   .pill{ display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:500; }
   .badge{ display:inline-flex; align-items:center; gap:5px; padding:4px 11px; border-radius:999px; font-size:12px; font-weight:500; background:var(--bg-info); color:var(--tx-info); }
   .card{ background:var(--bg-primary); border:1px solid var(--bd-tertiary); border-radius:var(--r-lg); padding:1rem 1.25rem; }
@@ -184,7 +184,7 @@
 
   <!-- 年末残高：新規入力＋説明 -->
   <label class="field-label" for="assetsYearEnd">② 年末時点（12/31）の海外資産の合計（円）</label>
-  <input id="assetsYearEnd" type="number" inputmode="numeric" placeholder="例: 9000000" min="0" step="100000" />
+  <input id="assetsYearEnd" type="text" inputmode="numeric" placeholder="例: 9,000,000" autocomplete="off" />
   <p class="hint" style="margin-top:6px;"><b>「年末残高」とは：</b> 12月31日時点での海外資産の合計です。8938 は「年内の最高」だけでなく「年末時点」も別に見るため、ここで年末の数字を確認します。年の途中で大きく動いて年末は減っていた、という人も拾えるようにする仕組みで、<b>年末が基準以下でも年内最高が基準を超えれば対象</b>になります。逆に、年末時点でまとまった残高があれば年内最高が低めでも対象になり得ます。</p>
   <div style="margin-top:12px; display:grid; gap:6px;">
     <label class="chk" data-mod="corp"><i class="ti ti-building-skyscraper" aria-hidden="true"></i><span>日本など外国の会社の株式を一定割合以上（目安10%）持っている<br><span class="hint">外国法人の「米国株主」は Form 5471 の対象になり得ます（取得・追加5%で別カテゴリーも）</span></span></label>
@@ -277,10 +277,19 @@ document.querySelectorAll('label.chk[data-mod]').forEach(l=>{
     const m=l.dataset.mod; S[m]=!S[m]; l.classList.toggle('on', S[m]); onChange();
   });
 });
-function bindNum(id, field){
-  document.getElementById(id).addEventListener('input', e=>{
-    const v=parseFloat(e.target.value); S[field]= (isNaN(v)||v<0)?NaN:v; onChange();
+// 入力欄に桁区切り（カンマ）を表示しながら数値を格納するヘルパー
+function commafy(raw){ return raw==='' ? '' : parseInt(raw,10).toLocaleString('ja-JP'); }
+function attachAmount(inp, setter){
+  inp.type='text'; inp.inputMode='numeric'; inp.autocomplete='off';
+  inp.addEventListener('input', function(){
+    var raw=inp.value.replace(/[^\d]/g,'');
+    inp.value=commafy(raw);
+    setter(raw==='' ? NaN : parseInt(raw,10));
+    onChange();
   });
+}
+function bindNum(id, field){
+  attachAmount(document.getElementById(id), function(v){ S[field]=v; });
 }
 bindNum('assetsYearEnd','assetsYearEndJPY');
 
@@ -296,17 +305,14 @@ bindNum('assetsYearEnd','assetsYearEndJPY');
     const amt=document.createElement('div');
     amt.style.cssText='display:none; align-items:center; gap:6px; margin:6px 0 4px 8px;';
     const yenmark=document.createElement('span'); yenmark.textContent='¥'; yenmark.style.cssText='font-size:14px; color:var(--tx-secondary);';
-    const inp=document.createElement('input'); inp.type='number'; inp.inputMode='numeric';
-    inp.min='0'; inp.step='10000'; inp.placeholder='年間で最も多かったときの残高（円）';
+    const inp=document.createElement('input'); inp.placeholder='年間で最も多かったときの残高（円）';
+    attachAmount(inp, function(v){ S.cats[c.key].jpy=v; });
     amt.appendChild(yenmark); amt.appendChild(inp);
     cb.addEventListener('change', function(){
       S.cats[c.key].on=cb.checked; lbl.classList.toggle('on', cb.checked);
       amt.style.display=cb.checked?'flex':'none';
       if(!cb.checked){ inp.value=''; S.cats[c.key].jpy=NaN; }
       onChange();
-    });
-    inp.addEventListener('input', function(){
-      const v=parseFloat(inp.value); S.cats[c.key].jpy=(isNaN(v)||v<0)?NaN:v; onChange();
     });
     row.appendChild(lbl); row.appendChild(amt); wrap.appendChild(row);
   });
