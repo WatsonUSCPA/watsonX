@@ -70,7 +70,7 @@
   .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
   .page-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:.5rem; }
 
-  /* 金額行（ラベル＋円入力） */
+  /* 金額行（ラベル＋USD入力） */
   .amt{ display:grid; grid-template-columns:1fr auto; gap:8px 10px; align-items:center; }
   .amt > label{ font-size:13px; color:var(--tx-primary); }
   .yenbox{ display:flex; align-items:center; gap:5px; }
@@ -288,7 +288,7 @@ function pickGroup(groupId, key){
   const g=document.querySelector('#'+id+' .opt'); if(g) pickGroup(id, g.dataset.k);
 });
 
-// ---- STEP 2: 時価（円）入力欄を生成 ----
+// ---- STEP 2: 時価（USD）入力欄を生成 ----
 (function buildFmv(){
   const wrap=document.getElementById('nwInputs');
   FMV_ROWS.forEach(function(r){
@@ -304,7 +304,7 @@ function pickGroup(groupId, key){
   });
 })();
 
-// ---- STEP 3: 取得原価（円）入力欄を生成 ----
+// ---- STEP 3: 取得原価（USD）入力欄を生成 ----
 (function buildCost(){
   const wrap=document.getElementById('cfInputs');
   COST_ROWS.forEach(function(r){
@@ -375,9 +375,12 @@ function gains(){
   const stocks = g('fmvStocks','costStocks');
   const re     = g('fmvRE','costRE');
   const other  = g('fmvOther','costOther');
-  const homeRaw= g('fmvHome','costHome');
+  const hasHome = num(S.fmvHome) > 0;
+  const homeRaw = hasHome ? g('fmvHome','costHome') : 0;
   const homeExcl = (HOME_EXCL_USD[S.filing] || 0);
-  const homeAfter = Math.max(0, homeRaw - homeExcl);
+  // 住宅売却益控除は「自宅がある場合だけ」、かつ含み益の範囲内でのみ適用（損失は他資産を相殺しない）
+  const homeApplied = homeRaw>0 ? Math.min(homeExcl, homeRaw) : 0;
+  const homeAfter = homeRaw>0 ? homeRaw - homeApplied : 0;
   const netMTM = stocks + re + other + homeAfter;
   const excl = MTM_EXCL_USD;
   const taxableMTM = Math.max(0, netMTM - excl);
@@ -386,7 +389,7 @@ function gains(){
   const rothEarnings = Math.max(0, num(S.fmvRoth) - num(S.costRoth));
   const rothTaxable = (S.rothq==='yes') ? 0 : rothEarnings;
 
-  return { stocks:stocks, re:re, other:other, homeRaw:homeRaw, homeExcl:homeExcl, homeAfter:homeAfter,
+  return { stocks:stocks, re:re, other:other, hasHome:hasHome, homeRaw:homeRaw, homeExcl:homeExcl, homeApplied:homeApplied, homeAfter:homeAfter,
            netMTM:netMTM, excl:excl, taxableMTM:taxableMTM,
            tradTaxable:tradTaxable, rothEarnings:rothEarnings, rothTaxable:rothTaxable };
 }
@@ -475,8 +478,11 @@ function renderRec(){
   html+=trow('株・証券の含み益', usd(g.stocks));
   html+=trow('投資不動産の含み益', usd(g.re));
   html+=trow('その他の含み益', usd(g.other));
-  html+=trow('自宅の含み益（控除前）', usd(g.homeRaw));
-  html+=trow('（−）住宅売却益控除 '+usd(HOME_EXCL_USD[S.filing]||0), '−'+usd(g.homeExcl));
+  if(g.hasHome){
+    html+=trow('自宅の含み益（控除前）', usd(g.homeRaw));
+    html+=trow('（−）住宅売却益控除 '+usd(HOME_EXCL_USD[S.filing]||0), '−'+usd(g.homeApplied));
+  }
+  html+=trow('mark-to-market 純含み益（小計）', usd(g.netMTM));
   html+=trow('（−）mark-to-market 控除 '+usd(MTM_EXCL_USD), '−'+usd(g.excl));
   html+=trow('課税対象の含み益', usd(g.taxableMTM), true);
   html+='</table>';
