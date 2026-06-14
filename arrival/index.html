@@ -109,7 +109,7 @@
   <i class="ti ti-plane-arrival" style="font-size:24px; color:var(--tx-secondary)" aria-hidden="true"></i>
   <h1>アメリカに来る前に｜ビザ別の注意点</h1>
 </div>
-<p class="lead">これからアメリカに来る（来た）方向け。ビザを選ぶと、税務上の立場（<b>居住者か・非居住者か</b>）と、渡米の前後で気を付けることを表示します。とくに「来る前にやっておくと得」なポイントを中心にまとめています。</p>
+<p class="lead">これからアメリカに来る（来た）方向け。ビザを選ぶと、<b>税務上の立場</b>（居住者か・非居住者か）と、渡米の前後で気を付けることを表示します。<br><b>※ 就労の可否など、ビザ・移民法に関わることは本ツールでは一切扱いません。まず移民弁護士（immigration attorney）にご確認ください。</b>ここでは税務の一般情報のみをご案内します。</p>
 
 <!-- ===== 免責同意ゲート ===== -->
 <div class="step" style="border:1px solid var(--bd-info); background:var(--bg-info);">
@@ -144,6 +144,12 @@
   <div class="label"><i class="ti ti-notebook" aria-hidden="true"></i> 関連する note 記事</div>
   <p class="lead">ビザ・渡米・居住区分まわりの解説です。公開中の最新記事から自動で表示しています。</p>
   <div id="arrivalNotesList" style="display:grid; gap:8px;"></div>
+</div>
+
+<div class="step" id="residencyNotes" style="display:none;">
+  <div class="label"><i class="ti ti-scan" aria-hidden="true"></i> 居住者判定（resident / non-resident）の解説</div>
+  <p class="lead">税務上の居住区分（居住者か・非居住者か）について過去に解説した記事を、まとめて掲載しています。</p>
+  <div id="residencyNotesList" style="display:grid; gap:8px;"></div>
 </div>
 
 <p style="font-size:11px; color:var(--tx-tertiary); margin-top:1.25rem; line-height:1.65;">
@@ -242,7 +248,7 @@ const VISA = {
     label:'帯同家族（H-4 / F-2 / J-2 / L-2）',
     status:['立場は主たるビザ者に準じて判定','info'],
     cards:[
-      {e:'💼', t:'就労できる？', b:'就労可否はビザで異なります。<b>L-2 は就労可</b>、<b>H-4 は EAD（就労許可）</b>が要る場合、<b>F-2 は原則不可</b>、J-2 は許可制。働く予定があるなら早めに確認を。'},
+      {e:'⚖️', t:'就労できるか（→ 移民弁護士へ）', b:'帯同家族が就労できるか・就労許可（EAD 等）が要るかは<b>移民法</b>の領域で、本ツールでは扱いません。<b>必ず移民弁護士にご確認ください</b>。'},
       {e:'🧾', t:'税務上の扱い', b:'居住区分は主たる申告者と同様に判定。配偶者は<b>夫婦合算（MFJ）</b>を選ぶと有利なことが多いです。そのためには配偶者の <b>SSN または ITIN</b> が必要。'},
       {e:'👨‍👩‍👧', t:'子ども', b:'子の SSN / ITIN、Child Tax Credit（児童税額控除）の適用を確認しましょう。'},
     ],
@@ -250,12 +256,12 @@ const VISA = {
   },
   short: {
     label:'短期（B-1/B-2・ESTA）',
-    status:['通常：非居住外国人（就労不可）','success'],
+    status:['通常：非居住外国人','success'],
     cards:[
-      {e:'🛂', t:'就労は原則できない', b:'B-1/B-2・ESTA は<b>就労不可</b>。米国で実質的に働く（報酬を得る）のは原則NG。出張で「働く」グレーゾーンに注意。'},
+      {e:'⚖️', t:'就労・活動の可否（→ 移民弁護士へ）', b:'短期ビザで何ができるか（就労の可否など）は<b>移民法</b>の領域で、本ツールでは扱いません。<b>移民弁護士にご確認ください</b>。'},
       {e:'🗓️', t:'長居すると居住者になり得る', b:'短期は通常非居住者（米国源泉のみ課税）ですが、滞在日数が積み上がると <b>substantial presence test</b> で居住者になり得ます。Closer Connection Exception で回避できる場合も。'},
     ],
-    kw:['esta','b visa','非居住','closer connection','出張'],
+    kw:['esta','b visa','非居住','closer connection'],
   },
   other: {
     label:'その他・未定',
@@ -293,6 +299,7 @@ function renderRec(){
   var html='<div class="card" style="border:2px solid var(--bd-info);">';
   html+='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"><span class="pill" style="background:var(--bg-'+v.status[1]+');color:var(--tx-'+v.status[1]+');font-size:13px;padding:5px 13px;"><i class="ti ti-user-check" aria-hidden="true"></i> '+v.status[0]+'</span><b style="font-size:14px;">'+v.label+'</b></div>';
   html+='<div style="margin-top:14px; display:grid; gap:8px;">';
+  html+=card('warning','⚖️ 就労・ビザの活動は「移民弁護士」へ', '就労できるか、ビザでの活動に制限があるか等は<b>移民法</b>の領域で、本ツールでは扱いません。<b>まず移民弁護士（immigration attorney）にご確認ください</b>。ここでは税務の一般情報のみをご案内します。');
   v.cards.forEach(function(c){ html+=card('info', c.e+' '+c.t, c.b); });
   html+=card('warning', COMMON.e+' '+COMMON.t, COMMON.b);
   html+='</div>';
@@ -363,6 +370,16 @@ onChange();
     list.innerHTML='';
     items.forEach(function(it){ list.appendChild(noteCard(it.a, it.tag)); });
     if(sec) sec.style.display = items.length ? '' : 'none';
+
+    // 居住者判定の解説（該当記事を全部まとめて掲載）
+    var rlist=document.getElementById('residencyNotesList'); var rsec=document.getElementById('residencyNotes');
+    if(rlist){
+      var RES_KW=['substantial','closer connection','residency','8843','居住者と','exempt','dual status','tax home'];
+      var ritems=window.WNOTES.match(RES_KW, 30).filter(function(a){ return a.url; });
+      rlist.innerHTML='';
+      ritems.forEach(function(a){ rlist.appendChild(noteCard(a, null)); });
+      if(rsec) rsec.style.display = ritems.length ? '' : 'none';
+    }
   }
   window.refreshArrivalNotes = renderNotes;
   window.WNOTES.ready.then(renderNotes);
