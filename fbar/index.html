@@ -127,6 +127,15 @@
 </div>
 <p class="lead">質問に答えていくと、最後に <b>FBAR・Form 8938・Form 5471・Form 8621</b> のうち、提出が必要そうな書類と、深掘りできる解説 note を表示します。入力はブラウザ内だけで処理され、送信されません。</p>
 
+<!-- ===== 免責同意ゲート ===== -->
+<div class="step" style="border:1px solid var(--bd-info); background:var(--bg-info);">
+  <p style="margin:0 0 10px; font-size:12.5px; line-height:1.7; color:var(--tx-secondary);">本ツールは <b>一般的な情報提供</b>を目的とした目安で、AI を使って作成しています。内容の正確性・完全性を保証するものではなく、<b>本ツールの説明について制作者は一切の責任を負いません</b>。実際のご判断は必ず資格を有する専門家にご相談ください。</p>
+  <label style="display:flex; align-items:flex-start; gap:9px; cursor:pointer; font-size:13px; font-weight:700; color:var(--navy);">
+    <input type="checkbox" id="agreeChk" style="margin-top:3px; width:18px; height:18px;" onchange="document.getElementById('toolBody').style.display=this.checked?'':'none';" />
+    <span>上記に同意し、理解しました（チェックすると下にツールが表示されます）</span>
+  </label>
+</div>
+<div id="toolBody" style="display:none;">
 <!-- STEP 1 -->
 <div class="step">
   <div class="label"><i class="ti ti-user-check" aria-hidden="true"></i> STEP 1 — あなたの立場（最重要の前提）</div>
@@ -219,6 +228,7 @@
   <p style="margin:0 0 12px; font-size:12.5px; line-height:1.7; color:var(--tx-secondary);">本ツールは <b>AI を使って作成</b>しており、内容の正確性を保証するものではありません。「この判定はおかしい」「このパターンがうまくいかなかった」などの気づきや、税務に関するご質問は、下のマシュマロ（匿名でOK）で承っています。いただいた声は、ツール改善の参考にさせていただきます。</p>
   <a href="https://marshmallow-qa.com/neatjwdlgpuhn11?t=w5va7O&utm_medium=url_text&utm_source=promotion" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--navy); color:#fff; font-size:13px; font-weight:700; text-decoration:none;">💬 マシュマロで質問・ご意見を送る</a>
 </div>
+</div><!-- /toolBody -->
 </main>
 
 <!-- ===== Footer ===== -->
@@ -514,7 +524,7 @@ onChange();
 
 <!-- note記事データ（自動取得）と連動表示 -->
 <script src="../assets/js/notes.js"></script>
-<script src="../assets/js/content.js?v=20260614a"></script>
+<script src="../assets/js/content.js?v=20260614b"></script>
 <script>
 (function () {
   if (!window.WNOTES) return;

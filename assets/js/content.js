@@ -357,6 +357,9 @@ const FATCA_KEYWORDS = ["fbar", "fatca", "8938", "5471", "8621", "pfic", "海外
 /* Exit Tax（出国税）ツール用キーワード（exit-tax/index.html から参照） */
 const EXIT_KEYWORDS = ["出国税", "exit tax", "exit", "expatriate", "covered", "国籍離脱", "市民権", "放棄", "グリーンカード", "永住権"];
 
+/* 渡米（ビザ別）ツール用キーワード（arrival/index.html から参照） */
+const ARRIVAL_KEYWORDS = ["ビザ", "visa", "移住", "渡米", "赴任", "駐在", "非居住", "居住者", "itin", "租税条約", "留学", "グリーンカード", "8843"];
+
 /* -------------------------------------------------------------
  * 4) 判定ツール登録簿
  *    ★ ツールを増やすときは、ここに1件足すだけ。
@@ -369,7 +372,6 @@ const TOOLS = {
     desc: "帰国・Exit Tax（出国税）・拠出の適格性・退職後の税率まで踏まえて、自分に向いた IRA を5ステップで判定します。",
     url: "ira/",
     emoji: "⚖️",
-    badge: "無料ツール",
     ready: true, // ← 公開済み。url を開けるようにする
   },
 
@@ -381,7 +383,13 @@ const TOOLS = {
     desc: "居住地・申告ステータス・口座残高・保有資産から、FBAR・Form 8938（FATCA）・5471・8621 の提出が必要かを順に判定します。",
     url: "fbar/",
     emoji: "🗂️",
-    badge: "無料ツール",
+    ready: true,
+  },
+  visaGuide: {
+    title: "アメリカに来る前に｜ビザ別の注意点",
+    desc: "F-1・J-1・H-1B・グリーンカードなど、ビザごとに税務上の立場（居住／非居住）と、渡米の前後で気を付けることを確認できます。",
+    url: "arrival/",
+    emoji: "🛬",
     ready: true,
   },
   exitTax: {
@@ -389,10 +397,9 @@ const TOOLS = {
     desc: "市民権・長期グリーンカードを手放す前に。州の財産制度を踏まえた純資産2M判定から、含み益・住宅控除・IRA/401k の扱いまで踏み込んで、出国税がかかりそうかを判定します。",
     url: "exit-tax/",
     emoji: "🛫",
-    badge: "無料ツール",
     ready: true,
   },
 };
 
 /* app.js から参照できるように公開 */
-window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, FATCA_KEYWORDS, EXIT_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
+window.WCONTENT = { FLOW, ARTICLES, KEYWORDS, IRA_KEYWORDS, FATCA_KEYWORDS, EXIT_KEYWORDS, ARRIVAL_KEYWORDS, TOOLS, NOTE_PROFILE, CONTACT_URL };
