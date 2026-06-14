@@ -1,0 +1,11 @@
+# Netlify 設定 — 静的サイト（ビルド不要）
+# リポジトリ直下をそのまま公開します。
+[build]
+  publish = "."
+
+# 簡単なセキュリティヘッダ（任意）
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
