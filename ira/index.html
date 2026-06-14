@@ -268,7 +268,7 @@
         <ul style="padding-left:18px; font-size:13px; line-height:1.6; margin:4px 0 0;">
           <li>拠出時の所得控除はない</li>
           <li>高所得者は直接拠出に所得制限（→Backdoor）</li>
-          <li class="jpOnly" style="display:none;">日本居住後の引き出しは日本が課税しうる（NTA見解未確定・雑所得で最大約55%の見方が主流）→ 非課税メリットが薄れる</li>
+          <li class="jpOnly" style="display:none;">日本居住後の引き出しは日本が課税しうる（NTA見解未確定・雑所得で最大約55%の見方が主流）。<b>非課税メリットを失わないよう、適格なら帰国前にすべて売却・清算するのが基本</b></li>
           <li class="jpOnly" style="display:none;">Exit Tax該当時もみなし分配対象。59.5歳以上＋5年保有なら非課税、未充足なら運用益課税（10%ペナルティは免除）</li>
         </ul>
       </div>
@@ -553,6 +553,10 @@ function renderRec(){
   if(r.danger) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-danger); color:var(--tx-danger); border-radius:var(--r-md); font-size:12.5px; line-height:1.7;"><i class="ti ti-alert-octagon" aria-hidden="true"></i> <b>Exit Tax 警告:</b> ${r.danger}</div>`;
   if(r.conflict) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-warning); color:var(--tx-warning); border-radius:var(--r-md); font-size:12.5px; line-height:1.65;"><i class="ti ti-alert-triangle" aria-hidden="true"></i> <b>上書き要因:</b> ${r.conflict}</div>`;
   if(r.ladder) html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-info); color:var(--tx-info); border-radius:var(--r-md); font-size:12.5px; line-height:1.7;"><b><i class="ti ti-stairs-up" aria-hidden="true"></i> 転換ラダーの要点</b><br>① 米国在住・低税率の年に少額ずつTraditional→Roth転換（転換に所得制限なし）<br>② 帰国・受給の前年までに完了 ③ 不可逆・pro-rata・州税に注意 ④ 帰国後の転換は日本でも課税されうるので米国在住中に</div>`;
+  // 帰国予定者向け：既存Rothは「帰国前にすべて売却・清算」が基本ルール
+  if(S.japan==='yes' || S.japan==='maybe'){
+    html += `<div style="margin-top:12px; padding:10px 12px; background:var(--bg-success); color:var(--tx-success); border-radius:var(--r-md); font-size:12.5px; line-height:1.7;"><b>🌱 Roth をお持ちなら：帰国前に「全部売却・清算」が基本</b><br>日本に居住すると、Roth の運用益も日本では課税対象になり得ます（日本は Roth の非課税扱いを認めていません）。せっかくの非課税メリットを失わないために、<b>適格（59.5歳以上＋5年保有）なら帰国前に米国内で売却・引き出して利益を確定</b>してしまうのが基本的な対応です。${S.exit==='yes'?'Exit Tax 該当時もみなし分配の対象になるため、なおさら帰国・放棄の前の整理が効きます。':''}未適格なら運用益に課税されるので、清算の損得・タイミングを事前に試算しましょう。</div>`;
+  }
   // 結果のシェア（収入・資産などの入力は一切含めず、判定結果の見出しのみ）
   var shareText = 'Roth/Traditional IRA 判定ツールの結果は「' + r.headline + '」でした｜日米の税務をUSCPAが解説 - Watson US CPA';
   var shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(location.origin + location.pathname);
