@@ -213,6 +213,25 @@
     </div>
   </div>
 
+  <!-- 自営業の規模（bizのとき表示） -->
+  <div class="q mode-annual mode-sdop" id="q-bizsize" style="display:none">
+    <h2>自営業・フリーランスについて教えてください</h2>
+    <p class="hint">ざっくりで構いません。作業量（取引の集計・経費区分）の見積りに使います。</p>
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.4rem">年間の売上（収入）</div>
+    <div class="opts" data-key="bizrev">
+      <button class="opt on" data-v="s">$100,000未満</button>
+      <button class="opt" data-v="m">$100,000〜$500,000</button>
+      <button class="opt" data-v="l">$500,000以上</button>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin:.9rem 0 .4rem">年間の利益（売上−経費）</div>
+    <div class="opts" data-key="bizprofit">
+      <button class="opt on" data-v="p1">$50,000未満</button>
+      <button class="opt" data-v="p2">$50,000〜$150,000</button>
+      <button class="opt" data-v="p3">$150,000以上</button>
+    </div>
+    <p class="addnote">利益の規模は自営業税（SE tax）・QBI控除・推定納税のご案内に使います。料金は売上規模で変わります。</p>
+  </div>
+
   <!-- 口座 -->
   <div class="q mode-annual mode-sdop" id="q-fbar">
     <h2 id="fbar-title">日本（米国外）の口座はいくつありますか？</h2>
@@ -365,7 +384,7 @@ const FEES = {
   consultHr: 350,       // 時間制コンサル
 };
 
-const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', filing:'single', income:new Set(), k1:0, rental:0,
+const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', filing:'single', income:new Set(), k1:0, rental:0, bizrev:'s', bizprofit:'p1',
                 fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
 
 // ===== UI 配線 =====
@@ -392,6 +411,14 @@ function step(key, d){
 }
 
 function isNR(){ return state.status === 'fj'; }
+
+function schedCFee(){
+  return { s: FEES.schedCE, m: 400, l: 600 }[state.bizrev];
+}
+function schedCLabel(){
+  return { s: '自営業（Schedule C）', m: '自営業（Schedule C・売上$100K〜500K）',
+           l: '自営業（Schedule C・売上$500K超）〜' }[state.bizrev];
+}
 
 // ===== 8938 基準額（米国居住・年末ベース） =====
 function fatcaThreshold(){
@@ -455,6 +482,10 @@ function onChange(){
     });
   }
 
+  // 自営業サブ質問
+  const bizOn = state.income.has('biz') && (state.type === 'annual' || state.type === 'sdop');
+  document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
+
   document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
   document.getElementById('fatca-hint').textContent =
     `口座残高＋投信＋貯蓄型保険など。${state.filing === 'mfj' ? 'ご夫婦合算で年末 ' + fatcaThreshold() : '年末 ' + fatcaThreshold()}（米国居住の場合）を超えると Form 8938 も必要になります。`;
@@ -487,7 +518,7 @@ function calc(){
     }
     if (!isNR() && state.income.has('jp')) add('日本の所得・外国税額控除（Form 1116 / 2555）／年', FEES.ftc);
     if (state.income.has('stocks')) add('株・投信・仮想通貨の売却（Schedule D）／年', FEES.schedD);
-    if (state.income.has('biz')) add('自営業（Schedule C）／年', FEES.schedCE);
+    if (state.income.has('biz')) add(schedCLabel() + '／年', schedCFee());
     if (state.rental > 0) add(`不動産賃貸（Schedule E）${state.rental}戸／年`, state.rental * FEES.schedCE);
     if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚／年`, state.k1 * FEES.k1);
     if (!isNR() && state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄／年`,
@@ -506,7 +537,7 @@ function calc(){
     if (state.sdopyears > 3) add(`年度追加（${state.sdopyears - 3}年分）`, (state.sdopyears - 3) * FEES.sdopYear);
     if (state.fbar > 5) add('口座数の加算', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
     if (state.pfic > 0) add(`投資信託（PFIC）${state.pfic}銘柄`, state.pfic * FEES.pficAddl);
-    if (state.income.has('biz')) add('自営業・事業所得（概算）', FEES.schedCE);
+    if (state.income.has('biz')) add(schedCLabel() + '（概算）', schedCFee());
     if (state.rental > 0) add(`不動産賃貸 ${state.rental}戸（概算）`, state.rental * FEES.schedCE);
     if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚（概算）`, state.k1 * FEES.k1);
     if (state.misc.has('corp')) add('日本法人の報告（Form 5471）〜', FEES.corp);
@@ -525,7 +556,7 @@ function calc(){
   }
   if (!isNR() && state.income.has('jp')) add('日本の所得・外国税額控除（Form 1116 / 2555）', FEES.ftc);
   if (state.income.has('stocks')) add('株・投信・仮想通貨の売却（Schedule D）', FEES.schedD);
-  if (state.income.has('biz')) add('自営業（Schedule C）', FEES.schedCE);
+  if (state.income.has('biz')) add(schedCLabel(), schedCFee());
   if (state.rental > 0) add(`不動産賃貸（Schedule E）${state.rental}戸`, state.rental * FEES.schedCE);
   if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚`, state.k1 * FEES.k1);
   if (!isNR() && state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄`,
@@ -553,10 +584,12 @@ function estimateText(){
   const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
   const statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
   const concerns = document.getElementById('concerns').value.trim();
+  const profitLabel = { p1:'$50K未満', p2:'$50K〜150K', p3:'$150K以上' }[state.bizprofit];
   return [
     ...(state.type !== 'consult' ? [`米国ステータス: ${statusLabel}`, `申告ステータス: ${filingLabel}`] : []),
     ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
     consult ? '料金: $350/時間（最低1時間）' : `概算合計: $${total.toLocaleString()} 〜`,
+    ...(state.income.has('biz') && state.type !== 'consult' ? [`自営業の利益レンジ: ${profitLabel}`] : []),
     ...(concerns ? ['', '気になっていること:', concerns] : []),
   ].join('\n');
 }
