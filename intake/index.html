@@ -176,6 +176,29 @@
     <p class="addnote" id="status-note" style="display:none"></p>
   </div>
 
+  <!-- 就労ビザ：滞在日数 -->
+  <div class="q mode-annual mode-sdop" id="q-workdays" style="display:none">
+    <h2>対象年の米国滞在日数は？</h2>
+    <p class="hint">居住者（Form 1040）か非居住者（Form 1040-NR）かの判定に使います（実質滞在テスト）。</p>
+    <div class="opts" data-key="workdays">
+      <button class="opt on" data-v="ge183">183日以上（ほぼ通年）</button>
+      <button class="opt" data-v="lt183">183日未満</button>
+      <button class="opt" data-v="partial">年の途中で渡米・帰国した</button>
+    </div>
+    <p class="addnote" id="workdays-note" style="display:none"></p>
+  </div>
+
+  <!-- F/J：滞在年数 -->
+  <div class="q mode-annual mode-sdop" id="q-fjyears" style="display:none">
+    <h2>米国に来て何年目ですか？</h2>
+    <p class="hint">F/J ビザは最初の数年間（Fは5暦年）、滞在日数に関係なく非居住者として扱われます（exempt individual）。</p>
+    <div class="opts" data-key="fjyears">
+      <button class="opt on" data-v="le5">5年以内</button>
+      <button class="opt" data-v="ge6">6年目以降</button>
+    </div>
+    <p class="addnote" id="fjyears-note" style="display:none"></p>
+  </div>
+
   <!-- 申告ステータス -->
   <div class="q mode-annual mode-sdop" id="q-filing">
     <h2 id="filing-title">申告のステータスは？</h2>
@@ -384,7 +407,7 @@ const FEES = {
   consultHr: 350,       // 時間制コンサル
 };
 
-const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', filing:'single', income:new Set(), k1:0, rental:0, bizrev:'s', bizprofit:'p1',
+const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', workdays:'ge183', fjyears:'le5', filing:'single', income:new Set(), k1:0, rental:0, bizrev:'s', bizprofit:'p1',
                 fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
 
 // ===== UI 配線 =====
@@ -410,7 +433,11 @@ function step(key, d){
   onChange();
 }
 
-function isNR(){ return state.status === 'fj'; }
+function isNR(){
+  if (state.status === 'fj') return state.fjyears === 'le5';
+  if (state.status === 'work') return state.workdays === 'lt183';
+  return false;
+}
 
 function schedCFee(){
   return { s: FEES.schedCE, m: 400, l: 600 }[state.bizrev];
@@ -459,21 +486,33 @@ function onChange(){
     note.style.display = 'none';
   }
 
-  // 米国ステータス → NR の可能性
+  // 米国ステータス → サブ質問と NR 判定
   const sn = document.getElementById('status-note');
+  const inFiling = (state.type === 'annual' || state.type === 'sdop');
+  document.getElementById('q-workdays').style.display = (inFiling && state.status === 'work') ? '' : 'none';
+  document.getElementById('q-fjyears').style.display = (inFiling && state.status === 'fj') ? '' : 'none';
   const nr = isNR();
-  if (state.status === 'fj') {
-    sn.style.display = '';
-    sn.textContent = 'F / J ビザの方は、最初の数年間は非居住者（Form 1040-NR）として申告することが多いです。見積りは 1040-NR 基準（$700〜）で計算します。非居住者の間は海外口座の報告（FBAR / Form 8938）は通常不要です。正式な判定はメールで行います。';
-  } else if (state.status === 'work') {
-    sn.style.display = '';
-    sn.textContent = '渡米初年度・帰国年は、滞在日数により非居住者（1040-NR）や年の途中でステータスが変わる申告になる場合があります。その場合の料金はメールでご案内します。';
-  } else if (state.status === 'unknown') {
-    sn.style.display = '';
+  sn.style.display = (state.status === 'unknown') ? '' : 'none';
+  if (state.status === 'unknown') {
     sn.textContent = 'ステータスが不明でも大丈夫です。メールでご状況を伺って判定します（見積りは通常の 1040 基準で仮計算します）。';
-  } else {
-    sn.style.display = 'none';
   }
+  const wn = document.getElementById('workdays-note');
+  if (state.status === 'work') {
+    if (state.workdays === 'lt183') {
+      wn.style.display = '';
+      wn.textContent = '滞在183日未満の年は非居住者（1040-NR）になる可能性が高いため、見積りは 1040-NR 基準（$700〜）で計算します。非居住者の間は海外口座の報告（FBAR / 8938）は通常不要です。正式な判定（3年加重の実質滞在テスト・条約）はメールで行います。';
+    } else if (state.workdays === 'partial') {
+      wn.style.display = '';
+      wn.textContent = '年の途中で居住ステータスが変わる年（Dual-status）は通常と料金・手続きが異なります。見積りは通常の1040基準で仮計算し、確定はメールでご案内します。';
+    } else { wn.style.display = 'none'; }
+  } else { wn.style.display = 'none'; }
+  const fn = document.getElementById('fjyears-note');
+  if (state.status === 'fj') {
+    fn.style.display = '';
+    fn.textContent = (state.fjyears === 'le5')
+      ? '非居住者（Form 1040-NR）基準（$700〜）で計算します。非居住者の間は海外口座の報告（FBAR / 8938）は通常不要です。正式な判定はメールで行います。'
+      : '6年目以降は実質滞在テストにより居住者（Form 1040）となることが多いため、通常の1040基準で計算します。海外口座の報告（FBAR / 8938）も対象になります。';
+  } else { fn.style.display = 'none'; }
   // NR のときは海外資産系の質問を隠す（申告モードのみ）
   if (state.type === 'annual' || state.type === 'sdop') {
     ['q-fbar','q-8938','q-pfic','q-misc'].forEach(id => {
@@ -582,7 +621,9 @@ function render(){
 function estimateText(){
   const { rows, total, consult } = calc();
   const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
-  const statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
+  let statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
+  if (state.status === 'work') statusLabel += '・滞在' + ({ ge183:'183日以上', lt183:'183日未満', partial:'年の途中で渡米/帰国' }[state.workdays]);
+  if (state.status === 'fj') statusLabel += '・米国' + (state.fjyears === 'le5' ? '5年以内' : '6年目以降');
   const concerns = document.getElementById('concerns').value.trim();
   const profitLabel = { p1:'$50K未満', p2:'$50K〜150K', p3:'$150K以上' }[state.bizprofit];
   return [
@@ -632,7 +673,9 @@ document.getElementById('reqform').addEventListener('submit', function(e){
 function copyEstimate(){
   const { rows, total, consult } = calc();
   const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
-  const statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
+  let statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
+  if (state.status === 'work') statusLabel += '・滞在' + ({ ge183:'183日以上', lt183:'183日未満', partial:'年の途中で渡米/帰国' }[state.workdays]);
+  if (state.status === 'fj') statusLabel += '・米国' + (state.fjyears === 'le5' ? '5年以内' : '6年目以降');
   const concerns = document.getElementById('concerns').value.trim();
   const lines = [
     '【お見積り依頼】Watson US CPA 料金シミュレーター',
