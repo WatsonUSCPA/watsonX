@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>料金かんたん見積り ｜ Watson US CPA</title>
-<meta name="description" content="米国税務申告（Form 1040 / FBAR / PFIC / Streamlined）の概算料金を、質問に答えるだけで確認できます。米国公認会計士（USCPA）によるお見積りシミュレーター。入力はブラウザ内のみで処理されます。" />
+<meta name="description" content="米国税務申告（Form 1040 / FBAR / PFIC / Streamlined）や税務相談の概算料金を、質問に答えるだけで確認できます。米国公認会計士（USCPA）によるお見積りシミュレーター。入力はブラウザ内のみで処理されます。" />
 
 <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
@@ -49,12 +49,12 @@
   .opt{ font-family:var(--font); font-size:13.5px; font-weight:500; color:var(--tx-secondary); background:var(--bg-tertiary); border:1.5px solid transparent; border-radius:999px; padding:8px 16px; cursor:pointer; transition:all .12s; }
   .opt:hover{ border-color:var(--teal); color:var(--teal-600); }
   .opt.on{ background:var(--navy); color:#fff; border-color:var(--navy); }
-  .stepper{ display:flex; align-items:center; gap:12px; }
+  .stepper{ display:flex; align-items:center; gap:12px; margin-top:.5rem; }
   .stepper button{ width:36px; height:36px; border-radius:50%; border:1.5px solid var(--line); background:var(--bg-primary); font-size:18px; font-weight:700; color:var(--navy); cursor:pointer; }
   .stepper button:hover{ border-color:var(--teal); }
   .stepper .val{ min-width:2.5em; text-align:center; font-size:16px; font-weight:700; color:var(--navy); }
+  .stepper .slabel{ font-size:13px; color:var(--tx-secondary); }
   .q .addnote{ font-size:12px; color:var(--tx-tertiary); margin-top:.5rem; }
-  .q.dim{ opacity:.45; pointer-events:none; }
 
   /* 見積バー */
   .estbar{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--navy); color:#fff; box-shadow:0 -6px 24px rgba(15,42,67,0.25); }
@@ -77,10 +77,10 @@
   table.bd tr.total td{ border-bottom:none; font-size:17px; color:var(--navy); font-weight:700; padding-top:14px; }
   .sheet-warn{ background:var(--bg-warning); color:var(--tx-warning); border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin:1rem 0; }
   .sheet-actions{ display:flex; gap:10px; margin-top:1.25rem; flex-wrap:wrap; }
-  .sheet-actions button, .sheet-actions a{ font-family:var(--font); font-size:14px; font-weight:700; border-radius:999px; padding:11px 22px; cursor:pointer; text-decoration:none; text-align:center; }
-  .btn-copy{ background:var(--teal); color:#fff; border:none; }
+  .sheet-actions button{ font-family:var(--font); font-size:14px; font-weight:700; border-radius:999px; padding:11px 22px; cursor:pointer; border:none; }
+  .btn-copy{ background:var(--teal); color:#fff; }
   .btn-copy:hover{ background:var(--teal-600); }
-  .btn-close{ background:var(--bg-tertiary); color:var(--tx-secondary); border:none; }
+  .btn-close{ background:var(--bg-tertiary); color:var(--tx-secondary); }
 
   footer{ max-width:720px; margin:0 auto; padding:0 1.25rem 8rem; color:var(--tx-tertiary); font-size:12px; }
 </style>
@@ -108,26 +108,59 @@
     <div class="opts" data-key="type">
       <button class="opt on" data-v="annual">今年の申告をお願いしたい</button>
       <button class="opt" data-v="sdop">過去の未申告・申告漏れを解消したい</button>
+      <button class="opt" data-v="consult">相談をしたい</button>
     </div>
-    <p class="addnote" id="sdop-note" style="display:none">過去の申告漏れの解消（Streamlined Procedures）は、過去3年分の申告書と6年分のFBAR、非故意性の説明書の作成を含む一式のお手続きです。</p>
+    <p class="addnote" id="type-note" style="display:none"></p>
   </div>
 
-  <!-- Q2 収入 -->
-  <div class="q" id="q-income">
-    <h2>2. 収入の種類は？（あてはまるものすべて）</h2>
-    <p class="hint">給与・利子・配当だけなら何も選ばなくてOKです。</p>
+  <!-- 相談専用 -->
+  <div class="q mode-consult" id="q-consult" style="display:none">
+    <h2>2. どんなご相談ですか？</h2>
+    <p class="hint">料金はいずれも $350/時間（最低1時間）。初回ヒアリング30分は無料です。まずは気軽にご連絡ください。</p>
+    <div class="opts" data-key="consult">
+      <button class="opt on" data-v="move">渡米・帰国前後の税金の相談</button>
+      <button class="opt" data-v="invest">日本の投資・資産の米国税務（NISA・投信・保険など）</button>
+      <button class="opt" data-v="resident">居住判定・日米租税条約の適用</button>
+      <button class="opt" data-v="other">その他</button>
+    </div>
+  </div>
+
+  <!-- 申告ステータス -->
+  <div class="q mode-annual mode-sdop" id="q-filing">
+    <h2 id="filing-title">2. 申告のステータスは？</h2>
+    <p class="hint">ご夫婦の場合、合算申告（MFJ）か個別申告（MFS）かで、海外資産の報告基準額が変わります。</p>
+    <div class="opts" data-key="filing">
+      <button class="opt on" data-v="single">単身</button>
+      <button class="opt" data-v="mfj">夫婦合算（MFJ）</button>
+      <button class="opt" data-v="mfs">夫婦個別（MFS）</button>
+      <button class="opt" data-v="unknown">わからない</button>
+    </div>
+    <p class="addnote" id="filing-note" style="display:none">「わからない」でOKです。ご状況を伺って有利な方をご提案します（見積りは単身基準で仮計算します）。</p>
+  </div>
+
+  <!-- 収入 -->
+  <div class="q mode-annual mode-sdop" id="q-income">
+    <h2 id="income-title">3. 収入の種類は？（あてはまるものすべて）</h2>
+    <p class="hint">米国の給与（W-2）・利子・配当は基本料金に含まれます。ご夫婦合算の場合はお二人分でお答えください。</p>
     <div class="opts" data-key="income" data-multi="1">
-      <button class="opt" data-v="biz">自営業・フリーランス収入</button>
-      <button class="opt" data-v="rental">不動産の賃貸収入</button>
-      <button class="opt" data-v="jpsalary">日本での給与・所得がある</button>
+      <button class="opt" data-v="stocks">株・投信・仮想通貨の売却がある</button>
+      <button class="opt" data-v="biz">自営業・フリーランス収入がある</button>
+      <button class="opt" data-v="rental">不動産の賃貸収入がある</button>
+      <button class="opt" data-v="jp">日本の所得がある（給与・年金・その他）</button>
     </div>
-    <p class="addnote">日本での所得がある場合、外国税額控除（Form 1116）等で二重課税を調整します。</p>
+    <p class="addnote">日本の所得がある場合、外国税額控除（Form 1116）等で二重課税を調整します。</p>
+    <div class="stepper" data-key="k1">
+      <button type="button" onclick="step('k1',-1)">−</button>
+      <span class="val" id="k1-val">0</span>
+      <button type="button" onclick="step('k1',1)">＋</button>
+      <span class="slabel">Schedule K-1 の枚数（パートナーシップ／S-Corp／信託からの分配）</span>
+    </div>
   </div>
 
-  <!-- Q3 口座 -->
-  <div class="q" id="q-fbar">
-    <h2>3. 日本（米国外）の口座はいくつありますか？</h2>
-    <p class="hint">銀行・証券・ゆうちょ・ネット銀行など。合計残高が年間ピークで $10,000 を超えると FBAR の提出が必要です。</p>
+  <!-- 口座 -->
+  <div class="q mode-annual mode-sdop" id="q-fbar">
+    <h2 id="fbar-title">4. 日本（米国外）の口座はいくつありますか？</h2>
+    <p class="hint">銀行・証券・ゆうちょ・ネット銀行など。ご夫婦合算の場合は、お二人の口座＋共同名義を合わせた数。合計残高が年間ピークで $10,000 を超えると FBAR の提出が必要です。</p>
     <div class="opts" data-key="fbar">
       <button class="opt on" data-v="0">ない／$10,000以下</button>
       <button class="opt" data-v="5">1〜5個</button>
@@ -136,31 +169,31 @@
     </div>
   </div>
 
-  <!-- Q4 8938 -->
-  <div class="q" id="q-8938">
-    <h2>4. 米国外の金融資産の合計は？</h2>
-    <p class="hint">口座残高＋投信＋貯蓄型保険など。一定額（例：米国居住・独身で年末$50,000）を超えると Form 8938 も必要になります。</p>
+  <!-- 8938 -->
+  <div class="q mode-annual" id="q-8938">
+    <h2 id="fatca-title">5. 米国外の金融資産の合計は？</h2>
+    <p class="hint" id="fatca-hint"></p>
     <div class="opts" data-key="fatca">
-      <button class="opt on" data-v="no">$50,000未満</button>
-      <button class="opt" data-v="yes">$50,000以上（またはわからない）</button>
+      <button class="opt on" data-v="no">基準額未満</button>
+      <button class="opt" data-v="yes">基準額以上（またはわからない）</button>
     </div>
   </div>
 
-  <!-- Q5 PFIC -->
-  <div class="q" id="q-pfic">
-    <h2>5. 日本の投資信託・ETFを持っていますか？</h2>
+  <!-- PFIC -->
+  <div class="q mode-annual mode-sdop" id="q-pfic">
+    <h2 id="pfic-title">6. 日本の投資信託・ETFを持っていますか？</h2>
     <p class="hint">NISA・つみたてNISA内も含みます。米国税務上は PFIC として銘柄ごとに Form 8621 の作成が必要です。</p>
     <div class="stepper" data-key="pfic">
       <button type="button" onclick="step('pfic',-1)">−</button>
       <span class="val" id="pfic-val">0</span>
       <button type="button" onclick="step('pfic',1)">＋</button>
-      <span style="font-size:13px;color:var(--tx-secondary)">銘柄</span>
+      <span class="slabel">銘柄</span>
     </div>
   </div>
 
-  <!-- Q6 その他の資産イベント -->
-  <div class="q" id="q-misc">
-    <h2>6. あてはまるものはありますか？</h2>
+  <!-- その他の資産イベント -->
+  <div class="q mode-annual mode-sdop" id="q-misc">
+    <h2 id="misc-title">7. あてはまるものはありますか？</h2>
     <div class="opts" data-key="misc" data-multi="1">
       <button class="opt" data-v="corp">日本の会社の株式を10%以上持っている</button>
       <button class="opt" data-v="gift">年間 $100,000 超の贈与・相続を受けた</button>
@@ -168,9 +201,9 @@
     <p class="addnote">該当する場合、Form 5471 / Form 3520 という専用の報告書が必要です。</p>
   </div>
 
-  <!-- Q7 州 -->
-  <div class="q" id="q-state">
-    <h2>7. 州の申告は？</h2>
+  <!-- 州 -->
+  <div class="q mode-annual" id="q-state">
+    <h2>8. 州の申告は？</h2>
     <p class="hint">1州目（カリフォルニア等）は基本料金に含まれます。</p>
     <div class="opts" data-key="state">
       <button class="opt on" data-v="1">1州だけ（または州の申告なし）</button>
@@ -179,7 +212,7 @@
   </div>
 
   <!-- SDOP専用 -->
-  <div class="q" id="q-sdopyears" style="display:none">
+  <div class="q mode-sdop" id="q-sdopyears" style="display:none">
     <h2>8. 未申告はおよそ何年分ですか？</h2>
     <p class="hint">Streamlined では直近3年分の申告書＋6年分のFBARを提出します。3年を超える分は加算になります。</p>
     <div class="opts" data-key="sdopyears">
@@ -194,10 +227,10 @@
 <div class="estbar">
   <div class="estbar-inner">
     <div>
-      <div class="est-label">概算お見積り</div>
-      <div class="est-amount">$<span id="est">600</span><small> 〜</small></div>
+      <div class="est-label" id="est-label">概算お見積り</div>
+      <div class="est-amount" id="est-amount">$600<small> 〜</small></div>
     </div>
-    <div class="est-note">確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。</div>
+    <div class="est-note" id="est-note">確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。</div>
     <button class="detail" onclick="openSheet()">内訳を見る・依頼する</button>
   </div>
 </div>
@@ -205,10 +238,10 @@
 <!-- 内訳シート -->
 <div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()">
   <div class="sheet-body">
-    <h2>概算お見積りの内訳</h2>
+    <h2 id="sheet-title">概算お見積りの内訳</h2>
     <table class="bd" id="bdtable"></table>
-    <div class="sheet-warn">
-      この金額は<b>ご回答に基づく概算（下限）</b>です。正式なお見積りは、メールでもう少し詳しい状況（収入の内容、口座・銘柄の詳細、過去の申告状況など）を確認してから確定します。<b>確認の結果、追加費用をご案内する場合があります</b>（例：投信の銘柄数の増加、法人報告の複雑さ、資料の再構築が必要な場合など）。
+    <div class="sheet-warn" id="sheet-warn">
+      この金額は<b>ご回答に基づく概算（下限）</b>です。正式なお見積りは、メールでもう少し詳しい状況（収入の内容、口座・銘柄の詳細、過去の申告状況など）を確認してから確定します。<b>確認の結果、追加費用をご案内する場合があります</b>（例：K-1や投信の銘柄数の増加、法人報告の複雑さ、取引数が多い場合、資料の再構築が必要な場合など）。
     </div>
     <div class="sheet-actions">
       <button class="btn-copy" onclick="copyEstimate()">見積り内容をコピーしてメールで依頼</button>
@@ -223,22 +256,26 @@
 </footer>
 
 <script>
-// ===== 料金マスタ（fee-schedule.md と同期させること） =====
+// ===== 料金マスタ（TaxReturn/startup/fee-schedule.md と同期させること） =====
 const FEES = {
-  base: 600,            // 1040 + 州1つ
+  base: 600,            // 1040 + 州1つ（W-2給与・利子・配当込み）
   state2: 200,          // 2州目
   fbarOnly: 150,        // FBAR単体（5口座まで）
   fbarFatca: 200,       // FBAR + 8938 セット（5口座/資産まで）
   per5accts: 100,       // 6口座目以降 5口座ごと
   ftc: 250,             // 1116/2555
   schedCE: 250,         // Schedule C / E
+  schedD: 150,          // Schedule D（株式・仮想通貨の売却）
+  k1: 250,              // K-1 1枚あたり
   pficFirst: 300, pficAddl: 200,
   corp: 1000,           // 5471（〜から）
   gift: 650,            // 3520
   sdopBase: 3500, sdopYear: 400,
+  consultHr: 350,       // 時間制コンサル
 };
 
-const state = { type:'annual', income:new Set(), fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
+const state = { type:'annual', consult:'move', filing:'single', income:new Set(), k1:0,
+                fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
 
 // ===== UI 配線 =====
 document.querySelectorAll('.opts').forEach(g => {
@@ -262,13 +299,35 @@ function step(key, d){
   onChange();
 }
 
+// ===== 8938 基準額（米国居住・年末ベース） =====
+function fatcaThreshold(){
+  return state.filing === 'mfj' ? '$100,000' : '$50,000';
+}
+
+// ===== モード切替 =====
 function onChange(){
-  const sdop = state.type === 'sdop';
-  document.getElementById('sdop-note').style.display = sdop ? '' : 'none';
-  document.getElementById('q-sdopyears').style.display = sdop ? '' : 'none';
-  // SDOPでは年次専用の質問（州・自営業等）はそのまま使うが、8938はSDOP一式に含まれる扱い
-  document.getElementById('q-8938').classList.toggle('dim', sdop);
-  document.getElementById('q-state').classList.toggle('dim', sdop);
+  const mode = state.type;   // annual | sdop | consult
+  document.querySelectorAll('.q').forEach(q => {
+    if (q.id === 'q-type') return;
+    const show = q.classList.contains('mode-' + mode);
+    q.style.display = show ? '' : 'none';
+  });
+
+  const note = document.getElementById('type-note');
+  if (mode === 'sdop') {
+    note.style.display = '';
+    note.textContent = '過去の申告漏れの解消（Streamlined Procedures）は、過去3年分の申告書と6年分のFBAR、非故意性の説明書の作成を含む一式のお手続きです。';
+  } else if (mode === 'consult') {
+    note.style.display = '';
+    note.textContent = '申告書の作成を伴わない、単発のご相談・セカンドオピニオンです。相談の結果そのまま申告をご依頼いただく場合、相談料は申告料金に充当します。';
+  } else {
+    note.style.display = 'none';
+  }
+
+  document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
+  document.getElementById('fatca-hint').textContent =
+    `口座残高＋投信＋貯蓄型保険など。${state.filing === 'mfj' ? 'ご夫婦合算で年末 ' + fatcaThreshold() : '年末 ' + fatcaThreshold()}（米国居住の場合）を超えると Form 8938 も必要になります。`;
+
   render();
 }
 
@@ -278,54 +337,79 @@ function calc(){
   let total = 0;
   const add = (label, amt) => { rows.push([label, amt]); total += amt; };
 
+  if (state.type === 'consult') {
+    const labels = { move:'渡米・帰国前後の税金の相談', invest:'日本の投資・資産の米国税務のご相談',
+                     resident:'居住判定・租税条約のご相談', other:'税務のご相談' };
+    add(labels[state.consult] + '（時間制）', FEES.consultHr);
+    return { rows, total, consult:true };
+  }
+
   if (state.type === 'sdop') {
     add('Streamlined 一式（3年分の申告＋6年分FBAR＋説明書）', FEES.sdopBase);
     if (state.sdopyears > 3) add(`年度追加（${state.sdopyears - 3}年分）`, (state.sdopyears - 3) * FEES.sdopYear);
     if (state.fbar > 5) add('口座数の加算', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
     if (state.pfic > 0) add(`投資信託（PFIC）${state.pfic}銘柄`, state.pfic * FEES.pficAddl);
     if (state.income.has('biz')) add('自営業・事業所得（概算）', FEES.schedCE);
+    if (state.income.has('rental')) add('不動産賃貸（概算）', FEES.schedCE);
+    if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚（概算）`, state.k1 * FEES.k1);
     if (state.misc.has('corp')) add('日本法人の報告（Form 5471）〜', FEES.corp);
     if (state.misc.has('gift')) add('贈与・相続の報告（Form 3520）', FEES.gift);
-  } else {
-    add('基本料金（Form 1040 ＋ 州1つ）', FEES.base);
-    if (state.state === 2) add('2州目', FEES.state2);
-    if (state.fbar > 0) {
-      if (state.fatca === 'yes') add('海外口座・資産の報告（FBAR＋Form 8938）', FEES.fbarFatca);
-      else add('海外口座の報告（FBAR）', FEES.fbarOnly);
-      if (state.fbar > 5) add('口座数の加算', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
-    }
-    if (state.income.has('jpsalary')) add('外国税額控除等（Form 1116 / 2555）', FEES.ftc);
-    if (state.income.has('biz')) add('自営業（Schedule C）', FEES.schedCE);
-    if (state.income.has('rental')) add('不動産賃貸（Schedule E）', FEES.schedCE);
-    if (state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄`,
-      FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
-    if (state.misc.has('corp')) add('日本法人の報告（Form 5471）〜', FEES.corp);
-    if (state.misc.has('gift')) add('贈与・相続の報告（Form 3520）', FEES.gift);
+    return { rows, total };
   }
+
+  // annual
+  add('基本料金（Form 1040 ＋ 州1つ、W-2給与・利子・配当込み）', FEES.base);
+  if (state.state === 2) add('2州目', FEES.state2);
+  if (state.fbar > 0) {
+    if (state.fatca === 'yes') add('海外口座・資産の報告（FBAR＋Form 8938）', FEES.fbarFatca);
+    else add('海外口座の報告（FBAR）', FEES.fbarOnly);
+    if (state.fbar > 5) add('口座数の加算', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
+  }
+  if (state.income.has('jp')) add('日本の所得・外国税額控除（Form 1116 / 2555）', FEES.ftc);
+  if (state.income.has('stocks')) add('株・投信・仮想通貨の売却（Schedule D）', FEES.schedD);
+  if (state.income.has('biz')) add('自営業（Schedule C）', FEES.schedCE);
+  if (state.income.has('rental')) add('不動産賃貸（Schedule E）', FEES.schedCE);
+  if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚`, state.k1 * FEES.k1);
+  if (state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄`,
+    FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
+  if (state.misc.has('corp')) add('日本法人の報告（Form 5471）〜', FEES.corp);
+  if (state.misc.has('gift')) add('贈与・相続の報告（Form 3520）', FEES.gift);
   return { rows, total };
 }
 
 function render(){
-  document.getElementById('est').textContent = calc().total.toLocaleString();
+  const r = calc();
+  const amt = document.getElementById('est-amount');
+  if (r.consult) {
+    amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /時間（最低1時間）</small>`;
+    document.getElementById('est-note').textContent = '初回ヒアリング30分は無料。そのまま申告をご依頼の場合、相談料は申告料金に充当します。';
+  } else {
+    amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜</small>`;
+    document.getElementById('est-note').textContent = '確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。';
+  }
 }
 
 // ===== 内訳・コピー =====
 function openSheet(){
-  const { rows, total } = calc();
+  const { rows, total, consult } = calc();
   document.getElementById('bdtable').innerHTML =
-    rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}</td></tr>`).join('') +
-    `<tr class="total"><td>概算合計</td><td>$${total.toLocaleString()} 〜</td></tr>`;
+    rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
+    (consult
+      ? `<tr class="total"><td>初回ヒアリング30分</td><td>無料</td></tr>`
+      : `<tr class="total"><td>概算合計</td><td>$${total.toLocaleString()} 〜</td></tr>`);
   document.getElementById('sheet').classList.add('open');
 }
 function closeSheet(){ document.getElementById('sheet').classList.remove('open'); }
 
 function copyEstimate(){
-  const { rows, total } = calc();
+  const { rows, total, consult } = calc();
+  const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
   const lines = [
     '【お見積り依頼】Watson US CPA 料金シミュレーター',
     '',
-    ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}`),
-    `概算合計: $${total.toLocaleString()} 〜`,
+    ...(state.type !== 'consult' ? [`申告ステータス: ${filingLabel}`] : []),
+    ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
+    consult ? '初回ヒアリング30分: 無料' : `概算合計: $${total.toLocaleString()} 〜`,
     '',
     '※上記はシミュレーターによる概算です。正式見積りをお願いします。',
     '',
