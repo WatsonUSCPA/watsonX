@@ -112,7 +112,7 @@
 <main>
   <h1>料金かんたん見積り</h1>
   <p class="lead">質問に答えていくと、画面下に概算料金が表示されます。所要1〜2分。入力内容はブラウザ内でのみ処理され、送信されません。</p>
-  <div class="notice">表示されるのは<b>概算（〜から）の金額</b>です。正式なお見積りは、メールで詳しい状況を伺ったうえで確定します。内容によっては追加費用をご案内する場合があります。</div>
+  <div class="notice">表示されるのは<b>最低料金（ここから始まる金額）</b>です。正式なお見積りは、メールで詳しい状況を伺ったうえで確定し、<b>ご同意いただいてから着手します</b>。</div>
 
   <!-- Q1 依頼タイプ -->
   <div class="q" id="q-type">
@@ -282,7 +282,7 @@
 <div class="estbar">
   <div class="estbar-inner">
     <div>
-      <div class="est-label" id="est-label">概算お見積り</div>
+      <div class="est-label" id="est-label">概算<b>最低</b>料金</div>
       <div class="est-amount" id="est-amount">$600<small> 〜</small></div>
     </div>
     <div class="est-note" id="est-note">確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。</div>
@@ -296,7 +296,15 @@
     <h2 id="sheet-title">概算お見積りの内訳</h2>
     <table class="bd" id="bdtable"></table>
     <div class="sheet-warn" id="sheet-warn">
-      この金額は<b>ご回答に基づく概算（下限）</b>です。正式なお見積りは、メールでもう少し詳しい状況（収入の内容、口座・銘柄の詳細、過去の申告状況など）を確認してから確定します。<b>確認の結果、追加費用をご案内する場合があります</b>（例：K-1や投信の銘柄数の増加、法人報告の複雑さ、取引数が多い場合、資料の再構築が必要な場合など）。
+      <b>この金額は最低料金です。</b>正式なお見積りは、メールで詳しい状況を確認してから確定します。実際の料金が上がる典型例：
+      <ul style="margin:.5rem 0 0;padding-left:1.3rem">
+        <li>投資信託の銘柄数・K-1の枚数が申告時に増えた</li>
+        <li>株・仮想通貨の取引数が多い（明細の集計が必要）</li>
+        <li>日本法人の報告（Form 5471）で財務諸表の作り直しが必要</li>
+        <li>過去の残高資料が揃わず、銀行明細からの再構築が必要（$350/時間）</li>
+        <li>年の途中で居住ステータスが変わる年度（Dual-status）</li>
+      </ul>
+      <div style="margin-top:.6rem"><b>確定金額にご同意いただいてから着手します。</b>着手後に黙って追加請求することはありません。</div>
     </div>
     <form class="req-form" id="reqform" name="estimate-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="estimate-request" />
@@ -310,7 +318,7 @@
       <label for="f-message">補足があればどうぞ（任意）</label>
       <textarea id="f-message" name="message" rows="3" placeholder="SSN・口座番号は書かないでください"></textarea>
       <button class="btn-send" type="submit">上の見積り内容とあわせて送信</button>
-      <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、<b>ご入力のメールアドレスへ返信</b>いたします。返信をもって受付となります。</div>
+      <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、<b>ご入力のメールアドレスへ正式なお見積りを返信</b>いたします。<b>確定金額にご同意いただいてから着手</b>しますので、この時点で費用は発生しません。</div>
       <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
     </form>
     <div class="sheet-actions" style="margin-top:1rem">
@@ -523,7 +531,7 @@ function render(){
     document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。ご相談内容はメールで事前に伺います。';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜</small>`;
-    document.getElementById('est-note').textContent = '確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。';
+    document.getElementById('est-note').innerHTML = '<b>これは最低料金です。</b>確定金額はメールで状況を伺ったうえでご提示し、ご同意後に着手します。';
   }
 }
 
@@ -547,7 +555,7 @@ function openSheet(){
     rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
     (consult
       ? `<tr class="total"><td>ご相談料</td><td>$350/時間（最低1時間）</td></tr>`
-      : `<tr class="total"><td>概算合計</td><td>$${total.toLocaleString()} 〜</td></tr>`);
+      : `<tr class="total"><td>概算最低料金</td><td>$${total.toLocaleString()} 〜</td></tr>`);
   document.getElementById('f-estimate').value = estimateText();
   document.getElementById('sheet').classList.add('open');
 }
