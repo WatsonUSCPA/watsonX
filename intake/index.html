@@ -91,6 +91,9 @@
   .req-form .btn-send{ font-family:var(--font); font-size:14px; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:999px; padding:11px 26px; cursor:pointer; margin-top:1rem; }
   .req-form .btn-send:hover{ background:var(--teal-600); }
   .req-form .btn-send:disabled{ opacity:.5; cursor:default; }
+  .consent{ display:flex; gap:10px; align-items:flex-start; background:var(--bg-tertiary); border-radius:var(--r-md); padding:12px 14px; margin-top:1rem; font-size:13px; color:var(--tx-secondary); line-height:1.6; cursor:pointer; }
+  .consent input{ width:auto; margin-top:4px; accent-color:var(--teal); transform:scale(1.2); cursor:pointer; }
+  .consent b{ color:var(--tx-primary); }
   .form-ok{ display:none; background:var(--bg-success); color:var(--tx-success); border-radius:var(--r-md); padding:14px 18px; font-size:14px; margin-top:1rem; }
   .form-err{ display:none; background:#fbeaea; color:#a32d2d; border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin-top:1rem; }
 
@@ -317,6 +320,10 @@
       <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
       <label for="f-message">補足があればどうぞ（任意）</label>
       <textarea id="f-message" name="message" rows="3" placeholder="SSN・口座番号は書かないでください"></textarea>
+      <label class="consent">
+        <input type="checkbox" name="consent" id="f-consent" required value="表示金額が最低料金であること、確定見積に同意後に着手されることを理解した" />
+        <span>表示されている金額は<b>最低料金</b>であり、正式なお見積りはメールで確定すること、<b>確定金額に同意してから作業が始まる</b>こと（それまで費用は発生しないこと）を理解しました。</span>
+      </label>
       <button class="btn-send" type="submit">上の見積り内容とあわせて送信</button>
       <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、<b>ご入力のメールアドレスへ正式なお見積りを返信</b>いたします。<b>確定金額にご同意いただいてから着手</b>しますので、この時点で費用は発生しません。</div>
       <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
