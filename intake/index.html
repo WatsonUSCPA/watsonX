@@ -196,10 +196,15 @@
     <div class="opts" data-key="income" data-multi="1">
       <button class="opt" data-v="stocks">株・投信・仮想通貨の売却がある</button>
       <button class="opt" data-v="biz">自営業・フリーランス収入がある</button>
-      <button class="opt" data-v="rental">不動産の賃貸収入がある</button>
       <button class="opt" data-v="jp">日本の所得がある（給与・年金・その他）</button>
     </div>
     <p class="addnote">日本の所得がある場合、外国税額控除（Form 1116）等で二重課税を調整します。</p>
+    <div class="stepper" data-key="rental">
+      <button type="button" onclick="step('rental',-1)">−</button>
+      <span class="val" id="rental-val">0</span>
+      <button type="button" onclick="step('rental',1)">＋</button>
+      <span class="slabel">賃貸物件の戸数（日本・米国とも。Schedule E は物件ごとに作成します）</span>
+    </div>
     <div class="stepper" data-key="k1">
       <button type="button" onclick="step('k1',-1)">−</button>
       <span class="val" id="k1-val">0</span>
@@ -360,7 +365,7 @@ const FEES = {
   consultHr: 350,       // 時間制コンサル
 };
 
-const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', filing:'single', income:new Set(), k1:0,
+const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', filing:'single', income:new Set(), k1:0, rental:0,
                 fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
 
 // ===== UI 配線 =====
@@ -483,7 +488,7 @@ function calc(){
     if (!isNR() && state.income.has('jp')) add('日本の所得・外国税額控除（Form 1116 / 2555）／年', FEES.ftc);
     if (state.income.has('stocks')) add('株・投信・仮想通貨の売却（Schedule D）／年', FEES.schedD);
     if (state.income.has('biz')) add('自営業（Schedule C）／年', FEES.schedCE);
-    if (state.income.has('rental')) add('不動産賃貸（Schedule E）／年', FEES.schedCE);
+    if (state.rental > 0) add(`不動産賃貸（Schedule E）${state.rental}戸／年`, state.rental * FEES.schedCE);
     if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚／年`, state.k1 * FEES.k1);
     if (!isNR() && state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄／年`,
       FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
@@ -502,7 +507,7 @@ function calc(){
     if (state.fbar > 5) add('口座数の加算', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
     if (state.pfic > 0) add(`投資信託（PFIC）${state.pfic}銘柄`, state.pfic * FEES.pficAddl);
     if (state.income.has('biz')) add('自営業・事業所得（概算）', FEES.schedCE);
-    if (state.income.has('rental')) add('不動産賃貸（概算）', FEES.schedCE);
+    if (state.rental > 0) add(`不動産賃貸 ${state.rental}戸（概算）`, state.rental * FEES.schedCE);
     if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚（概算）`, state.k1 * FEES.k1);
     if (state.misc.has('corp')) add('日本法人の報告（Form 5471）〜', FEES.corp);
     if (state.misc.has('gift')) add('贈与・相続の報告（Form 3520）', FEES.gift);
@@ -521,7 +526,7 @@ function calc(){
   if (!isNR() && state.income.has('jp')) add('日本の所得・外国税額控除（Form 1116 / 2555）', FEES.ftc);
   if (state.income.has('stocks')) add('株・投信・仮想通貨の売却（Schedule D）', FEES.schedD);
   if (state.income.has('biz')) add('自営業（Schedule C）', FEES.schedCE);
-  if (state.income.has('rental')) add('不動産賃貸（Schedule E）', FEES.schedCE);
+  if (state.rental > 0) add(`不動産賃貸（Schedule E）${state.rental}戸`, state.rental * FEES.schedCE);
   if (state.k1 > 0) add(`Schedule K-1 ${state.k1}枚`, state.k1 * FEES.k1);
   if (!isNR() && state.pfic > 0) add(`投資信託（PFIC / Form 8621）${state.pfic}銘柄`,
     FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
