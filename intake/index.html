@@ -82,6 +82,18 @@
   .btn-copy:hover{ background:var(--teal-600); }
   .btn-close{ background:var(--bg-tertiary); color:var(--tx-secondary); }
 
+  /* 依頼フォーム */
+  .req-form{ margin-top:1.25rem; border-top:1px solid var(--line); padding-top:1.25rem; }
+  .req-form h3{ font-size:15px; font-weight:700; color:var(--navy); margin:0 0 .75rem; }
+  .req-form label{ display:block; font-size:13px; font-weight:500; color:var(--tx-secondary); margin:.6rem 0 .2rem; }
+  .req-form input, .req-form textarea{ width:100%; font-family:var(--font); font-size:14px; line-height:1.6; color:var(--tx-primary); background:var(--bg-secondary); border:1px solid var(--line); border-radius:var(--r-md); padding:10px 12px; }
+  .req-form input:focus, .req-form textarea:focus{ outline:none; border-color:var(--teal); }
+  .req-form .btn-send{ font-family:var(--font); font-size:14px; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:999px; padding:11px 26px; cursor:pointer; margin-top:1rem; }
+  .req-form .btn-send:hover{ background:var(--teal-600); }
+  .req-form .btn-send:disabled{ opacity:.5; cursor:default; }
+  .form-ok{ display:none; background:var(--bg-success); color:var(--tx-success); border-radius:var(--r-md); padding:14px 18px; font-size:14px; margin-top:1rem; }
+  .form-err{ display:none; background:#fbeaea; color:#a32d2d; border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin-top:1rem; }
+
   footer{ max-width:720px; margin:0 auto; padding:0 1.25rem 8rem; color:var(--tx-tertiary); font-size:12px; }
 </style>
 </head>
@@ -264,11 +276,26 @@
     <div class="sheet-warn" id="sheet-warn">
       この金額は<b>ご回答に基づく概算（下限）</b>です。正式なお見積りは、メールでもう少し詳しい状況（収入の内容、口座・銘柄の詳細、過去の申告状況など）を確認してから確定します。<b>確認の結果、追加費用をご案内する場合があります</b>（例：K-1や投信の銘柄数の増加、法人報告の複雑さ、取引数が多い場合、資料の再構築が必要な場合など）。
     </div>
-    <div class="sheet-actions">
-      <button class="btn-copy" onclick="copyEstimate()">見積り内容をコピーしてメールで依頼</button>
+    <form class="req-form" id="reqform" name="estimate-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="estimate-request" />
+      <input type="hidden" name="estimate" id="f-estimate" />
+      <p style="display:none"><label>この欄は空のままにしてください<input name="bot-field" /></label></p>
+      <h3>このままご依頼・お問い合わせ</h3>
+      <label for="f-name">お名前</label>
+      <input id="f-name" name="name" type="text" required autocomplete="name" />
+      <label for="f-email">メールアドレス（返信先）</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+      <label for="f-message">補足があればどうぞ（任意）</label>
+      <textarea id="f-message" name="message" rows="3" placeholder="SSN・口座番号は書かないでください"></textarea>
+      <button class="btn-send" type="submit">上の見積り内容とあわせて送信</button>
+      <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、<b>ご入力のメールアドレスへ返信</b>いたします。返信をもって受付となります。</div>
+      <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
+    </form>
+    <div class="sheet-actions" style="margin-top:1rem">
+      <button class="btn-copy" onclick="copyEstimate()">（うまく送れない場合）内容をコピーしてメールで依頼</button>
       <button class="btn-close" onclick="closeSheet()">閉じる</button>
     </div>
-    <p style="font-size:12px;color:var(--tx-tertiary);margin-top:.75rem">「コピー」を押すと回答内容と概算額がコピーされます。メールに貼り付けて、お名前とご連絡先を添えてお送りください。SSN・口座番号は書かないでください。</p>
+    <p style="font-size:12px;color:var(--tx-tertiary);margin-top:.75rem">回答内容と概算額はフォームに自動で添付されます。SSN・口座番号は送らないでください。</p>
   </div>
 </div>
 
@@ -438,6 +465,19 @@ function render(){
 }
 
 // ===== 内訳・コピー =====
+function estimateText(){
+  const { rows, total, consult } = calc();
+  const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
+  const statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
+  const concerns = document.getElementById('concerns').value.trim();
+  return [
+    ...(state.type !== 'consult' ? [`米国ステータス: ${statusLabel}`, `申告ステータス: ${filingLabel}`] : []),
+    ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
+    consult ? '料金: $350/時間（最低1時間）' : `概算合計: $${total.toLocaleString()} 〜`,
+    ...(concerns ? ['', '気になっていること:', concerns] : []),
+  ].join('\n');
+}
+
 function openSheet(){
   const { rows, total, consult } = calc();
   document.getElementById('bdtable').innerHTML =
@@ -445,9 +485,33 @@ function openSheet(){
     (consult
       ? `<tr class="total"><td>ご相談料</td><td>$350/時間（最低1時間）</td></tr>`
       : `<tr class="total"><td>概算合計</td><td>$${total.toLocaleString()} 〜</td></tr>`);
+  document.getElementById('f-estimate').value = estimateText();
   document.getElementById('sheet').classList.add('open');
 }
 function closeSheet(){ document.getElementById('sheet').classList.remove('open'); }
+
+// Netlify Forms へ AJAX 送信
+document.getElementById('reqform').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+  document.getElementById('f-estimate').value = estimateText();
+  const btn = form.querySelector('.btn-send');
+  btn.disabled = true; btn.textContent = '送信中…';
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString(),
+  }).then(res => {
+    if (!res.ok) throw new Error(res.status);
+    document.getElementById('form-ok').style.display = 'block';
+    document.getElementById('form-err').style.display = 'none';
+    form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(el => el.disabled = true);
+    btn.textContent = '送信済み';
+  }).catch(() => {
+    document.getElementById('form-err').style.display = 'block';
+    btn.disabled = false; btn.textContent = '上の見積り内容とあわせて送信';
+  });
+});
 
 function copyEstimate(){
   const { rows, total, consult } = calc();
