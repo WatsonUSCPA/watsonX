@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ご依頼時の質問状（初回ヒアリングシート）｜ Watson US CPA</title>
+<meta name="description" content="米国税務申告（Form 1040 / FBAR / PFIC / Streamlined）のご依頼にあたり、お見積りに必要な質問リストです。メールにコピーしてご回答ください。" />
+
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:#0f2a43; --navy-700:#16395a; --teal:#1f8a8a; --teal-600:#18706f; --gold:#c9a35a;
+    --bg-primary:#ffffff; --bg-secondary:#f6f8fa; --bg-tertiary:#eef3f8;
+    --bg-info:#e8f1fb; --bg-warning:#f7efdd; --bg-success:#e3f4f1;
+    --tx-primary:#1b2733; --tx-secondary:#4a5a6a; --tx-tertiary:#7a8a99;
+    --tx-info:#11497e; --tx-warning:#8a6516; --tx-success:#18706f;
+    --line:#e2e8ef;
+    --r-md:10px; --r-lg:14px;
+    --shadow:0 10px 30px rgba(15,42,67,0.08);
+    --font:"Noto Sans JP", system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font); color:var(--tx-primary); line-height:1.7; background:var(--bg-secondary); -webkit-font-smoothing:antialiased; }
+
+  .site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .header-inner{ max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--navy); }
+  .brand-mark{ width:38px; height:38px; object-fit:contain; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+  .brand-text strong{ font-size:16px; font-weight:700; }
+  .brand-text small{ color:var(--tx-secondary); font-size:11px; }
+  .site-nav a{ text-decoration:none; color:var(--tx-secondary); font-size:14px; font-weight:500; }
+  .site-nav a:hover{ color:var(--navy); }
+
+  main{ max-width:760px; margin:0 auto; padding:1.75rem 1.25rem 3rem; }
+  h1{ font-size:24px; font-weight:700; margin:0 0 .5rem; color:var(--navy); line-height:1.4; }
+  .lead{ color:var(--tx-secondary); font-size:14px; margin:0 0 1.5rem; }
+
+  .notice{ background:var(--bg-info); color:var(--tx-info); border-radius:var(--r-md); padding:14px 18px; font-size:13.5px; margin-bottom:1.75rem; }
+  .notice b{ font-weight:700; }
+
+  section.qa{ background:var(--bg-primary); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); padding:22px 26px; margin-bottom:1.25rem; }
+  section.qa h2{ font-size:16px; font-weight:700; color:var(--navy); margin:0 0 .35rem; display:flex; align-items:baseline; gap:10px; }
+  section.qa h2 .num{ color:var(--gold); font-weight:700; }
+  section.qa .why{ font-size:12.5px; color:var(--tx-tertiary); margin:0 0 .9rem; }
+  ol.qs{ margin:0; padding-left:1.4rem; }
+  ol.qs li{ margin:.45rem 0; font-size:14.5px; }
+  ol.qs li small{ display:block; color:var(--tx-secondary); font-size:12.5px; }
+  .tag{ display:inline-block; font-size:11px; font-weight:700; border-radius:999px; padding:1px 9px; margin-left:6px; vertical-align:middle; }
+  .tag.must{ background:var(--bg-warning); color:var(--tx-warning); }
+  .tag.if{ background:var(--bg-tertiary); color:var(--tx-secondary); }
+
+  .copy-wrap{ margin-top:2rem; }
+  .copy-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+  .copy-head h2{ font-size:16px; font-weight:700; color:var(--navy); margin:0; }
+  button.copy{ font-family:var(--font); font-size:13px; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:999px; padding:8px 18px; cursor:pointer; }
+  button.copy:hover{ background:var(--teal-600); }
+  textarea{ width:100%; height:340px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12.5px; line-height:1.6; color:var(--tx-primary); background:var(--bg-primary); border:1px solid var(--line); border-radius:var(--r-md); padding:14px; resize:vertical; }
+
+  footer{ max-width:760px; margin:0 auto; padding:0 1.25rem 2rem; color:var(--tx-tertiary); font-size:12px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-mark" src="../assets/img/favicon.png" alt="" />
+      <span class="brand-text"><strong>Watson US CPA</strong><small>日米クロスボーダー税務</small></span>
+    </a>
+    <nav class="site-nav"><a href="../index.html">トップへ戻る</a></nav>
+  </div>
+</header>
+
+<main>
+  <h1>ご依頼時の質問状（初回ヒアリングシート）</h1>
+  <p class="lead">米国税務申告のご依頼・お見積りにあたり、以下の質問にご回答ください。ページ下部の「メール貼り付け用テキスト」をコピーして、メールにそのままご回答いただけます。</p>
+
+  <div class="notice">
+    <b>この段階では書類の添付は不要です。</b>また、SSN・口座番号などの機微情報はメールに書かないでください（ご契約後に暗号化ポータルでお預かりします）。「わからない」という回答でも問題ありません — それ自体が大事な情報です。
+  </div>
+
+  <section class="qa">
+    <h2><span class="num">1</span>基本情報</h2>
+    <p class="why">お見積りの前提（申告ステータス・対象年度）を確認します。</p>
+    <ol class="qs">
+      <li>お名前（ローマ字）とお住まいの国・州 <span class="tag must">必須</span></li>
+      <li>ご依頼内容はどれに近いですか <span class="tag must">必須</span>
+        <small>A: 今年の申告　B: 過去の未申告・申告漏れの解消　C: 渡米・帰国前後の相談　D: その他</small></li>
+      <li>対象となる年度（例：2025年分）</li>
+      <li>配偶者はいますか。いる場合、配偶者は米国市民・グリーンカード保有者ですか
+        <small>申告ステータス（MFJ / MFS）の判定に使います</small></li>
+      <li>お子様など扶養家族はいますか（人数と、SSN/ITINの有無）</li>
+    </ol>
+  </section>
+
+  <section class="qa">
+    <h2><span class="num">2</span>米国とのつながり</h2>
+    <p class="why">申告義務の範囲と居住区分を判定します。</p>
+    <ol class="qs">
+      <li>あなたの米国ステータスは <span class="tag must">必須</span>
+        <small>A: 米国市民　B: グリーンカード　C: 就労ビザ等（種類も）　D: その他</small></li>
+      <li>対象年度中に日本⇔米国の引っ越し（渡米・帰国）はありましたか。ある場合、その時期</li>
+      <li>昨年の米国滞在日数はおおよそ何日ですか（一昨年・その前年もわかれば）
+        <small>実質滞在テスト（Substantial Presence Test）の判定に使います</small></li>
+      <li>過去に米国の確定申告をしたことはありますか。直近で申告した年度は</li>
+    </ol>
+  </section>
+
+  <section class="qa">
+    <h2><span class="num">3</span>収入</h2>
+    <p class="why">必要なフォームと作業範囲を見積もります。金額は概算で構いません。</p>
+    <ol class="qs">
+      <li>収入の種類にすべて○をつけてください <span class="tag must">必須</span>
+        <small>給与（米国 W-2）／給与（日本）／自営業・フリーランス／不動産賃貸／利子・配当／株・投信の売却／年金・退職金／仮想通貨／その他</small></li>
+      <li>日本で確定申告または年末調整をしていますか</li>
+      <li>日本で納めた所得税・住民税のおおよその金額（外国税額控除の試算に使います）</li>
+      <li>RSU・ストックオプションの付与や行使はありましたか <span class="tag if">該当時</span></li>
+    </ol>
+  </section>
+
+  <section class="qa">
+    <h2><span class="num">4</span>日本（米国外）の資産</h2>
+    <p class="why">FBAR・Form 8938・PFIC 等の報告要否と加算費用を判定します。<b>ここが最も重要です。</b></p>
+    <ol class="qs">
+      <li>日本（米国外）の銀行・証券・電子マネー等の口座はおおよそ何個ありますか <span class="tag must">必須</span>
+        <small>ゆうちょ・ネット銀行・PayPay等も含む。配偶者名義・共同名義も別カウント</small></li>
+      <li>それらの合計残高は、年間のピーク時点でおおよそいくらでしたか <span class="tag must">必須</span>
+        <small>A: $10,000未満　B: $10,000〜$50,000　C: $50,000〜$200,000　D: それ以上</small></li>
+      <li>日本の投資信託・ETF・ラップ口座はありますか。ある場合、<b>銘柄数</b>は <span class="tag must">必須</span>
+        <small>NISA・つみたてNISA内も含む。PFIC（Form 8621）の判定に使います — 銘柄ごとに作業が発生します</small></li>
+      <li>iDeCo・企業型DC・小規模企業共済はありますか</li>
+      <li>貯蓄型の生命保険・年金保険（解約返戻金があるもの）はありますか</li>
+      <li>日本の会社の株式を10%以上持っていますか（ご自身の会社を含む） <span class="tag if">該当時</span>
+        <small>Form 5471 の要否判定</small></li>
+      <li>対象年度中に、ご家族から年間 $100,000 相当を超える贈与・相続を受けましたか <span class="tag if">該当時</span>
+        <small>Form 3520 の要否判定</small></li>
+      <li>日本に不動産をお持ちですか（自宅・賃貸用）</li>
+    </ol>
+  </section>
+
+  <section class="qa">
+    <h2><span class="num">5</span>過去の申告状況</h2>
+    <p class="why">未申告年度がある場合の解消方法（Streamlined 等）を検討します。正直にお書きください — 責めるためではなく、最も有利な解決策を選ぶためです。</p>
+    <ol class="qs">
+      <li>過去に申告すべきだったのにしていない年度はありますか。ある場合、何年分くらいですか</li>
+      <li>過去の申告で、日本の口座・所得を含めていなかった可能性はありますか</li>
+      <li>FBAR（外国口座報告）を提出したことはありますか</li>
+      <li>IRS から手紙・通知を受け取ったことはありますか <span class="tag must">必須</span>
+        <small>すでに調査対象の場合は Streamlined を使えないため、最初に確認します</small></li>
+    </ol>
+  </section>
+
+  <section class="qa">
+    <h2><span class="num">6</span>州税・その他</h2>
+    <ol class="qs">
+      <li>対象年度中に居住していた州はどこですか（複数あれば時期も）</li>
+      <li>カリフォルニア以外の州の申告が必要になりそうな事情はありますか
+        <small>例：他州の勤務先、他州の不動産</small></li>
+      <li>ご希望の連絡手段（メール／Zoom／電話）と、日本語・英語のご希望</li>
+      <li>いつまでに完了したいなどの期限はありますか</li>
+      <li>その他、気になっていることがあれば自由にお書きください</li>
+    </ol>
+  </section>
+
+  <div class="copy-wrap">
+    <div class="copy-head">
+      <h2>メール貼り付け用テキスト</h2>
+      <button class="copy" onclick="copyText()">コピーする</button>
+    </div>
+    <textarea id="plain" readonly>
+【Watson US CPA 初回ヒアリング質問状】
+※SSN・口座番号は書かないでください。概算・「わからない」でOKです。
+
+■1. 基本情報
+1-1. お名前（ローマ字）と居住国・州：
+1-2. ご依頼内容（A:今年の申告 B:過去の未申告解消 C:渡米・帰国相談 D:その他）：
+1-3. 対象年度：
+1-4. 配偶者の有無／配偶者は米国市民・GC保有者か：
+1-5. 扶養家族（人数、SSN/ITINの有無）：
+
+■2. 米国とのつながり
+2-1. 米国ステータス（A:市民 B:GC C:ビザ[種類] D:その他）：
+2-2. 対象年度中の渡米・帰国の有無と時期：
+2-3. 直近3年の米国滞在日数（概算）：
+2-4. 過去の米国申告経験／直近の申告年度：
+
+■3. 収入（金額は概算でOK）
+3-1. 収入の種類（該当すべて）：米国給与／日本給与／自営業／不動産賃貸／利子・配当／株・投信売却／年金／仮想通貨／その他
+3-2. 日本での確定申告・年末調整の有無：
+3-3. 日本で納めた所得税・住民税の概算：
+3-4. RSU・ストックオプションの有無：
+
+■4. 日本（米国外）の資産 ★最重要
+4-1. 米国外の口座数（ゆうちょ・ネット銀行・PayPay等含む）：
+4-2. 合計残高のピーク（A:$10K未満 B:$10K-50K C:$50K-200K D:それ以上）：
+4-3. 日本の投資信託・ETFの有無と銘柄数（NISA内含む）：
+4-4. iDeCo・企業型DC・小規模企業共済の有無：
+4-5. 貯蓄型の生命保険・年金保険の有無：
+4-6. 日本の会社の株式10%以上保有の有無：
+4-7. 年間$100K超の贈与・相続を受けたか：
+4-8. 日本の不動産の有無：
+
+■5. 過去の申告状況
+5-1. 未申告の年度の有無（およそ何年分か）：
+5-2. 過去の申告に日本の口座・所得の漏れの可能性：
+5-3. FBARの提出経験：
+5-4. IRSからの手紙・通知の有無：
+
+■6. 州税・その他
+6-1. 対象年度中に居住した州（複数あれば時期も）：
+6-2. CA以外の州申告が必要になりそうな事情：
+6-3. 希望連絡手段と言語：
+6-4. 期限のご希望：
+6-5. その他・自由記入：
+</textarea>
+  </div>
+</main>
+
+<footer>
+  <p>本質問状は概算お見積りのためのものであり、回答内容は守秘義務の下で扱います。正式なご契約前に業務範囲・報酬を記載した契約書（Engagement Letter）を締結します。</p>
+</footer>
+
+<script>
+function copyText(){
+  const ta = document.getElementById('plain');
+  navigator.clipboard.writeText(ta.value).then(()=>{
+    const btn = document.querySelector('button.copy');
+    btn.textContent = 'コピーしました';
+    setTimeout(()=>{ btn.textContent = 'コピーする'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
