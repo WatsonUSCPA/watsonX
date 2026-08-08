@@ -116,7 +116,7 @@
   <!-- 相談専用 -->
   <div class="q mode-consult" id="q-consult" style="display:none">
     <h2>2. どんなご相談ですか？</h2>
-    <p class="hint">料金はいずれも $350/時間（最低1時間）。初回ヒアリング30分は無料です。まずは気軽にご連絡ください。</p>
+    <p class="hint">料金はいずれも $350/時間（最低1時間）です。</p>
     <div class="opts" data-key="consult">
       <button class="opt on" data-v="move">渡米・帰国前後の税金の相談</button>
       <button class="opt" data-v="invest">日本の投資・資産の米国税務（NISA・投信・保険など）</button>
@@ -343,7 +343,7 @@ function onChange(){
     note.textContent = '過去の申告漏れの解消（Streamlined Procedures）は、過去3年分の申告書と6年分のFBAR、非故意性の説明書の作成を含む一式のお手続きです。';
   } else if (mode === 'consult') {
     note.style.display = '';
-    note.textContent = '申告書の作成を伴わない、単発のご相談・セカンドオピニオンです。相談の結果そのまま申告をご依頼いただく場合、相談料は申告料金に充当します。';
+    note.textContent = '申告書の作成を伴わない、単発のご相談・セカンドオピニオンです。';
   } else {
     note.style.display = 'none';
   }
@@ -430,7 +430,7 @@ function render(){
   const amt = document.getElementById('est-amount');
   if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /時間（最低1時間）</small>`;
-    document.getElementById('est-note').textContent = '初回ヒアリング30分は無料。そのまま申告をご依頼の場合、相談料は申告料金に充当します。';
+    document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。ご相談内容はメールで事前に伺います。';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜</small>`;
     document.getElementById('est-note').textContent = '確定金額はメールで状況を伺ったうえでご提示します。内容により追加費用が生じる場合があります。';
@@ -443,7 +443,7 @@ function openSheet(){
   document.getElementById('bdtable').innerHTML =
     rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
     (consult
-      ? `<tr class="total"><td>初回ヒアリング30分</td><td>無料</td></tr>`
+      ? `<tr class="total"><td>ご相談料</td><td>$350/時間（最低1時間）</td></tr>`
       : `<tr class="total"><td>概算合計</td><td>$${total.toLocaleString()} 〜</td></tr>`);
   document.getElementById('sheet').classList.add('open');
 }
@@ -459,7 +459,7 @@ function copyEstimate(){
     '',
     ...(state.type !== 'consult' ? [`米国ステータス: ${statusLabel}`, `申告ステータス: ${filingLabel}`] : []),
     ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
-    consult ? '初回ヒアリング30分: 無料' : `概算合計: $${total.toLocaleString()} 〜`,
+    consult ? '料金: $350/時間（最低1時間）' : `概算合計: $${total.toLocaleString()} 〜`,
     '',
     '※上記はシミュレーターによる概算です。正式見積りをお願いします。',
     '',
