@@ -272,8 +272,8 @@
     <h2 id="fatca-title">米国外の金融資産の合計は？</h2>
     <p class="hint" id="fatca-hint"></p>
     <div class="opts" data-key="fatca">
-      <button class="opt on" data-v="no">基準額未満</button>
-      <button class="opt" data-v="yes">基準額以上（またはわからない）</button>
+      <button class="opt on" data-v="no" id="fatca-btn-no">$50,000未満</button>
+      <button class="opt" data-v="yes" id="fatca-btn-yes">$50,000以上（またはわからない）</button>
     </div>
   </div>
 
@@ -528,6 +528,9 @@ function onChange(){
   document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
 
   document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
+  const th = fatcaThreshold();
+  document.getElementById('fatca-btn-no').textContent = th + '未満';
+  document.getElementById('fatca-btn-yes').textContent = th + '以上（またはわからない）';
   document.getElementById('fatca-hint').textContent =
     `口座残高＋投信＋貯蓄型保険など。${state.filing === 'mfj' ? 'ご夫婦合算で年末 ' + fatcaThreshold() : '年末 ' + fatcaThreshold()}（米国居住の場合）を超えると Form 8938 も必要になります。`;
 
