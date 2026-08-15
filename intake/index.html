@@ -673,30 +673,22 @@ document.getElementById('reqform').addEventListener('submit', function(e){
 });
 
 function copyEstimate(){
-  const { rows, total, consult } = calc();
-  const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
-  let statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
-  if (state.status === 'work') statusLabel += '・滞在' + ({ ge183:'183日以上', lt183:'183日未満', partial:'年の途中で渡米/帰国' }[state.workdays]);
-  if (state.status === 'fj') statusLabel += '・米国' + (state.fjyears === 'le5' ? '5年以内' : '6年目以降');
-  const concerns = document.getElementById('concerns').value.trim();
-  const lines = [
+  const text = [
     '【お見積り依頼】Watson US CPA 料金シミュレーター',
     '',
-    ...(state.type !== 'consult' ? [`米国ステータス: ${statusLabel}`, `申告ステータス: ${filingLabel}`] : []),
-    ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
-    consult ? '料金: $350/時間（最低1時間）' : `概算合計: $${total.toLocaleString()} 〜`,
+    estimateText(),
     '',
     '※上記はシミュレーターによる概算です。正式見積りをお願いします。',
     '',
     'お名前：',
     'ご連絡先：',
-    `補足・気になっていること：${concerns ? '\n' + concerns : ''}`,
-  ];
-  const text = lines.join('\n');
+  ].join('\n');
+  const btn = document.querySelector('.btn-copy');
   navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.btn-copy');
     btn.textContent = 'コピーしました — X のDMに貼り付けてください';
     setTimeout(() => { btn.textContent = '（うまく送れない場合）内容をコピーして X のDMで連絡'; }, 2500);
+  }).catch(() => {
+    window.prompt('自動コピーできませんでした。以下を全選択してコピーしてください：', text);
   });
   window.open(DM_URL, '_blank', 'noopener');
 }
