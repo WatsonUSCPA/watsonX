@@ -1,9 +1,30 @@
 {
   "source": "https://note.com/wtcajptc",
-  "updatedAt": "2026-08-08T21:17:30.643Z",
+  "updatedAt": "2026-08-15T21:09:38.687Z",
   "count": 360,
-  "totalCount": 362,
+  "totalCount": 365,
   "articles": [
+    {
+      "title": "【事例解説】親のIRAを兄弟で分けようとしたら、全額課税されかけた話――「受取人指定」していますか？",
+      "url": "https://note.com/wtcajptc/n/nac01d5387d26",
+      "publishAt": "2026-08-15T03:44:16+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/299944991/rectangle_large_type_2_bfd653d434717b0d710dac5a3a3c1de2.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "【法人】クレカの入金、ちゃんと帳簿と合ってる？― Clearance勘定に眠る「落とせたはずの経費」",
+      "url": "https://note.com/wtcajptc/n/n657f2b7ab2ce",
+      "publishAt": "2026-08-14T00:18:31+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/301803101/rectangle_large_type_2_c309c1278c1b68ecaef999da6312c00b.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
+    {
+      "title": "不動産の取得原価の按分方法：Closing Costの仕分けと土地・建物の分け方",
+      "url": "https://note.com/wtcajptc/n/nfaa8b97db34f",
+      "publishAt": "2026-08-11T00:49:34+09:00",
+      "eyecatch": "https://assets.st-note.com/production/uploads/images/301795116/rectangle_large_type_2_b116928af81cbd55d088de552f6bad7e.jpeg?fit=bounds&quality=85&width=1280",
+      "hashtags": []
+    },
     {
       "title": "【完全ガイド】日米租税条約を体系的に理解する〜条文ごとの具体例～",
       "url": "https://note.com/wtcajptc/n/nb9c2e1c1e5a3",
@@ -2711,55 +2732,6 @@
         "#LA生活",
         "#j1ビザ",
         "#倫理試験"
-      ]
-    },
-    {
-      "title": "LAの会計事務所に行くことにした理由(2/2)",
-      "url": "https://note.com/wtcajptc/n/nb1e1e84b3635",
-      "publishAt": "2022-02-11T01:33:18+09:00",
-      "eyecatch": "https://assets.st-note.com/production/uploads/images/71789228/rectangle_large_type_2_5a4889c2cee2de939a6b94a41508c0d8.png?fit=bounds&quality=85&width=1280",
-      "hashtags": [
-        "#転職",
-        "#海外転職",
-        "#ジョブホッパー",
-        "#アメリカで働く",
-        "#独立行政法人",
-        "#LA生活",
-        "#j1ビザ"
-      ]
-    },
-    {
-      "title": "LAの会計事務所に行くことにした理由(1/2)",
-      "url": "https://note.com/wtcajptc/n/nc3cf2a982d63",
-      "publishAt": "2022-02-05T17:01:55+09:00",
-      "eyecatch": "https://assets.st-note.com/production/uploads/images/71467624/rectangle_large_type_2_3ae1a300a0bccec63528ebcab69651ca.png?fit=bounds&quality=85&width=1280",
-      "hashtags": [
-        "#英語",
-        "#転職",
-        "#社会人",
-        "#公務員",
-        "#USCPA",
-        "#ジョブホッパー",
-        "#アメリカで働く",
-        "#独立行政法人",
-        "#LA生活",
-        "#j1ビザ"
-      ]
-    },
-    {
-      "title": "J1インターンの準備開始(1)〜費用〜",
-      "url": "https://note.com/wtcajptc/n/nbe5da9984f75",
-      "publishAt": "2022-01-29T11:55:17+09:00",
-      "eyecatch": "https://assets.st-note.com/production/uploads/images/70962170/rectangle_large_type_2_148ebe4581d75d4afdcc79bd7b3b35cf.png?fit=bounds&quality=85&width=1280",
-      "hashtags": [
-        "#転職",
-        "#アメリカ",
-        "#USCPA",
-        "#この仕事を選んだわけ",
-        "#元銀行員",
-        "#ジョブホッパー",
-        "#アメリカで働く",
-        "#j1ビザ"
       ]
     }
   ]
