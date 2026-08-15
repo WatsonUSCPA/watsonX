@@ -696,6 +696,15 @@ function copyEstimate(){
   window.open(DM_URL, '_blank', 'noopener');
 }
 
+// URLパラメータでモードを初期選択（判定ツールの「相談する」導線用）
+(function(){
+  const t = new URLSearchParams(location.search).get('type');
+  if (t === 'consult' || t === 'sdop') {
+    state.type = t;
+    document.querySelectorAll('[data-key="type"] .opt').forEach(b => b.classList.toggle('on', b.dataset.v === t));
+  }
+})();
+
 onChange();
 </script>
 </body>
