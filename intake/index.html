@@ -376,7 +376,7 @@
       <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
     </form>
     <div class="sheet-actions" style="margin-top:1rem">
-      <button class="btn-copy" onclick="copyEstimate()">（うまく送れない場合）メールで依頼する</button>
+      <button class="btn-copy" onclick="copyEstimate()">（うまく送れない場合）内容をコピーして X のDMで連絡</button>
       <button class="btn-close" onclick="closeSheet()">閉じる</button>
     </div>
     <p style="font-size:12px;color:var(--tx-tertiary);margin-top:.75rem">回答内容と概算額はフォームに自動で添付されます。SSN・口座番号は送らないでください。</p>
@@ -384,11 +384,11 @@
 </div>
 
 <footer>
-  <p>本シミュレーターの金額は情報提供目的の概算であり、正式な見積り・契約は Engagement Letter によります。お問い合わせ：<a href="mailto:wtakahashi@wt-advisory.com">wtakahashi@wt-advisory.com</a></p>
+  <p>本シミュレーターの金額は情報提供目的の概算であり、正式な見積り・契約は Engagement Letter によります。お問い合わせ：<a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">X（@watsonuscpa）のDM</a>へ</p>
 </footer>
 
 <script>
-const CONTACT_EMAIL = 'wtakahashi@wt-advisory.com';
+const DM_URL = 'https://x.com/watsonuscpa';
 
 // ===== 料金マスタ（TaxReturn/startup/fee-schedule.md と同期させること） =====
 const FEES = {
@@ -695,12 +695,10 @@ function copyEstimate(){
   const text = lines.join('\n');
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'コピーしました — メール作成画面を開きます';
-    setTimeout(() => { btn.textContent = '（うまく送れない場合）メールで依頼する'; }, 2500);
+    btn.textContent = 'コピーしました — X のDMに貼り付けてください';
+    setTimeout(() => { btn.textContent = '（うまく送れない場合）内容をコピーして X のDMで連絡'; }, 2500);
   });
-  location.href = 'mailto:' + CONTACT_EMAIL
-    + '?subject=' + encodeURIComponent('お見積り依頼')
-    + '&body=' + encodeURIComponent(text);
+  window.open(DM_URL, '_blank', 'noopener');
 }
 
 onChange();
