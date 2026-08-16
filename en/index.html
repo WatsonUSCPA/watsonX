@@ -144,28 +144,13 @@
   <!-- Consultation only -->
   <div class="q mode-consult" id="q-consult" style="display:none">
     <h2>What is the consultation about?</h2>
-    <p class="hint">All consultations are $350/hour (1-hour minimum).</p>
+    <p class="hint">All consultations are $350/hour (1-hour minimum). Answer the questions below, then send your topic via "See breakdown / request a quote" — we'll guide you to scheduling right after you submit.</p>
     <div class="opts" data-key="consult">
       <button class="opt on" data-v="move">Taxes around moving to/from the US or Japan</button>
       <button class="opt" data-v="invest">US taxation of Japanese investments &amp; assets (NISA, mutual funds, insurance, etc.)</button>
       <button class="opt" data-v="resident">Residency determination / US-Japan tax treaty</button>
       <button class="opt" data-v="other">Something else</button>
     </div>
-  </div>
-
-  <!-- Consultation booking (Cal.com) -->
-  <div class="q mode-consult" id="q-booking" style="display:none">
-    <h2>Book your consultation</h2>
-    <p class="hint">Pick an available time below (60 minutes, online).</p>
-    <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
-       style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:999px;padding:12px 28px">
-      Open the booking calendar →
-    </a>
-    <p class="addnote" style="margin-top:.75rem">
-      Your booking is submitted as a <b>request</b> and is <b>confirmed once we approve it</b>.
-      After confirmation, we <b>send an invoice by email</b> for the consultation fee ($350/hour, 1-hour minimum).
-      If no time works for you, or you'd like to share your questions in advance, use the <a href="#contact">contact form</a> instead.
-    </p>
   </div>
 
   <!-- SDOP type -->
@@ -340,8 +325,8 @@
 
   <!-- Concerns -->
   <div class="q mode-annual mode-sdop mode-consult" id="q-concerns">
-    <h2>Anything else on your mind? (optional)</h2>
-    <p class="hint">e.g. received an IRS letter, unsure about past filings, crypto questions, planning to move back to Japan. This text is included when you submit or copy your request.</p>
+    <h2 id="concerns-title">Anything else on your mind? (optional)</h2>
+    <p class="hint" id="concerns-hint">e.g. received an IRS letter, unsure about past filings, crypto questions, planning to move back to Japan. This text is included when you submit or copy your request.</p>
     <textarea id="concerns" rows="3" style="width:100%;font-family:var(--font);font-size:14px;line-height:1.6;color:var(--tx-primary);background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;resize:vertical" placeholder="Feel free to write anything (please do not include your SSN or account numbers)"></textarea>
   </div>
 
@@ -455,6 +440,14 @@
       </label>
       <button class="btn-send" type="submit">Send with my estimate details</button>
       <div class="form-ok" id="form-ok">Sent! We will review your answers and <b>reply to your email address with a firm quote</b>. <b>Work begins only after you agree to the quote</b>, so nothing is owed at this point.</div>
+      <div class="form-ok" id="form-ok-consult">
+        Your consultation topic has been sent. <b>Next, pick a time for your consultation.</b><br />
+        <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
+           style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:999px;padding:11px 26px;margin:.75rem 0 .5rem">
+          Book your consultation → (60 min, online)
+        </a><br />
+        Your booking is submitted as a request and is <b>confirmed once we approve it</b>. After confirmation, we <b>send an invoice by email</b> for the consultation fee ($350/hour, 1-hour minimum). Nothing is owed until then.
+      </div>
       <div class="form-err" id="form-err">Your request could not be sent. Please try again later, or use the copy button below to reach us by DM.</div>
     </form>
     <div class="sheet-actions" style="margin-top:1rem">
@@ -609,6 +602,15 @@ function onChange(){
   const bizOn = state.income.has('biz') && (state.type === 'annual' || state.type === 'sdop');
   document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
 
+  // In consultation mode, the "concerns" box IS the consultation topic
+  if (mode === 'consult') {
+    document.getElementById('concerns-title').textContent = 'Tell us about your consultation topic';
+    document.getElementById('concerns-hint').textContent = 'e.g. how your stock holdings are treated when you move back to Japan, how to report NISA funds, an IRS letter you received. The more specific, the smoother the session. We guide you to scheduling right after you submit.';
+  } else {
+    document.getElementById('concerns-title').textContent = 'Anything else on your mind? (optional)';
+    document.getElementById('concerns-hint').textContent = 'e.g. received an IRS letter, unsure about past filings, crypto questions, planning to move back to Japan. This text is included when you submit or copy your request.';
+  }
+
   document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
   const th = fatcaThreshold();
   document.getElementById('fatca-btn-no').textContent = 'Under ' + th;
@@ -699,7 +701,7 @@ function render(){
   const amt = document.getElementById('est-amount');
   if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /hour (1-hour min.)</small>`;
-    document.getElementById('est-note').textContent = 'Beyond the first hour, time is billed in 30-minute increments. Your booking is confirmed once we approve the request, and an invoice follows by email.';
+    document.getElementById('est-note').textContent = 'Beyond the first hour, time is billed in 30-minute increments. Send your topic via "See breakdown / request a quote" and we guide you to scheduling right after.';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small>+</small>`;
     document.getElementById('est-note').innerHTML = '<b>This is a minimum fee.</b> A firm quote is confirmed by email, and work begins only after you agree.';
@@ -751,7 +753,8 @@ function wireNetlifyForm(formId, okId, errId, sentLabel){
       body: new URLSearchParams(new FormData(form)).toString(),
     }).then(res => {
       if (!res.ok) throw new Error(res.status);
-      document.getElementById(okId).style.display = 'block';
+      const finalOk = (formId === 'reqform' && state.type === 'consult') ? 'form-ok-consult' : okId;
+      document.getElementById(finalOk).style.display = 'block';
       document.getElementById(errId).style.display = 'none';
       form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(el => el.disabled = true);
       btn.textContent = sentLabel;

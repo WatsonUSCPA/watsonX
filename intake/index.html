@@ -135,28 +135,13 @@
   <!-- 相談専用 -->
   <div class="q mode-consult" id="q-consult" style="display:none">
     <h2>どんなご相談ですか？</h2>
-    <p class="hint">料金はいずれも $350/時間（最低1時間）です。</p>
+    <p class="hint">料金はいずれも $350/時間（最低1時間）です。下の質問にお答えのうえ「内訳を見る・依頼する」からご相談内容をお送りください。日程のご予約は送信後にご案内します。</p>
     <div class="opts" data-key="consult">
       <button class="opt on" data-v="move">渡米・帰国前後の税金の相談</button>
       <button class="opt" data-v="invest">日本の投資・資産の米国税務（NISA・投信・保険など）</button>
       <button class="opt" data-v="resident">居住判定・日米租税条約の適用</button>
       <button class="opt" data-v="other">その他</button>
     </div>
-  </div>
-
-  <!-- 相談予約（Cal.com） -->
-  <div class="q mode-consult" id="q-booking" style="display:none">
-    <h2>ご相談日時の予約</h2>
-    <p class="hint">下のボタンから、空き日時を選んでそのままご予約いただけます（60分・オンライン）。</p>
-    <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
-       style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:999px;padding:12px 28px">
-      予約カレンダーを開く →
-    </a>
-    <p class="addnote" style="margin-top:.75rem">
-      ご予約はまず<b>リクエスト</b>として送信され、<b>当方が承認した時点で確定</b>します。
-      確定後、相談料（$350/時間・最低1時間）の<b>請求書をメールでお送りします</b>。
-      日程が合わない場合や、事前にご相談内容を伝えたい場合は、このままフォームからお問い合わせください。
-    </p>
   </div>
 
   <!-- 未申告の種類（SDOPモードのみ） -->
@@ -331,8 +316,8 @@
 
   <!-- 懸念点（全モード共通） -->
   <div class="q mode-annual mode-sdop mode-consult" id="q-concerns">
-    <h2>その他、気になっていることはありますか？（任意）</h2>
-    <p class="hint">例：IRSから手紙が来た、過去の申告に自信がない、暗号資産の扱い、帰国の予定がある、など。「依頼メールにコピー」した際に一緒に含まれます。</p>
+    <h2 id="concerns-title">その他、気になっていることはありますか？（任意）</h2>
+    <p class="hint" id="concerns-hint">例：IRSから手紙が来た、過去の申告に自信がない、暗号資産の扱い、帰国の予定がある、など。「依頼メールにコピー」した際に一緒に含まれます。</p>
     <textarea id="concerns" rows="3" style="width:100%;font-family:var(--font);font-size:14px;line-height:1.6;color:var(--tx-primary);background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;resize:vertical" placeholder="自由にお書きください（SSN・口座番号は書かないでください）"></textarea>
   </div>
 
@@ -393,6 +378,14 @@
       </label>
       <button class="btn-send" type="submit">上の見積り内容とあわせて送信</button>
       <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、<b>ご入力のメールアドレスへ正式なお見積りを返信</b>いたします。<b>確定金額にご同意いただいてから着手</b>しますので、この時点で費用は発生しません。</div>
+      <div class="form-ok" id="form-ok-consult">
+        ご相談内容を送信しました。<b>続いて、ご相談日時をご予約ください。</b><br />
+        <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
+           style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:999px;padding:11px 26px;margin:.75rem 0 .5rem">
+          相談日時を予約する →（60分・オンライン）
+        </a><br />
+        ご予約はリクエストとして送信され、<b>当方が承認した時点で確定</b>します。確定後、相談料（$350/時間・最低1時間）の<b>請求書をメールでお送りします</b>。この時点ではまだ費用は発生しません。
+      </div>
       <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
     </form>
     <div class="sheet-actions" style="margin-top:1rem">
@@ -548,6 +541,15 @@ function onChange(){
   const bizOn = state.income.has('biz') && (state.type === 'annual' || state.type === 'sdop');
   document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
 
+  // 相談モードでは「気になっていること」＝ご相談内容そのもの
+  if (mode === 'consult') {
+    document.getElementById('concerns-title').textContent = 'ご相談内容をお聞かせください';
+    document.getElementById('concerns-hint').textContent = '例：帰国予定と持ち株の扱い、NISA・投信の申告方法、IRSからの手紙、など。具体的に書いていただくほど当日のご相談がスムーズです。送信後に日程のご予約をご案内します。';
+  } else {
+    document.getElementById('concerns-title').textContent = 'その他、気になっていることはありますか？（任意）';
+    document.getElementById('concerns-hint').textContent = '例：IRSから手紙が来た、過去の申告に自信がない、暗号資産の扱い、帰国の予定がある、など。「依頼メールにコピー」した際に一緒に含まれます。';
+  }
+
   document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
   const th = fatcaThreshold();
   document.getElementById('fatca-btn-no').textContent = th + '未満';
@@ -638,7 +640,7 @@ function render(){
   const amt = document.getElementById('est-amount');
   if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /時間（最低1時間）</small>`;
-    document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。ご予約はリクエスト送信後、当方の承認をもって確定し、確定後に請求書をお送りします。';
+    document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。「内訳を見る・依頼する」からご相談内容を送信すると、日程のご予約をご案内します。';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜</small>`;
     document.getElementById('est-note').innerHTML = '<b>これは最低料金です。</b>確定金額はメールで状況を伺ったうえでご提示し、ご同意後に着手します。';
@@ -688,7 +690,8 @@ document.getElementById('reqform').addEventListener('submit', function(e){
     body: new URLSearchParams(new FormData(form)).toString(),
   }).then(res => {
     if (!res.ok) throw new Error(res.status);
-    document.getElementById('form-ok').style.display = 'block';
+    const okId = (state.type === 'consult') ? 'form-ok-consult' : 'form-ok';
+    document.getElementById(okId).style.display = 'block';
     document.getElementById('form-err').style.display = 'none';
     form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(el => el.disabled = true);
     btn.textContent = '送信済み';
