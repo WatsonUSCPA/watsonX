@@ -153,6 +153,21 @@
     </div>
   </div>
 
+  <!-- Consultation booking (Cal.com) -->
+  <div class="q mode-consult" id="q-booking" style="display:none">
+    <h2>Book your consultation</h2>
+    <p class="hint">Pick an available time below (60 minutes, online).</p>
+    <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
+       style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:999px;padding:12px 28px">
+      Open the booking calendar →
+    </a>
+    <p class="addnote" style="margin-top:.75rem">
+      Your booking is submitted as a <b>request</b> and is <b>confirmed once we approve it</b>.
+      After confirmation, we <b>send an invoice by email</b> for the consultation fee ($350/hour, 1-hour minimum).
+      If no time works for you, or you'd like to share your questions in advance, use the <a href="#contact">contact form</a> instead.
+    </p>
+  </div>
+
   <!-- SDOP type -->
   <div class="q mode-sdop" id="q-sdoptype" style="display:none">
     <h2>Which best describes your situation?</h2>
@@ -684,7 +699,7 @@ function render(){
   const amt = document.getElementById('est-amount');
   if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /hour (1-hour min.)</small>`;
-    document.getElementById('est-note').textContent = 'Beyond the first hour, time is billed in 30-minute increments. We discuss your questions by email beforehand.';
+    document.getElementById('est-note').textContent = 'Beyond the first hour, time is billed in 30-minute increments. Your booking is confirmed once we approve the request, and an invoice follows by email.';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small>+</small>`;
     document.getElementById('est-note').innerHTML = '<b>This is a minimum fee.</b> A firm quote is confirmed by email, and work begins only after you agree.';

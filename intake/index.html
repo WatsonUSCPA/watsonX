@@ -144,6 +144,21 @@
     </div>
   </div>
 
+  <!-- 相談予約（Cal.com） -->
+  <div class="q mode-consult" id="q-booking" style="display:none">
+    <h2>ご相談日時の予約</h2>
+    <p class="hint">下のボタンから、空き日時を選んでそのままご予約いただけます（60分・オンライン）。</p>
+    <a href="https://cal.com/wataru-takahashi-0gmzon/60mins-consultation" target="_blank" rel="noopener"
+       style="display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:999px;padding:12px 28px">
+      予約カレンダーを開く →
+    </a>
+    <p class="addnote" style="margin-top:.75rem">
+      ご予約はまず<b>リクエスト</b>として送信され、<b>当方が承認した時点で確定</b>します。
+      確定後、相談料（$350/時間・最低1時間）の<b>請求書をメールでお送りします</b>。
+      日程が合わない場合や、事前にご相談内容を伝えたい場合は、このままフォームからお問い合わせください。
+    </p>
+  </div>
+
   <!-- 未申告の種類（SDOPモードのみ） -->
   <div class="q mode-sdop" id="q-sdoptype" style="display:none">
     <h2>未申告の内容はどちらに近いですか？</h2>
@@ -623,7 +638,7 @@ function render(){
   const amt = document.getElementById('est-amount');
   if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /時間（最低1時間）</small>`;
-    document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。ご相談内容はメールで事前に伺います。';
+    document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。ご予約はリクエスト送信後、当方の承認をもって確定し、確定後に請求書をお送りします。';
   } else {
     amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜</small>`;
     document.getElementById('est-note').innerHTML = '<b>これは最低料金です。</b>確定金額はメールで状況を伺ったうえでご提示し、ご同意後に着手します。';
