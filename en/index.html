@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fee Estimator | Watson US CPA</title>
+<meta name="description" content="Get an instant fee estimate for US tax preparation (Form 1040 / FBAR / PFIC / Streamlined Procedures) and tax consultations for US-Japan cross-border individuals, by a US CPA. Everything is calculated in your browser." />
+
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:#0f2a43; --navy-700:#16395a; --teal:#1f8a8a; --teal-600:#18706f; --gold:#c9a35a;
+    --bg-primary:#ffffff; --bg-secondary:#f6f8fa; --bg-tertiary:#eef3f8;
+    --bg-info:#e8f1fb; --bg-warning:#f7efdd; --bg-success:#e3f4f1;
+    --tx-primary:#1b2733; --tx-secondary:#4a5a6a; --tx-tertiary:#7a8a99;
+    --tx-info:#11497e; --tx-warning:#8a6516; --tx-success:#18706f;
+    --line:#e2e8ef;
+    --r-md:10px; --r-lg:14px;
+    --shadow:0 10px 30px rgba(15,42,67,0.08);
+    --font:"Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font); color:var(--tx-primary); line-height:1.7; background:var(--bg-secondary); -webkit-font-smoothing:antialiased; }
+
+  .site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .header-inner{ max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--navy); }
+  .brand-mark{ width:38px; height:38px; object-fit:contain; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+  .brand-text strong{ font-size:16px; font-weight:700; }
+  .site-nav{ display:flex; gap:18px; }
+  .site-nav a{ text-decoration:none; color:var(--tx-secondary); font-size:14px; font-weight:500; }
+  .site-nav a:hover{ color:var(--navy); }
+
+  main{ max-width:720px; margin:0 auto; padding:1.75rem 1.25rem 9rem; }
+  h1{ font-size:26px; font-weight:700; margin:0 0 .5rem; color:var(--navy); line-height:1.35; }
+  .lead{ color:var(--tx-secondary); font-size:14px; margin:0 0 1.25rem; }
+  .notice{ background:var(--bg-info); color:var(--tx-info); border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin-bottom:1.5rem; }
+
+  .q{ background:var(--bg-primary); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); padding:20px 24px; margin-bottom:1rem; }
+  .q h2{ font-size:15.5px; font-weight:700; color:var(--navy); margin:0 0 .25rem; }
+  .q .hint{ font-size:12.5px; color:var(--tx-tertiary); margin:0 0 .75rem; }
+  .opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .opt{ font-family:var(--font); font-size:13.5px; font-weight:500; color:var(--tx-secondary); background:var(--bg-tertiary); border:1.5px solid transparent; border-radius:999px; padding:8px 16px; cursor:pointer; transition:all .12s; }
+  .opt:hover{ border-color:var(--teal); color:var(--teal-600); }
+  .opt.on{ background:var(--navy); color:#fff; border-color:var(--navy); }
+  .stepper{ display:flex; align-items:center; gap:12px; margin-top:.5rem; }
+  .stepper button{ width:36px; height:36px; border-radius:50%; border:1.5px solid var(--line); background:var(--bg-primary); font-size:18px; font-weight:700; color:var(--navy); cursor:pointer; }
+  .stepper button:hover{ border-color:var(--teal); }
+  .stepper .val{ min-width:2.5em; text-align:center; font-size:16px; font-weight:700; color:var(--navy); }
+  .stepper .slabel{ font-size:13px; color:var(--tx-secondary); }
+  .q .addnote{ font-size:12px; color:var(--tx-tertiary); margin-top:.5rem; }
+
+  /* Estimate bar */
+  .estbar{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--navy); color:#fff; box-shadow:0 -6px 24px rgba(15,42,67,0.25); }
+  .estbar-inner{ max-width:720px; margin:0 auto; padding:14px 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .est-label{ font-size:12px; opacity:.8; }
+  .est-amount{ font-size:26px; font-weight:700; line-height:1.2; }
+  .est-amount small{ font-size:13px; font-weight:500; opacity:.85; }
+  .est-note{ font-size:11px; opacity:.7; max-width:300px; line-height:1.5; }
+  button.detail{ font-family:var(--font); font-size:13.5px; font-weight:700; color:var(--navy); background:var(--gold); border:none; border-radius:999px; padding:10px 20px; cursor:pointer; }
+  button.detail:hover{ filter:brightness(1.08); }
+
+  /* Breakdown sheet */
+  .sheet{ display:none; position:fixed; inset:0; z-index:70; background:rgba(15,42,67,0.5); }
+  .sheet.open{ display:flex; align-items:flex-end; justify-content:center; }
+  .sheet-body{ background:var(--bg-primary); width:100%; max-width:720px; max-height:85vh; overflow:auto; border-radius:var(--r-lg) var(--r-lg) 0 0; padding:24px; }
+  .sheet-body h2{ font-size:18px; font-weight:700; color:var(--navy); margin:0 0 1rem; }
+  table.bd{ width:100%; border-collapse:collapse; font-size:14px; }
+  table.bd td{ padding:8px 4px; border-bottom:1px solid var(--line); }
+  table.bd td:last-child{ text-align:right; font-weight:700; white-space:nowrap; }
+  table.bd tr.total td{ border-bottom:none; font-size:17px; color:var(--navy); font-weight:700; padding-top:14px; }
+  .sheet-warn{ background:var(--bg-warning); color:var(--tx-warning); border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin:1rem 0; }
+  .sheet-actions{ display:flex; gap:10px; margin-top:1.25rem; flex-wrap:wrap; }
+  .sheet-actions button{ font-family:var(--font); font-size:14px; font-weight:700; border-radius:999px; padding:11px 22px; cursor:pointer; border:none; }
+  .btn-copy{ background:var(--teal); color:#fff; }
+  .btn-copy:hover{ background:var(--teal-600); }
+  .btn-close{ background:var(--bg-tertiary); color:var(--tx-secondary); }
+
+  /* Request / contact forms */
+  .req-form{ margin-top:1.25rem; border-top:1px solid var(--line); padding-top:1.25rem; }
+  .req-form h3{ font-size:15px; font-weight:700; color:var(--navy); margin:0 0 .75rem; }
+  .req-form label{ display:block; font-size:13px; font-weight:500; color:var(--tx-secondary); margin:.6rem 0 .2rem; }
+  .req-form input, .req-form textarea{ width:100%; font-family:var(--font); font-size:14px; line-height:1.6; color:var(--tx-primary); background:var(--bg-secondary); border:1px solid var(--line); border-radius:var(--r-md); padding:10px 12px; }
+  .req-form input:focus, .req-form textarea:focus{ outline:none; border-color:var(--teal); }
+  .req-form .btn-send{ font-family:var(--font); font-size:14px; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:999px; padding:11px 26px; cursor:pointer; margin-top:1rem; }
+  .req-form .btn-send:hover{ background:var(--teal-600); }
+  .req-form .btn-send:disabled{ opacity:.5; cursor:default; }
+  .consent{ display:flex; gap:10px; align-items:flex-start; background:var(--bg-tertiary); border-radius:var(--r-md); padding:12px 14px; margin-top:1rem; font-size:13px; color:var(--tx-secondary); line-height:1.6; cursor:pointer; }
+  .consent input{ width:auto; margin-top:4px; accent-color:var(--teal); transform:scale(1.2); cursor:pointer; }
+  .consent b{ color:var(--tx-primary); }
+  .form-ok{ display:none; background:var(--bg-success); color:var(--tx-success); border-radius:var(--r-md); padding:14px 18px; font-size:14px; margin-top:1rem; }
+  .form-err{ display:none; background:#fbeaea; color:#a32d2d; border-radius:var(--r-md); padding:12px 16px; font-size:13px; margin-top:1rem; }
+
+  /* Contact & policies */
+  .info-section{ background:var(--bg-primary); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); padding:24px 28px; margin-top:2.5rem; }
+  .info-section h2{ font-size:18px; font-weight:700; color:var(--navy); margin:0 0 .75rem; padding-bottom:.5rem; border-bottom:2px solid var(--gold); }
+  .info-section h3{ font-size:14.5px; font-weight:700; color:var(--navy); margin:1.1rem 0 .3rem; }
+  .info-section p, .info-section li{ font-size:13.5px; color:var(--tx-secondary); }
+  .info-section ul{ padding-left:1.3rem; margin:.3rem 0; }
+  .info-section li{ margin:.3rem 0; }
+  .info-section a{ color:var(--teal-600); }
+
+  footer{ max-width:720px; margin:0 auto; padding:0 1.25rem 8rem; color:var(--tx-tertiary); font-size:12px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-mark" src="../assets/img/favicon.png" alt="" />
+      <span class="brand-text"><strong>Watson US CPA</strong></span>
+    </a>
+    <nav class="site-nav">
+      <a href="#contact">Contact</a>
+      <a href="#policies">Policies</a>
+      <a href="../index.html">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Fee Estimator — US Tax Preparation &amp; Consulting</h1>
+  <p class="lead">Answer a few questions and an estimated fee appears at the bottom of the screen. Takes 1–2 minutes. Your answers are processed entirely in your browser and are not sent anywhere unless you submit the request form.</p>
+  <div class="notice">The amount shown is a <b>minimum ("starting from") fee</b>. A firm quote is confirmed by email after we review your situation, and <b>no work begins — and no fee is charged — until you agree to the final quote</b>.</div>
+
+  <!-- Q1 type -->
+  <div class="q" id="q-type">
+    <h2>What would you like help with?</h2>
+    <div class="opts" data-key="type">
+      <button class="opt on" data-v="annual">Filing this year's tax return</button>
+      <button class="opt" data-v="sdop">Catching up on unfiled / unreported past years</button>
+      <button class="opt" data-v="consult">A consultation</button>
+    </div>
+    <p class="addnote" id="type-note" style="display:none"></p>
+  </div>
+
+  <!-- Consultation only -->
+  <div class="q mode-consult" id="q-consult" style="display:none">
+    <h2>What is the consultation about?</h2>
+    <p class="hint">All consultations are $350/hour (1-hour minimum).</p>
+    <div class="opts" data-key="consult">
+      <button class="opt on" data-v="move">Taxes around moving to/from the US or Japan</button>
+      <button class="opt" data-v="invest">US taxation of Japanese investments &amp; assets (NISA, mutual funds, insurance, etc.)</button>
+      <button class="opt" data-v="resident">Residency determination / US-Japan tax treaty</button>
+      <button class="opt" data-v="other">Something else</button>
+    </div>
+  </div>
+
+  <!-- SDOP type -->
+  <div class="q mode-sdop" id="q-sdoptype" style="display:none">
+    <h2>Which best describes your situation?</h2>
+    <div class="opts" data-key="sdoptype">
+      <button class="opt on" data-v="offshore">I didn't report my non-US (Japanese) accounts, assets, or income</button>
+      <button class="opt" data-v="late">I didn't file for certain years / need to fix a mistake on a filed return</button>
+    </div>
+    <p class="addnote" id="sdoptype-note"></p>
+  </div>
+
+  <!-- Late years -->
+  <div class="q mode-sdop" id="q-lateyears" style="display:none">
+    <h2>How many years?</h2>
+    <p class="hint">Each year is billed at the standard annual-return rate. Simple amendments (math errors, a missed form, etc.) can be as little as $350+ per year.</p>
+    <div class="stepper" data-key="lateyears">
+      <button type="button" onclick="step('lateyears',-1)">−</button>
+      <span class="val" id="lateyears-val">1</span>
+      <button type="button" onclick="step('lateyears',1)">＋</button>
+      <span class="slabel">year(s)</span>
+    </div>
+  </div>
+
+  <!-- US status -->
+  <div class="q mode-annual mode-sdop" id="q-status">
+    <h2>What is your US status?</h2>
+    <p class="hint">Used to determine which return you file (Form 1040 or 1040-NR).</p>
+    <div class="opts" data-key="status">
+      <button class="opt on" data-v="citizen">US citizen</button>
+      <button class="opt" data-v="gc">Green card holder</button>
+      <button class="opt" data-v="work">Work visa (H / L / E, etc.)</button>
+      <button class="opt" data-v="fj">Student / researcher (F / J)</button>
+      <button class="opt" data-v="unknown">Other / not sure</button>
+    </div>
+    <p class="addnote" id="status-note" style="display:none"></p>
+  </div>
+
+  <!-- Work visa: days -->
+  <div class="q mode-annual mode-sdop" id="q-workdays" style="display:none">
+    <h2>How many days were you in the US during the tax year?</h2>
+    <p class="hint">Used for the substantial presence test — resident (Form 1040) vs. nonresident (Form 1040-NR).</p>
+    <div class="opts" data-key="workdays">
+      <button class="opt on" data-v="ge183">183 days or more (most of the year)</button>
+      <button class="opt" data-v="lt183">Fewer than 183 days</button>
+      <button class="opt" data-v="partial">I moved to or from the US mid-year</button>
+    </div>
+    <p class="addnote" id="workdays-note" style="display:none"></p>
+  </div>
+
+  <!-- F/J: years -->
+  <div class="q mode-annual mode-sdop" id="q-fjyears" style="display:none">
+    <h2>How many years have you been in the US?</h2>
+    <p class="hint">F/J visa holders are treated as nonresidents for their first years (5 calendar years for F) regardless of days present (exempt individual).</p>
+    <div class="opts" data-key="fjyears">
+      <button class="opt on" data-v="le5">5 years or fewer</button>
+      <button class="opt" data-v="ge6">6th year or later</button>
+    </div>
+    <p class="addnote" id="fjyears-note" style="display:none"></p>
+  </div>
+
+  <!-- Filing status -->
+  <div class="q mode-annual mode-sdop" id="q-filing">
+    <h2 id="filing-title">What is your filing status?</h2>
+    <p class="hint">For married couples, filing jointly (MFJ) vs. separately (MFS) changes the reporting thresholds for foreign assets.</p>
+    <div class="opts" data-key="filing">
+      <button class="opt on" data-v="single">Single</button>
+      <button class="opt" data-v="mfj">Married filing jointly (MFJ)</button>
+      <button class="opt" data-v="mfs">Married filing separately (MFS)</button>
+      <button class="opt" data-v="unknown">Not sure</button>
+    </div>
+    <p class="addnote" id="filing-note" style="display:none">"Not sure" is fine. We'll review your situation and recommend the better option (the estimate assumes Single for now).</p>
+  </div>
+
+  <!-- Income -->
+  <div class="q mode-annual mode-sdop" id="q-income">
+    <h2 id="income-title">What types of income do you have? (select all that apply)</h2>
+    <p class="hint">US wages (W-2), interest, and dividends are included in the base fee. For joint returns, answer for both spouses combined.</p>
+    <div class="opts" data-key="income" data-multi="1">
+      <button class="opt" data-v="stocks">Sold stocks, mutual funds, or crypto</button>
+      <button class="opt" data-v="biz">Self-employment / freelance income</button>
+      <button class="opt" data-v="pension">Social Security or pension income</button>
+      <button class="opt" data-v="jp">Income from Japan (salary or other)</button>
+    </div>
+    <p class="addnote">For Japanese income, double taxation is addressed via the foreign tax credit (Form 1116) and related provisions.</p>
+    <div class="stepper" data-key="rental">
+      <button type="button" onclick="step('rental',-1)">−</button>
+      <span class="val" id="rental-val">0</span>
+      <button type="button" onclick="step('rental',1)">＋</button>
+      <span class="slabel">rental properties (Japan and US; one Schedule E per property)</span>
+    </div>
+    <div class="stepper" data-key="k1">
+      <button type="button" onclick="step('k1',-1)">−</button>
+      <span class="val" id="k1-val">0</span>
+      <button type="button" onclick="step('k1',1)">＋</button>
+      <span class="slabel">Schedules K-1 (partnership / S-corp / trust distributions)</span>
+    </div>
+  </div>
+
+  <!-- Business size -->
+  <div class="q mode-annual mode-sdop" id="q-bizsize" style="display:none">
+    <h2>Tell us about your self-employment / freelance activity</h2>
+    <p class="hint">A rough figure is fine — it helps us estimate the workload (transaction volume, expense categorization).</p>
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.4rem">Annual gross revenue</div>
+    <div class="opts" data-key="bizrev">
+      <button class="opt on" data-v="s">Under $100,000</button>
+      <button class="opt" data-v="m">$100,000–$500,000</button>
+      <button class="opt" data-v="l">Over $500,000</button>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin:.9rem 0 .4rem">Annual net profit (revenue − expenses)</div>
+    <div class="opts" data-key="bizprofit">
+      <button class="opt on" data-v="p1">Under $50,000</button>
+      <button class="opt" data-v="p2">$50,000–$150,000</button>
+      <button class="opt" data-v="p3">Over $150,000</button>
+    </div>
+    <p class="addnote">Profit range is used for guidance on self-employment tax, the QBI deduction, and estimated tax payments. Fees are based on revenue size.</p>
+  </div>
+
+  <!-- FBAR accounts -->
+  <div class="q mode-annual mode-sdop" id="q-fbar">
+    <h2 id="fbar-title">How many non-US (Japanese) financial accounts do you have?</h2>
+    <p class="hint">Banks, brokerages, Japan Post, online banks, etc. For joint returns, count both spouses' accounts plus joint accounts. If the combined peak balance exceeds $10,000 at any point in the year, an FBAR must be filed.</p>
+    <div class="opts" data-key="fbar">
+      <button class="opt on" data-v="0">None / total under $10,000</button>
+      <button class="opt" data-v="5">1–5</button>
+      <button class="opt" data-v="10">6–10</button>
+      <button class="opt" data-v="15">11 or more</button>
+    </div>
+  </div>
+
+  <!-- 8938 -->
+  <div class="q mode-annual" id="q-8938">
+    <h2 id="fatca-title">What is the total value of your non-US financial assets?</h2>
+    <p class="hint" id="fatca-hint"></p>
+    <div class="opts" data-key="fatca">
+      <button class="opt on" data-v="no" id="fatca-btn-no">Under $50,000</button>
+      <button class="opt" data-v="yes" id="fatca-btn-yes">$50,000 or more (or not sure)</button>
+    </div>
+  </div>
+
+  <!-- PFIC -->
+  <div class="q mode-annual mode-sdop" id="q-pfic">
+    <h2 id="pfic-title">Do you hold Japanese mutual funds or ETFs?</h2>
+    <p class="hint">Including funds held inside NISA / Tsumitate-NISA. For US tax purposes these are PFICs, and Form 8621 must be prepared for each fund.</p>
+    <div class="stepper" data-key="pfic">
+      <button type="button" onclick="step('pfic',-1)">−</button>
+      <span class="val" id="pfic-val">0</span>
+      <button type="button" onclick="step('pfic',1)">＋</button>
+      <span class="slabel">fund(s)</span>
+    </div>
+  </div>
+
+  <!-- Misc -->
+  <div class="q mode-annual mode-sdop" id="q-misc">
+    <h2 id="misc-title">Do any of these apply to you?</h2>
+    <div class="opts" data-key="misc" data-multi="1">
+      <button class="opt" data-v="corp">I own 10% or more of a Japanese company</button>
+      <button class="opt" data-v="gift">I received gifts or an inheritance totaling over $100,000 in a year</button>
+    </div>
+    <p class="addnote">These require dedicated information returns — Form 5471 and Form 3520 respectively.</p>
+  </div>
+
+  <!-- State -->
+  <div class="q mode-annual" id="q-state">
+    <h2>State tax returns?</h2>
+    <p class="hint">The first state (e.g. California) is included in the base fee.</p>
+    <div class="opts" data-key="state">
+      <button class="opt on" data-v="1">One state (or no state return)</button>
+      <button class="opt" data-v="2">Two states</button>
+    </div>
+  </div>
+
+  <!-- Concerns -->
+  <div class="q mode-annual mode-sdop mode-consult" id="q-concerns">
+    <h2>Anything else on your mind? (optional)</h2>
+    <p class="hint">e.g. received an IRS letter, unsure about past filings, crypto questions, planning to move back to Japan. This text is included when you submit or copy your request.</p>
+    <textarea id="concerns" rows="3" style="width:100%;font-family:var(--font);font-size:14px;line-height:1.6;color:var(--tx-primary);background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;resize:vertical" placeholder="Feel free to write anything (please do not include your SSN or account numbers)"></textarea>
+  </div>
+
+  <!-- SDOP years -->
+  <div class="q mode-sdop" id="q-sdopyears" style="display:none">
+    <h2>Roughly how many years are unfiled?</h2>
+    <p class="hint">The Streamlined Procedures cover the most recent 3 years of returns plus 6 years of FBARs. Years beyond 3 are an additional charge.</p>
+    <div class="opts" data-key="sdopyears">
+      <button class="opt on" data-v="3">3 years or fewer</button>
+      <button class="opt" data-v="4">4 years</button>
+      <button class="opt" data-v="5">5 or more years</button>
+    </div>
+  </div>
+
+  <!-- ===== Contact ===== -->
+  <section class="info-section" id="contact">
+    <h2>Contact &amp; Customer Support</h2>
+    <p>Questions about our services, a quote, an engagement in progress, or a refund or cancellation? Send us a message — we reply within <b>2 business days</b> (replies may take longer during filing season: January–April and September–October).</p>
+    <form class="req-form" id="contactform" name="contact-en" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="border-top:none;padding-top:0;margin-top:.75rem">
+      <input type="hidden" name="form-name" value="contact-en" />
+      <p style="display:none"><label>Leave this field empty<input name="bot-field" /></label></p>
+      <label for="c-name">Name</label>
+      <input id="c-name" name="name" type="text" required autocomplete="name" />
+      <label for="c-email">Email (for our reply)</label>
+      <input id="c-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+      <label for="c-message">Message</label>
+      <textarea id="c-message" name="message" rows="4" required placeholder="Please do not include your SSN or account numbers."></textarea>
+      <button class="btn-send" type="submit">Send message</button>
+      <div class="form-ok" id="cform-ok">Thank you — your message has been sent. We will reply to your email address within <b>2 business days</b>.</div>
+      <div class="form-err" id="cform-err">Your message could not be sent. Please try again later, or DM us on <a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">X (@watsonuscpa)</a>.</div>
+    </form>
+    <p style="margin-top:1rem">You can also reach us by direct message on <a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">X (@watsonuscpa)</a>. Existing clients may simply reply to the email thread used for their engagement. Your information is used only to respond to your inquiry and prepare your quote, and is never shared with third parties without your consent.</p>
+  </section>
+
+  <!-- ===== Policies ===== -->
+  <section class="info-section" id="policies">
+    <h2>Refunds, Cancellations &amp; Terms</h2>
+
+    <h3>Engagement letter</h3>
+    <p>All services (tax return preparation, consultations) are professional services provided under an <b>engagement letter</b> signed before work begins. Scope, fees, payment terms, and refund terms are governed by the engagement letter; if this page and your engagement letter differ, <b>the engagement letter controls</b>. No fee is charged until you agree to a firm written quote.</p>
+
+    <h3>Refunds &amp; disputes</h3>
+    <ul>
+      <li><b>Before work begins:</b> no fee is due, and any prepayment is refunded in full.</li>
+      <li><b>After work begins, before delivery:</b> if you cancel, we bill only for the work completed to date (with a written breakdown) and refund the remainder.</li>
+      <li><b>After delivery:</b> given the nature of professional services, completed work is generally non-refundable. However, if an error on our part is found (e.g. a preparation mistake), we will correct it — including preparing an amended return — <b>at no charge</b>.</li>
+      <li><b>How refunds are issued:</b> to the original payment method, within 10 business days of the amount being finalized.</li>
+      <li><b>Disputes:</b> if you are unhappy with any aspect of our service, please <a href="#contact">contact us</a> first — we will work with you in good faith to resolve the issue, and most matters are settled quickly this way. We ask that you reach out to us before initiating a chargeback. Governing law and venue for unresolved disputes are set out in the engagement letter.</li>
+    </ul>
+
+    <h3>Cancellations</h3>
+    <ul>
+      <li>We do <b>not</b> offer subscriptions or recurring billing. Every engagement is a one-time contract — there is nothing that renews or auto-charges.</li>
+      <li>You may cancel an engagement free of charge any time <b>before work begins</b>. After work begins, the refund terms above apply.</li>
+      <li>Hourly consultations can be rescheduled or cancelled free of charge until the <b>business day before</b> the appointment. Same-day or no-show cancellations may be charged up to one hour of the consultation fee.</li>
+    </ul>
+
+    <h3>Terms &amp; restrictions</h3>
+    <ul>
+      <li>All deliverables and correspondence are provided <b>electronically</b> (email, etc.). We sell no physical goods, so no shipping — and no shipping or export restrictions — apply. Clients residing in either the US or Japan are welcome.</li>
+      <li>The articles, tools, and this estimator are <b>general information only</b> and do not constitute tax or legal advice for your specific situation. Rules and thresholds change by year and by facts; personalized advice is provided under an engagement letter.</li>
+      <li>Estimator results are <b>minimum fees</b>. Your firm quote is confirmed by email; if additional fees become necessary after work begins, we explain them and obtain your agreement before proceeding.</li>
+      <li>When promotions or discounts are offered, their conditions and expiration are stated at the time of the offer; discounts cannot be combined unless expressly stated.</li>
+    </ul>
+    <p style="margin-top:.75rem">Last updated: August 16, 2026. 日本語版のポリシーは<a href="../policies/">こちら</a>。</p>
+  </section>
+</main>
+
+<!-- Estimate bar -->
+<div class="estbar">
+  <div class="estbar-inner">
+    <div>
+      <div class="est-label" id="est-label">Estimated <b>minimum</b> fee</div>
+      <div class="est-amount" id="est-amount">$600<small>+</small></div>
+    </div>
+    <div class="est-note" id="est-note">A firm quote is confirmed by email after we review your situation. Additional fees may apply depending on complexity.</div>
+    <button class="detail" onclick="openSheet()">See breakdown / request a quote</button>
+  </div>
+</div>
+
+<!-- Breakdown sheet -->
+<div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet-body">
+    <h2 id="sheet-title">Estimated fee breakdown</h2>
+    <table class="bd" id="bdtable"></table>
+    <div class="sheet-warn" id="sheet-warn">
+      <b>This is a minimum fee.</b> Your firm quote is confirmed by email after we review the details. Typical reasons the final fee is higher:
+      <ul style="margin:.5rem 0 0;padding-left:1.3rem">
+        <li>More PFIC funds or Schedules K-1 than initially estimated</li>
+        <li>High volume of stock / crypto transactions requiring reconciliation</li>
+        <li>Form 5471 requiring financial statements to be rebuilt</li>
+        <li>Missing historical balance records requiring reconstruction from bank statements ($350/hour)</li>
+        <li>Years with a mid-year residency change (dual-status returns)</li>
+      </ul>
+      <div style="margin-top:.6rem"><b>Work begins only after you agree to the firm quote.</b> We never bill extra without telling you first.</div>
+    </div>
+    <form class="req-form" id="reqform" name="estimate-request-en" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="estimate-request-en" />
+      <input type="hidden" name="estimate" id="f-estimate" />
+      <p style="display:none"><label>Leave this field empty<input name="bot-field" /></label></p>
+      <h3>Request a firm quote / get in touch</h3>
+      <label for="f-name">Name</label>
+      <input id="f-name" name="name" type="text" required autocomplete="name" />
+      <label for="f-email">Email (for our reply)</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+      <label for="f-message">Anything to add? (optional)</label>
+      <textarea id="f-message" name="message" rows="3" placeholder="Please do not include your SSN or account numbers."></textarea>
+      <label class="consent">
+        <input type="checkbox" name="consent" id="f-consent" required value="I understand the displayed amount is a minimum fee and that work begins only after I agree to the firm quote." />
+        <span>I understand that the amount shown is a <b>minimum fee</b>, that a firm quote will be confirmed by email, and that <b>work begins only after I agree to the firm quote</b> (no fee is charged until then).</span>
+      </label>
+      <button class="btn-send" type="submit">Send with my estimate details</button>
+      <div class="form-ok" id="form-ok">Sent! We will review your answers and <b>reply to your email address with a firm quote</b>. <b>Work begins only after you agree to the quote</b>, so nothing is owed at this point.</div>
+      <div class="form-err" id="form-err">Your request could not be sent. Please try again later, or use the copy button below to reach us by DM.</div>
+    </form>
+    <div class="sheet-actions" style="margin-top:1rem">
+      <button class="btn-copy" onclick="copyEstimate()">(If the form fails) Copy details &amp; DM us on X</button>
+      <button class="btn-close" onclick="closeSheet()">Close</button>
+    </div>
+    <p style="font-size:12px;color:var(--tx-tertiary);margin-top:.75rem">Your answers and the estimated amount are attached to the form automatically. Please do not send your SSN or account numbers.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Amounts from this estimator are informational approximations; formal quotes and engagements are governed by an engagement letter. See <a href="#policies">Refunds, Cancellations &amp; Terms</a> or <a href="#contact">contact us</a>. 日本語版は<a href="../intake/">こちら</a>。</p>
+</footer>
+
+<script>
+const DM_URL = 'https://x.com/watsonuscpa';
+
+// ===== Fee schedule (keep in sync with intake/index.html) =====
+const FEES = {
+  base: 600,            // 1040 + one state (W-2 wages, interest, dividends included)
+  nrBase: 700,          // 1040-NR + one state
+  state2: 200,          // second state
+  fbarOnly: 150,        // FBAR only (up to 5 accounts)
+  fbarFatca: 200,       // FBAR + 8938 (up to 5 accounts/assets)
+  per5accts: 100,       // each additional 5 accounts beyond the first 5
+  ftc: 250,             // 1116/2555
+  schedCE: 250,         // Schedule C / E
+  schedD: 150,          // Schedule D (stock / crypto sales)
+  k1: 250,              // per K-1
+  pension: 50,          // Social Security / pension
+  pficFirst: 300, pficAddl: 200,
+  corp: 1000,           // 5471 (from)
+  gift: 650,            // 3520
+  sdopBase: 3500, sdopYear: 400,
+  consultHr: 350,       // hourly consulting
+};
+
+const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', workdays:'ge183', fjyears:'le5', filing:'single', income:new Set(), k1:0, rental:0, bizrev:'s', bizprofit:'p1',
+                fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
+
+// ===== UI wiring =====
+document.querySelectorAll('.opts').forEach(g => {
+  const key = g.dataset.key, multi = g.dataset.multi;
+  g.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+    if (multi) {
+      b.classList.toggle('on');
+      state[key].has(b.dataset.v) ? state[key].delete(b.dataset.v) : state[key].add(b.dataset.v);
+    } else {
+      g.querySelectorAll('.opt').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      state[key] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v;
+    }
+    onChange();
+  }));
+});
+
+function step(key, d){
+  const lo = (key === 'lateyears') ? 1 : 0;
+  state[key] = Math.max(lo, Math.min(30, state[key] + d));
+  document.getElementById(key + '-val').textContent = state[key];
+  onChange();
+}
+
+function isNR(){
+  if (state.status === 'fj') return state.fjyears === 'le5';
+  if (state.status === 'work') return state.workdays === 'lt183';
+  return false;
+}
+
+function schedCFee(){
+  return { s: FEES.schedCE, m: 400, l: 600 }[state.bizrev];
+}
+function schedCLabel(){
+  return { s: 'Self-employment (Schedule C)', m: 'Self-employment (Schedule C, revenue $100K–500K)',
+           l: 'Self-employment (Schedule C, revenue over $500K), from' }[state.bizrev];
+}
+
+// ===== Form 8938 thresholds (US resident, year-end basis) =====
+function fatcaThreshold(){
+  return state.filing === 'mfj' ? '$100,000' : '$50,000';
+}
+
+// ===== Mode switching =====
+function onChange(){
+  const isLate = state.type === 'sdop' && state.sdoptype === 'late';
+  const mode = isLate ? 'annual' : state.type;   // "late" uses the same questions as an annual return
+  document.querySelectorAll('.q').forEach(q => {
+    if (q.id === 'q-type') return;
+    const show = q.classList.contains('mode-' + mode);
+    q.style.display = show ? '' : 'none';
+  });
+  document.getElementById('q-sdoptype').style.display = (state.type === 'sdop') ? '' : 'none';
+  document.getElementById('q-lateyears').style.display = isLate ? '' : 'none';
+  const stn = document.getElementById('sdoptype-note');
+  if (state.type === 'sdop') {
+    stn.textContent = (state.sdoptype === 'offshore')
+      ? 'Unreported non-US accounts and assets are usually resolved in one package under the Streamlined Procedures: 3 years of returns, 6 years of FBARs, and a non-willfulness statement.'
+      : 'Handled as ordinary late or amended returns, prepared year by year. Note: if unreported Japanese accounts or assets are involved, the Streamlined Procedures are often the safer route — email us if unsure.';
+  }
+  if (isLate) {
+    document.getElementById('q-sdopyears').style.display = 'none';
+    document.getElementById('q-concerns').style.display = '';
+  }
+
+  const note = document.getElementById('type-note');
+  if (mode === 'sdop') {
+    note.style.display = '';
+    note.textContent = 'Catching up under the Streamlined Procedures is a complete package: 3 years of tax returns, 6 years of FBARs, and a non-willfulness statement.';
+  } else if (mode === 'consult') {
+    note.style.display = '';
+    note.textContent = 'A one-time consultation or second opinion, with no return preparation involved.';
+  } else {
+    note.style.display = 'none';
+  }
+
+  // US status → sub-questions and NR determination
+  const sn = document.getElementById('status-note');
+  const inFiling = (state.type === 'annual' || state.type === 'sdop');
+  document.getElementById('q-workdays').style.display = (inFiling && state.status === 'work') ? '' : 'none';
+  document.getElementById('q-fjyears').style.display = (inFiling && state.status === 'fj') ? '' : 'none';
+  const nr = isNR();
+  sn.style.display = (state.status === 'unknown') ? '' : 'none';
+  if (state.status === 'unknown') {
+    sn.textContent = "Not sure is fine — we'll determine your status by email. The estimate assumes a standard Form 1040 for now.";
+  }
+  const wn = document.getElementById('workdays-note');
+  if (state.status === 'work') {
+    if (state.workdays === 'lt183') {
+      wn.style.display = '';
+      wn.textContent = 'With fewer than 183 days you are likely a nonresident (Form 1040-NR), so the estimate uses the 1040-NR base ($700+). Nonresidents generally do not file FBAR / Form 8938. The formal determination (3-year weighted substantial presence test, treaty) is made by email.';
+    } else if (state.workdays === 'partial') {
+      wn.style.display = '';
+      wn.textContent = 'A year with a mid-year residency change (dual-status) involves different fees and procedures. The estimate assumes a standard Form 1040 for now; we confirm by email.';
+    } else { wn.style.display = 'none'; }
+  } else { wn.style.display = 'none'; }
+  const fn = document.getElementById('fjyears-note');
+  if (state.status === 'fj') {
+    fn.style.display = '';
+    fn.textContent = (state.fjyears === 'le5')
+      ? 'Estimated on the nonresident (Form 1040-NR) basis ($700+). Nonresidents generally do not file FBAR / Form 8938. The formal determination is made by email.'
+      : 'From the 6th year most F/J holders become residents (Form 1040) under the substantial presence test, so the standard 1040 basis is used. FBAR / Form 8938 reporting also applies.';
+  } else { fn.style.display = 'none'; }
+  // Hide foreign-asset questions for nonresidents (filing modes only)
+  if (state.type === 'annual' || state.type === 'sdop') {
+    ['q-fbar','q-8938','q-pfic','q-misc'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.classList.contains('mode-' + state.type)) el.style.display = nr ? 'none' : '';
+    });
+  }
+
+  // Self-employment sub-question
+  const bizOn = state.income.has('biz') && (state.type === 'annual' || state.type === 'sdop');
+  document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
+
+  document.getElementById('filing-note').style.display = (state.filing === 'unknown') ? '' : 'none';
+  const th = fatcaThreshold();
+  document.getElementById('fatca-btn-no').textContent = 'Under ' + th;
+  document.getElementById('fatca-btn-yes').textContent = th + ' or more (or not sure)';
+  document.getElementById('fatca-hint').textContent =
+    `Bank balances + mutual funds + cash-value insurance, etc. Form 8938 is also required if the ${state.filing === 'mfj' ? 'combined year-end total for both spouses exceeds ' + th : 'year-end total exceeds ' + th} (for US residents).`;
+
+  render();
+}
+
+// ===== Estimate calculation =====
+function calc(){
+  const rows = [];
+  let total = 0;
+  const add = (label, amt) => { rows.push([label, amt]); total += amt; };
+
+  if (state.type === 'consult') {
+    const labels = { move:'Consultation: moving to/from the US or Japan', invest:'Consultation: US taxation of Japanese investments & assets',
+                     resident:'Consultation: residency / tax treaty', other:'Tax consultation' };
+    add(labels[state.consult] + ' (hourly)', FEES.consultHr);
+    return { rows, total, consult:true };
+  }
+
+  if (state.type === 'sdop' && state.sdoptype === 'late') {
+    // Late/amended returns: standard annual fee × years
+    if (isNR()) add('Base fee (Form 1040-NR + one state) / year', FEES.nrBase);
+    else add('Base fee (Form 1040 + one state) / year', FEES.base);
+    if (state.state === 2) add('Second state / year', FEES.state2);
+    if (!isNR() && state.fbar > 0) {
+      if (state.fatca === 'yes') add('Foreign account & asset reporting (FBAR + Form 8938) / year', FEES.fbarFatca);
+      else add('Foreign account reporting (FBAR) / year', FEES.fbarOnly);
+      if (state.fbar > 5) add('Additional accounts / year', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
+    }
+    if (!isNR() && state.income.has('jp')) add('Japanese income & foreign tax credit (Form 1116 / 2555) / year', FEES.ftc);
+    if (state.income.has('pension')) add('Social Security / pension / year', FEES.pension);
+    if (state.income.has('stocks')) add('Stock, fund & crypto sales (Schedule D) / year', FEES.schedD);
+    if (state.income.has('biz')) add(schedCLabel() + ' / year', schedCFee());
+    if (state.rental > 0) add(`Rental real estate (Schedule E), ${state.rental} propert${state.rental > 1 ? 'ies' : 'y'} / year`, state.rental * FEES.schedCE);
+    if (state.k1 > 0) add(`Schedule K-1 × ${state.k1} / year`, state.k1 * FEES.k1);
+    if (!isNR() && state.pfic > 0) add(`Mutual funds (PFIC / Form 8621), ${state.pfic} fund${state.pfic > 1 ? 's' : ''} / year`,
+      FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
+    if (!isNR() && state.misc.has('corp')) add('Japanese corporation reporting (Form 5471), from / year', FEES.corp);
+    if (!isNR() && state.misc.has('gift')) add('Gift / inheritance reporting (Form 3520) / year', FEES.gift);
+    if (state.lateyears > 1) {
+      const perYear = total;
+      add(`Above × ${state.lateyears} years (${state.lateyears - 1} additional year${state.lateyears - 1 > 1 ? 's' : ''})`, perYear * (state.lateyears - 1));
+    }
+    return { rows, total };
+  }
+
+  if (state.type === 'sdop') {
+    add('Streamlined package (3 years of returns + 6 years of FBARs + statement)', FEES.sdopBase);
+    if (state.sdopyears > 3) add(`Additional years (${state.sdopyears - 3})`, (state.sdopyears - 3) * FEES.sdopYear);
+    if (state.fbar > 5) add('Additional accounts', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
+    if (state.pfic > 0) add(`Mutual funds (PFIC), ${state.pfic} fund${state.pfic > 1 ? 's' : ''}`, state.pfic * FEES.pficAddl);
+    if (state.income.has('biz')) add(schedCLabel() + ' (approx.)', schedCFee());
+    if (state.rental > 0) add(`Rental real estate, ${state.rental} propert${state.rental > 1 ? 'ies' : 'y'} (approx.)`, state.rental * FEES.schedCE);
+    if (state.k1 > 0) add(`Schedule K-1 × ${state.k1} (approx.)`, state.k1 * FEES.k1);
+    if (state.misc.has('corp')) add('Japanese corporation reporting (Form 5471), from', FEES.corp);
+    if (state.misc.has('gift')) add('Gift / inheritance reporting (Form 3520)', FEES.gift);
+    return { rows, total };
+  }
+
+  // annual
+  if (isNR()) add('Base fee (Form 1040-NR + one state)', FEES.nrBase);
+  else add('Base fee (Form 1040 + one state; W-2 wages, interest & dividends included)', FEES.base);
+  if (state.state === 2) add('Second state', FEES.state2);
+  if (!isNR() && state.fbar > 0) {
+    if (state.fatca === 'yes') add('Foreign account & asset reporting (FBAR + Form 8938)', FEES.fbarFatca);
+    else add('Foreign account reporting (FBAR)', FEES.fbarOnly);
+    if (state.fbar > 5) add('Additional accounts', Math.ceil((state.fbar - 5) / 5) * FEES.per5accts);
+  }
+  if (!isNR() && state.income.has('jp')) add('Japanese income & foreign tax credit (Form 1116 / 2555)', FEES.ftc);
+  if (state.income.has('pension')) add('Social Security / pension', FEES.pension);
+  if (state.income.has('stocks')) add('Stock, fund & crypto sales (Schedule D)', FEES.schedD);
+  if (state.income.has('biz')) add(schedCLabel(), schedCFee());
+  if (state.rental > 0) add(`Rental real estate (Schedule E), ${state.rental} propert${state.rental > 1 ? 'ies' : 'y'}`, state.rental * FEES.schedCE);
+  if (state.k1 > 0) add(`Schedule K-1 × ${state.k1}`, state.k1 * FEES.k1);
+  if (!isNR() && state.pfic > 0) add(`Mutual funds (PFIC / Form 8621), ${state.pfic} fund${state.pfic > 1 ? 's' : ''}`,
+    FEES.pficFirst + Math.max(0, state.pfic - 1) * FEES.pficAddl);
+  if (!isNR() && state.misc.has('corp')) add('Japanese corporation reporting (Form 5471), from', FEES.corp);
+  if (!isNR() && state.misc.has('gift')) add('Gift / inheritance reporting (Form 3520)', FEES.gift);
+  return { rows, total };
+}
+
+function render(){
+  const r = calc();
+  const amt = document.getElementById('est-amount');
+  if (r.consult) {
+    amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /hour (1-hour min.)</small>`;
+    document.getElementById('est-note').textContent = 'Beyond the first hour, time is billed in 30-minute increments. We discuss your questions by email beforehand.';
+  } else {
+    amt.innerHTML = `$${r.total.toLocaleString()}<small>+</small>`;
+    document.getElementById('est-note').innerHTML = '<b>This is a minimum fee.</b> A firm quote is confirmed by email, and work begins only after you agree.';
+  }
+}
+
+// ===== Breakdown & copy =====
+function estimateText(){
+  const { rows, total, consult } = calc();
+  const filingLabel = { single:'Single', mfj:'Married filing jointly (MFJ)', mfs:'Married filing separately (MFS)', unknown:'Not sure' }[state.filing];
+  let statusLabel = { citizen:'US citizen', gc:'Green card', work:'Work visa (H/L/E etc.)', fj:'Student/researcher (F/J)', unknown:'Other / not sure' }[state.status];
+  if (state.status === 'work') statusLabel += ', ' + ({ ge183:'183+ days in the US', lt183:'under 183 days in the US', partial:'moved to/from the US mid-year' }[state.workdays]);
+  if (state.status === 'fj') statusLabel += ', ' + (state.fjyears === 'le5' ? '5 years or fewer in the US' : '6th year or later in the US');
+  const concerns = document.getElementById('concerns').value.trim();
+  const profitLabel = { p1:'under $50K', p2:'$50K–150K', p3:'over $150K' }[state.bizprofit];
+  return [
+    ...(state.type !== 'consult' ? [`US status: ${statusLabel}`, `Filing status: ${filingLabel}`] : []),
+    ...rows.map(([l, a]) => `- ${l}: $${a.toLocaleString()}${consult ? '/h' : ''}`),
+    consult ? 'Fee: $350/hour (1-hour minimum)' : `Estimated total: $${total.toLocaleString()}+`,
+    ...(state.income.has('biz') && state.type !== 'consult' ? [`Self-employment profit range: ${profitLabel}`] : []),
+    ...(concerns ? ['', 'Notes / concerns:', concerns] : []),
+  ].join('\n');
+}
+
+function openSheet(){
+  const { rows, total, consult } = calc();
+  document.getElementById('bdtable').innerHTML =
+    rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
+    (consult
+      ? `<tr class="total"><td>Consultation fee</td><td>$350/hour (1-hour min.)</td></tr>`
+      : `<tr class="total"><td>Estimated minimum fee</td><td>$${total.toLocaleString()}+</td></tr>`);
+  document.getElementById('f-estimate').value = estimateText();
+  document.getElementById('sheet').classList.add('open');
+}
+function closeSheet(){ document.getElementById('sheet').classList.remove('open'); }
+
+// AJAX submit to Netlify Forms
+function wireNetlifyForm(formId, okId, errId, sentLabel){
+  document.getElementById(formId).addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    if (formId === 'reqform') document.getElementById('f-estimate').value = estimateText();
+    const btn = form.querySelector('.btn-send');
+    const original = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    }).then(res => {
+      if (!res.ok) throw new Error(res.status);
+      document.getElementById(okId).style.display = 'block';
+      document.getElementById(errId).style.display = 'none';
+      form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(el => el.disabled = true);
+      btn.textContent = sentLabel;
+    }).catch(() => {
+      document.getElementById(errId).style.display = 'block';
+      btn.disabled = false; btn.textContent = original;
+    });
+  });
+}
+wireNetlifyForm('reqform', 'form-ok', 'form-err', 'Sent');
+wireNetlifyForm('contactform', 'cform-ok', 'cform-err', 'Sent');
+
+function copyEstimate(){
+  const text = [
+    '[Quote request] Watson US CPA fee estimator',
+    '',
+    estimateText(),
+    '',
+    '* The above is an approximation from the online estimator. Please send me a firm quote.',
+    '',
+    'Name:',
+    'Contact:',
+  ].join('\n');
+  const btn = document.querySelector('.btn-copy');
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied — paste it into a DM on X';
+    setTimeout(() => { btn.textContent = '(If the form fails) Copy details & DM us on X'; }, 2500);
+  }).catch(() => {
+    window.prompt('Automatic copy failed. Select all and copy the text below:', text);
+  });
+  window.open(DM_URL, '_blank', 'noopener');
+}
+
+// Preselect mode via URL parameter
+(function(){
+  const t = new URLSearchParams(location.search).get('type');
+  if (t === 'consult' || t === 'sdop') {
+    state.type = t;
+    document.querySelectorAll('[data-key="type"] .opt').forEach(b => b.classList.toggle('on', b.dataset.v === t));
+  }
+})();
+
+onChange();
+</script>
+</body>
+</html>

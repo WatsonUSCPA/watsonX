@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>お問い合わせ ｜ Watson US CPA</title>
+<meta name="description" content="Watson US CPA へのお問い合わせフォームです。米国税務申告・税務相談に関するご質問、お見積り、ご依頼中の案件のご連絡はこちらから。2営業日以内にご返信します。" />
+
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<style>
+  main.contact{ max-width:680px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+  main.contact h1{ font-size:26px; color:var(--navy); margin:0 0 .5rem; }
+  main.contact .lead{ color:var(--ink-soft); font-size:14.5px; margin:0 0 1.5rem; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:26px 30px; margin-bottom:1.5rem; }
+  .card h2{ font-size:17px; color:var(--navy); margin:0 0 .75rem; }
+  .card p, .card li{ font-size:14px; }
+  .cform label{ display:block; font-size:13.5px; font-weight:700; color:var(--navy); margin:1rem 0 .3rem; }
+  .cform label .opt-tag{ font-weight:500; color:var(--ink-soft); font-size:12px; }
+  .cform input, .cform select, .cform textarea{ width:100%; box-sizing:border-box; font-family:inherit; font-size:14.5px; line-height:1.6; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:11px 13px; }
+  .cform input:focus, .cform select:focus, .cform textarea:focus{ outline:none; border-color:var(--teal); }
+  .cform textarea{ resize:vertical; }
+  .cform .privacy{ background:#eef3f8; border-radius:10px; padding:12px 15px; font-size:12.5px; color:var(--ink-soft); margin-top:1rem; line-height:1.7; }
+  .cform .btn-send{ font-family:inherit; font-size:15px; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:999px; padding:12px 32px; cursor:pointer; margin-top:1.25rem; }
+  .cform .btn-send:hover{ background:var(--teal-600); }
+  .cform .btn-send:disabled{ opacity:.5; cursor:default; }
+  .form-ok{ display:none; background:#e3f4f1; color:#18706f; border-radius:10px; padding:14px 18px; font-size:14px; margin-top:1rem; }
+  .form-err{ display:none; background:#fbeaea; color:#a32d2d; border-radius:10px; padding:12px 16px; font-size:13px; margin-top:1rem; }
+  .alt-list{ padding-left:1.3rem; }
+  .alt-list li{ margin:.4rem 0; }
+  @media (max-width:640px){ .card{ padding:20px 18px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-mark" src="../assets/img/avatar.png" alt="" width="40" height="40" />
+      <span class="brand-text"><strong>Watson US CPA</strong></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../intake/">料金見積り</a>
+      <a href="../policies/">各種ポリシー</a>
+      <a href="../index.html">トップへ戻る</a>
+    </nav>
+  </div>
+</header>
+
+<main class="contact">
+  <h1>お問い合わせ</h1>
+  <p class="lead">サービスに関するご質問、お見積りのご相談、ご依頼中の案件のご連絡、返金・キャンセルのお申し出はこちらから。原則として<strong>2営業日以内（日本時間）</strong>にご返信します。</p>
+
+  <div class="card">
+    <form class="cform" id="contactform" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none"><label>この欄は空のままにしてください<input name="bot-field" /></label></p>
+
+      <label for="c-name">お名前 <span class="opt-tag">（必須）</span></label>
+      <input id="c-name" name="name" type="text" required autocomplete="name" />
+
+      <label for="c-email">メールアドレス（返信先） <span class="opt-tag">（必須）</span></label>
+      <input id="c-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+
+      <label for="c-topic">お問い合わせの種類 <span class="opt-tag">（必須）</span></label>
+      <select id="c-topic" name="topic" required>
+        <option value="">選択してください</option>
+        <option value="見積り・新規のご依頼">お見積り・新規のご依頼について</option>
+        <option value="依頼中の案件">ご依頼中の案件について</option>
+        <option value="返金・キャンセル">返金・キャンセルのお申し出</option>
+        <option value="税務相談の予約">税務相談（時間制）のご予約</option>
+        <option value="その他">その他</option>
+      </select>
+
+      <label for="c-message">お問い合わせ内容 <span class="opt-tag">（必須）</span></label>
+      <textarea id="c-message" name="message" rows="6" required placeholder="できるだけ具体的にお書きください。※SSN（社会保障番号）・口座番号は記載しないでください。"></textarea>
+
+      <div class="privacy">
+        ご入力いただいた情報は、お問い合わせへの回答・お見積りのご提示・業務のご連絡の目的にのみ使用し、ご本人の同意なく第三者に提供しません。
+        詳細は<a href="../policies/#terms">利用規約（お客様情報の取り扱い）</a>をご覧ください。
+        SSN・口座番号などの機微情報は、このフォームには記載しないでください。
+      </div>
+
+      <button class="btn-send" type="submit">送信する</button>
+      <div class="form-ok" id="form-ok">送信しました。内容を確認のうえ、ご入力のメールアドレスへ<b>2営業日以内</b>にご返信いたします。</div>
+      <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、下記の別の連絡方法をご利用ください。</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>その他の連絡方法</h2>
+    <ul class="alt-list">
+      <li><strong>X（旧Twitter）のダイレクトメッセージ：</strong><a href="https://x.com/watsonuscpa" target="_blank" rel="noopener">@watsonuscpa</a></li>
+      <li><strong>ご依頼中のお客様：</strong>業務のご連絡に使用しているメールアドレスへ直接ご返信ください。</li>
+    </ul>
+    <p style="color:var(--ink-soft)">申告繁忙期（1月〜4月、9月〜10月）は、ご返信までお時間をいただく場合があります。あらかじめご了承ください。</p>
+  </div>
+
+  <div class="card">
+    <h2>ご依頼の前に</h2>
+    <ul class="alt-list">
+      <li>料金の目安は<a href="../intake/">料金かんたん見積り</a>でその場でご確認いただけます。</li>
+      <li>返金・キャンセルの条件は<a href="../policies/">各種ポリシー</a>をご覧ください。正式なご契約は業務契約書（Engagement Letter）によります。</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-brand">Watson US CPA</p>
+    <nav class="footer-nav">
+      <a href="../index.html">トップ</a>
+      <a href="../intake/">料金見積り</a>
+      <a href="../policies/">各種ポリシー</a>
+      <a href="../en/">English</a>
+    </nav>
+    <p class="footer-disclaimer">
+      本サイトの内容は一般的な情報提供を目的としたものであり、個別の税務・法務上のアドバイスを構成するものではありません。
+    </p>
+    <p class="footer-copy">© <span id="year"></span> Watson US CPA</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Netlify Forms へ AJAX 送信
+document.getElementById('contactform').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.btn-send');
+  btn.disabled = true; btn.textContent = '送信中…';
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString(),
+  }).then(res => {
+    if (!res.ok) throw new Error(res.status);
+    document.getElementById('form-ok').style.display = 'block';
+    document.getElementById('form-err').style.display = 'none';
+    form.querySelectorAll('input:not([type=hidden]),select,textarea,button').forEach(el => el.disabled = true);
+    btn.textContent = '送信済み';
+  }).catch(() => {
+    document.getElementById('form-err').style.display = 'block';
+    btn.disabled = false; btn.textContent = '送信する';
+  });
+});
+</script>
+</body>
+</html>
