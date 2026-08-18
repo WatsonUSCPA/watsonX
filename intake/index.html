@@ -118,8 +118,12 @@
 
 <main>
   <h1>料金かんたん見積り</h1>
-  <p class="lead">質問に答えていくと、画面下に概算料金が表示されます。所要1〜2分。入力内容はブラウザ内でのみ処理され、送信されません。</p>
+  <p class="lead">個人の方向けの料金シミュレーターです。質問に答えていくと、画面下に概算料金が表示されます。所要1〜2分。入力内容はブラウザ内でのみ処理され、送信されません。</p>
   <div class="notice">表示されるのは<b>最低料金（ここから始まる金額）</b>です。正式なお見積りは、メールで詳しい状況を伺ったうえで確定し、<b>ご同意いただいてから着手します</b>。</div>
+  <div class="notice" style="background:var(--bg-tertiary);color:var(--tx-secondary);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <span>このページは<b>個人の方</b>向けです。会社（法人・LLC）の記帳・財務諸表のご依頼はこちら。</span>
+    <a href="./corp/" style="flex:none;text-decoration:none;font-weight:700;font-size:13px;color:#fff;background:var(--navy);border-radius:999px;padding:8px 18px">法人のお客様はこちら →</a>
+  </div>
 
   <!-- Q1 依頼タイプ -->
   <div class="q" id="q-type">
@@ -128,7 +132,6 @@
       <button class="opt on" data-v="annual">今年の申告をお願いしたい</button>
       <button class="opt" data-v="sdop">過去の未申告・申告漏れを解消したい</button>
       <button class="opt" data-v="consult">相談をしたい</button>
-      <button class="opt" data-v="corp">法人（会社）の会計・帳簿をお願いしたい</button>
     </div>
     <p class="addnote" id="type-note" style="display:none"></p>
   </div>
@@ -136,43 +139,13 @@
   <!-- 相談専用 -->
   <div class="q mode-consult" id="q-consult" style="display:none">
     <h2>どんなご相談ですか？</h2>
-    <p class="hint">料金はいずれも $350/時間（最低1時間）です。下の質問にお答えのうえ「内訳を見る・依頼する」からご相談内容をお送りください。日程のご予約は送信後にご案内します。</p>
+    <p class="hint">「税務戦略」は、申告書の作成ではなく<b>これからの意思決定</b>のご相談です（例：RSU・ストックオプションの行使時期、NISA・投信の持ち方、帰国前後の資産の整理、不動産の売却時期、自営業の法人化）。料金はいずれも $350/時間（最低1時間）です。下の質問にお答えのうえ「内訳を見る・依頼する」からご相談内容をお送りください。日程のご予約は送信後にご案内します。</p>
     <div class="opts" data-key="consult">
       <button class="opt on" data-v="move">渡米・帰国前後の税金の相談</button>
       <button class="opt" data-v="invest">日本の投資・資産の米国税務（NISA・投信・保険など）</button>
       <button class="opt" data-v="resident">居住判定・日米租税条約の適用</button>
+      <button class="opt" data-v="strategy">税務戦略・タックスプランニングの相談</button>
       <button class="opt" data-v="other">その他</button>
-    </div>
-  </div>
-
-  <!-- 法人専用 -->
-  <div class="q mode-corp" id="q-corpsvc" style="display:none">
-    <h2>どのくらいの頻度でご依頼ですか？</h2>
-    <p class="hint">記帳（Bookkeeping）のレビューと、財務諸表（BS／PL／CF）の作成を行います。※監査・レビュー・コンピレーション等の保証業務（attestation）ではありません。</p>
-    <div class="opts" data-key="corpsvc">
-      <button class="opt on" data-v="monthly">毎月（月次でレビュー・財務諸表を作成）</button>
-      <button class="opt" data-v="quarterly">四半期ごと（3か月に1回）</button>
-    </div>
-    <p class="addnote">月次は $700〜/月、四半期は $1,000〜/四半期が目安です。取引量・勘定科目数・使用している会計ソフトの状態により変わります。</p>
-  </div>
-
-  <div class="q mode-corp" id="q-corpfix" style="display:none">
-    <h2>過去の帳簿にズレ（不一致）がありますか？</h2>
-    <p class="hint">銀行残高と帳簿が合わない、前期末の残高が引き継がれていない、勘定科目が整理されていない、など。</p>
-    <div class="opts" data-key="corpfix">
-      <button class="opt on" data-v="no">ない／わからない</button>
-      <button class="opt" data-v="yes">ある（過去分の調査・修正もお願いしたい）</button>
-    </div>
-    <p class="addnote">過去の帳簿のズレの調査・修正は、作業量が案件ごとに大きく異なるため <b>$350/時間</b> の時間制でのご請求になります。着手前に想定時間の目安をお伝えし、ご同意いただいてから作業します。</p>
-  </div>
-
-  <div class="q mode-corp" id="q-corpsw" style="display:none">
-    <h2>会計ソフトは何をお使いですか？（任意）</h2>
-    <div class="opts" data-key="corpsw">
-      <button class="opt on" data-v="qbo">QuickBooks Online</button>
-      <button class="opt" data-v="xero">Xero</button>
-      <button class="opt" data-v="sheet">Excel・スプレッドシート</button>
-      <button class="opt" data-v="other">その他・未導入</button>
     </div>
   </div>
 
@@ -347,7 +320,7 @@
   </div>
 
   <!-- 懸念点（全モード共通） -->
-  <div class="q mode-annual mode-sdop mode-consult mode-corp" id="q-concerns">
+  <div class="q mode-annual mode-sdop mode-consult" id="q-concerns">
     <h2 id="concerns-title">その他、気になっていることはありますか？（任意）</h2>
     <p class="hint" id="concerns-hint">例：IRSから手紙が来た、過去の申告に自信がない、暗号資産の扱い、帰国の予定がある、など。「依頼メールにコピー」した際に一緒に含まれます。</p>
     <textarea id="concerns" rows="3" style="width:100%;font-family:var(--font);font-size:14px;line-height:1.6;color:var(--tx-primary);background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;resize:vertical" placeholder="自由にお書きください（SSN・口座番号は書かないでください）"></textarea>
@@ -397,7 +370,7 @@
       <input type="hidden" name="form-name" value="estimate-request" />
       <input type="hidden" name="estimate" id="f-estimate" />
       <p style="display:none"><label>この欄は空のままにしてください<input name="bot-field" /></label></p>
-      <h3 id="form-heading">このままご依頼・お問い合わせ</h3>
+      <h3>このままご依頼・お問い合わせ</h3>
       <label for="f-name">お名前</label>
       <input id="f-name" name="name" type="text" required autocomplete="name" />
       <label for="f-email">メールアドレス（返信先）</label>
@@ -417,9 +390,6 @@
           相談日時を予約する →（60分・オンライン）
         </a><br />
         ご予約はリクエストとして送信され、<b>当方が承認した時点で確定</b>します。確定後、相談料（$350/時間・最低1時間）の<b>請求書をメールでお送りします</b>。この時点ではまだ費用は発生しません。
-      </div>
-      <div class="form-ok" id="form-ok-corp">
-        ご興味をお知らせいただきありがとうございます。内容を確認のうえ、<b>ご入力のメールアドレスへご連絡</b>し、取引量・帳簿の状態を伺ったうえで正式なお見積りをお出しします。<b>確定金額にご同意いただいてから着手</b>しますので、この時点で費用は発生しません。
       </div>
       <div class="form-err" id="form-err">送信できませんでした。時間をおいて再度お試しいただくか、ページ下部の「コピー」からメールでお送りください。</div>
     </form>
@@ -456,14 +426,10 @@ const FEES = {
   gift: 650,            // 3520
   sdopBase: 3500, sdopYear: 400,
   consultHr: 350,       // 時間制コンサル
-  corpMonthly: 700,     // 法人：月次 Bookkeeping レビュー＋BS/PL/CF（月額・〜から）
-  corpQuarterly: 1000,  // 法人：四半期 Bookkeeping レビュー＋BS/PL/CF（四半期・〜から）
-  corpFixHr: 350,       // 法人：過去の帳簿のズレ対応（時間制）
 };
 
 const state = { type:'annual', consult:'move', sdoptype:'offshore', lateyears:1, status:'citizen', workdays:'ge183', fjyears:'le5', filing:'single', income:new Set(), k1:0, rental:0, bizrev:'s', bizprofit:'p1',
-                fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3,
-                corpsvc:'monthly', corpfix:'no', corpsw:'qbo' };
+                fbar:0, fatca:'no', pfic:0, misc:new Set(), state:1, sdopyears:3 };
 
 // ===== UI 配線 =====
 document.querySelectorAll('.opts').forEach(g => {
@@ -534,9 +500,6 @@ function onChange(){
   if (mode === 'sdop') {
     note.style.display = '';
     note.textContent = '過去の申告漏れの解消（Streamlined Procedures）は、過去3年分の申告書と6年分のFBAR、非故意性の説明書の作成を含む一式のお手続きです。';
-  } else if (mode === 'corp') {
-    note.style.display = '';
-    note.textContent = '法人（Corp / LLC 等）向けの、記帳（Bookkeeping）のレビューと財務諸表（BS／PL／CF）の作成です。監査等の保証業務（attestation）は行いません。';
   } else if (mode === 'consult') {
     note.style.display = '';
     note.textContent = '申告書の作成を伴わない、単発のご相談・セカンドオピニオンです。';
@@ -584,10 +547,7 @@ function onChange(){
   document.getElementById('q-bizsize').style.display = bizOn ? '' : 'none';
 
   // 相談モードでは「気になっていること」＝ご相談内容そのもの
-  if (mode === 'corp') {
-    document.getElementById('concerns-title').textContent = '会社の状況で気になっていることはありますか？（任意）';
-    document.getElementById('concerns-hint').textContent = '例：業種・年商・取引件数、従業員数、これまでの記帳の担当者、直近で決算・申告が必要か、など。書いていただくほど正確なお見積りができます。';
-  } else if (mode === 'consult') {
+  if (mode === 'consult') {
     document.getElementById('concerns-title').textContent = 'ご相談内容をお聞かせください';
     document.getElementById('concerns-hint').textContent = '例：帰国予定と持ち株の扱い、NISA・投信の申告方法、IRSからの手紙、など。具体的に書いていただくほど当日のご相談がスムーズです。送信後に日程のご予約をご案内します。';
   } else {
@@ -611,16 +571,10 @@ function calc(){
   let total = 0;
   const add = (label, amt) => { rows.push([label, amt]); total += amt; };
 
-  if (state.type === 'corp') {
-    const unit = state.corpsvc === 'monthly' ? '月' : '四半期';
-    if (state.corpsvc === 'monthly') add('Bookkeeping のレビュー＋BS／PL／CF の作成（月次）', FEES.corpMonthly);
-    else add('Bookkeeping のレビュー＋BS／PL／CF の作成（四半期）', FEES.corpQuarterly);
-    return { rows, total, corp:true, unit, fix: state.corpfix === 'yes' };
-  }
-
   if (state.type === 'consult') {
     const labels = { move:'渡米・帰国前後の税金の相談', invest:'日本の投資・資産の米国税務のご相談',
-                     resident:'居住判定・租税条約のご相談', other:'税務のご相談' };
+                     resident:'居住判定・租税条約のご相談', strategy:'税務戦略・タックスプランニングのご相談',
+                     other:'税務のご相談' };
     add(labels[state.consult] + '（時間制）', FEES.consultHr);
     return { rows, total, consult:true };
   }
@@ -690,13 +644,7 @@ function calc(){
 function render(){
   const r = calc();
   const amt = document.getElementById('est-amount');
-  document.getElementById('est-label').innerHTML = r.corp ? '法人向け 概算<b>最低</b>料金' : '概算<b>最低</b>料金';
-  if (r.corp) {
-    amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜 /${r.unit}</small>`;
-    document.getElementById('est-note').innerHTML = r.fix
-      ? '過去の帳簿のズレの対応は<b>別途 $350/時間</b>です。ご興味があれば「内訳を見る・依頼する」からメールをお送りください。'
-      : '<b>これは最低料金です。</b>取引量・帳簿の状態により変わります。「内訳を見る・依頼する」からメールをお送りください。';
-  } else if (r.consult) {
+  if (r.consult) {
     amt.innerHTML = `$${FEES.consultHr.toLocaleString()}<small> /時間（最低1時間）</small>`;
     document.getElementById('est-note').textContent = '2時間目以降は30分単位で計算します。「内訳を見る・依頼する」からご相談内容を送信すると、日程のご予約をご案内します。';
   } else {
@@ -707,20 +655,7 @@ function render(){
 
 // ===== 内訳・コピー =====
 function estimateText(){
-  const r0 = calc();
-  const { rows, total, consult } = r0;
-  if (r0.corp) {
-    const swLabel = { qbo:'QuickBooks Online', xero:'Xero', sheet:'Excel・スプレッドシート', other:'その他・未導入' }[state.corpsw];
-    const concernsC = document.getElementById('concerns').value.trim();
-    return [
-      '【法人向け】Bookkeeping レビュー＋財務諸表（BS／PL／CF ※非保証業務）',
-      ...rows.map(([l, a]) => `・${l}: $${a.toLocaleString()} 〜/${r0.unit}`),
-      `過去の帳簿のズレの対応: ${r0.fix ? 'あり（$350/時間の時間制）' : 'なし／わからない'}`,
-      `会計ソフト: ${swLabel}`,
-      `概算合計: $${total.toLocaleString()} 〜/${r0.unit}`,
-      ...(concernsC ? ['', '会社の状況・気になっていること:', concernsC] : []),
-    ].join('\n');
-  }
+  const { rows, total, consult } = calc();
   const filingLabel = { single:'単身', mfj:'夫婦合算（MFJ）', mfs:'夫婦個別（MFS）', unknown:'わからない' }[state.filing];
   let statusLabel = { citizen:'米国市民', gc:'グリーンカード', work:'就労ビザ（H/L/E等）', fj:'学生・研究者（F/J）', unknown:'その他・わからない' }[state.status];
   if (state.status === 'work') statusLabel += '・滞在' + ({ ge183:'183日以上', lt183:'183日未満', partial:'年の途中で渡米/帰国' }[state.workdays]);
@@ -737,47 +672,15 @@ function estimateText(){
 }
 
 function openSheet(){
-  const r0 = calc();
-  const { rows, total, consult } = r0;
-  if (r0.corp) {
-    document.getElementById('bdtable').innerHTML =
-      rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()} 〜/${r0.unit}</td></tr>`).join('') +
-      (r0.fix ? `<tr><td>過去の帳簿のズレの調査・修正（時間制）</td><td>$${FEES.corpFixHr.toLocaleString()}/時間</td></tr>` : '') +
-      `<tr class="total"><td>概算最低料金</td><td>$${total.toLocaleString()} 〜/${r0.unit}</td></tr>`;
-  } else {
-    document.getElementById('bdtable').innerHTML =
-      rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
-      (consult
-        ? `<tr class="total"><td>ご相談料</td><td>$350/時間（最低1時間）</td></tr>`
-        : `<tr class="total"><td>概算最低料金</td><td>$${total.toLocaleString()} 〜</td></tr>`);
-  }
-  syncSheetCopy();
+  const { rows, total, consult } = calc();
+  document.getElementById('bdtable').innerHTML =
+    rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}${consult ? '/h' : ''}</td></tr>`).join('') +
+    (consult
+      ? `<tr class="total"><td>ご相談料</td><td>$350/時間（最低1時間）</td></tr>`
+      : `<tr class="total"><td>概算最低料金</td><td>$${total.toLocaleString()} 〜</td></tr>`);
   document.getElementById('f-estimate').value = estimateText();
   document.getElementById('sheet').classList.add('open');
 }
-// 法人モードのときはシート内の文言を差し替える
-const SHEET_WARN_DEFAULT = document.getElementById('sheet-warn').innerHTML;
-const SHEET_WARN_CORP = `
-  <b>この金額は最低料金です。</b>正式なお見積りは、メールで会社の状況（業種・取引量・帳簿の状態）を確認してから確定します。実際の料金が上がる典型例：
-  <ul style="margin:.5rem 0 0;padding-left:1.3rem">
-    <li>月間の取引件数が多い／銀行・カード口座の数が多い</li>
-    <li>売掛・買掛、在庫、給与（Payroll）の管理が必要</li>
-    <li>複数の事業・複数の州にまたがる</li>
-    <li>外貨建ての取引がある（換算・調整が必要）</li>
-    <li>過去の帳簿のズレの調査・修正（$350/時間）</li>
-  </ul>
-  <div style="margin-top:.6rem">作成する財務諸表（BS／PL／CF）は<b>保証業務（監査・レビュー・コンピレーション）ではありません</b>。<b>確定金額にご同意いただいてから着手します。</b></div>`;
-
-function syncSheetCopy(){
-  const corp = state.type === 'corp';
-  document.getElementById('sheet-title').textContent = corp ? '法人向け 概算お見積りの内訳' : '概算お見積りの内訳';
-  document.getElementById('sheet-warn').innerHTML = corp ? SHEET_WARN_CORP : SHEET_WARN_DEFAULT;
-  document.getElementById('form-heading').textContent = corp
-    ? 'ご興味がある方は、メールでご連絡ください' : 'このままご依頼・お問い合わせ';
-  document.querySelector('.btn-send').textContent = corp
-    ? '上の内容とあわせてメールで問い合わせる' : '上の見積り内容とあわせて送信';
-}
-
 function closeSheet(){ document.getElementById('sheet').classList.remove('open'); }
 
 // Netlify Forms へ AJAX 送信
@@ -793,16 +696,14 @@ document.getElementById('reqform').addEventListener('submit', function(e){
     body: new URLSearchParams(new FormData(form)).toString(),
   }).then(res => {
     if (!res.ok) throw new Error(res.status);
-    const okId = (state.type === 'consult') ? 'form-ok-consult'
-               : (state.type === 'corp') ? 'form-ok-corp' : 'form-ok';
+    const okId = (state.type === 'consult') ? 'form-ok-consult' : 'form-ok';
     document.getElementById(okId).style.display = 'block';
     document.getElementById('form-err').style.display = 'none';
     form.querySelectorAll('input:not([type=hidden]),textarea,button').forEach(el => el.disabled = true);
     btn.textContent = '送信済み';
   }).catch(() => {
     document.getElementById('form-err').style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = (state.type === 'corp') ? '上の内容とあわせてメールで問い合わせる' : '上の見積り内容とあわせて送信';
+    btn.disabled = false; btn.textContent = '上の見積り内容とあわせて送信';
   });
 });
 
@@ -830,7 +731,7 @@ function copyEstimate(){
 // URLパラメータでモードを初期選択（判定ツールの「相談する」導線用）
 (function(){
   const t = new URLSearchParams(location.search).get('type');
-  if (t === 'consult' || t === 'sdop' || t === 'corp') {
+  if (t === 'consult' || t === 'sdop') {
     state.type = t;
     document.querySelectorAll('[data-key="type"] .opt').forEach(b => b.classList.toggle('on', b.dataset.v === t));
   }
