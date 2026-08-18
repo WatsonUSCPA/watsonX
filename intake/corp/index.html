@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>法人向け 料金かんたん見積り ｜ Watson US CPA</title>
-<meta name="description" content="法人（Corp / LLC）向けの記帳（Bookkeeping）レビュー、財務諸表（BS／PL／CF ※非保証業務）の作成、過去の帳簿の立て直し、税務戦略のご相談の概算料金を、質問に答えるだけで確認できます。" />
+<meta name="description" content="法人（Corp / LLC）向けの法人税申告書（Form 1120 / 1120-S / 1065）の作成、記帳（Bookkeeping）レビュー、財務諸表（BS／PL／CF ※非保証業務）の作成、過去の帳簿の立て直し、税務戦略のご相談の概算料金を、質問に答えるだけで確認できます。" />
 
 <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png" />
@@ -118,7 +118,7 @@
 
 <main>
   <h1>法人向け 料金かんたん見積り</h1>
-  <p class="lead">法人（C-Corp / S-Corp / LLC）向けの、記帳（Bookkeeping）のレビューと財務諸表の作成、過去の帳簿の立て直し、税務戦略のご相談の概算料金です。所要1分。入力内容はブラウザ内でのみ処理され、送信されません。</p>
+  <p class="lead">法人（C-Corp / S-Corp / LLC）向けの、法人税の申告書の作成、記帳（Bookkeeping）のレビューと財務諸表の作成、過去の帳簿の立て直し、税務戦略のご相談の概算料金です。所要1分。入力内容はブラウザ内でのみ処理され、送信されません。</p>
   <div class="notice">表示されるのは<b>最低料金（ここから始まる金額）</b>です。取引量・帳簿の状態によって変わります。正式なお見積りはメールで状況を伺ったうえで確定し、<b>ご同意いただいてから着手します</b>。</div>
   <div class="notice" style="background:var(--bg-tertiary);color:var(--tx-secondary);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
     <span>個人の確定申告（Form 1040・FBAR・Streamlined）のお見積りは別ページです。</span>
@@ -131,6 +131,7 @@
     <div class="opts" data-key="svc">
       <button class="opt on" data-v="monthly">毎月みてほしい（月次）</button>
       <button class="opt" data-v="quarterly">四半期ごとでいい（3か月に1回）</button>
+      <button class="opt" data-v="ret">法人税の申告書を作ってほしい</button>
       <button class="opt" data-v="cleanup">過去の帳簿のズレを直したい</button>
       <button class="opt" data-v="strategy">税務戦略の相談をしたい</button>
     </div>
@@ -172,6 +173,64 @@
     <p class="addnote" id="cleanup-note"></p>
   </div>
 
+  <!-- 法人税の申告書 -->
+  <div class="q mode-ret" id="q-entity" style="display:none">
+    <h2>会社の形態はどれですか？</h2>
+    <p class="hint">提出する申告書の種類が変わります。</p>
+    <div class="opts" data-key="entity">
+      <button class="opt on" data-v="ccorp">C-Corp（Form 1120）</button>
+      <button class="opt" data-v="scorp">S-Corp（Form 1120-S）</button>
+      <button class="opt" data-v="partnership">パートナーシップ・複数メンバーLLC（Form 1065）</button>
+      <button class="opt" data-v="smllc">単一メンバーLLC（個人の申告に合算）</button>
+      <button class="opt" data-v="unknown">わからない</button>
+    </div>
+    <p class="addnote" id="entity-note"></p>
+  </div>
+
+  <div class="q mode-ret" id="q-owners" style="display:none">
+    <h2>株主・パートナーは何名ですか？</h2>
+    <p class="hint">1名ごとに Schedule K-1 を作成します（C-Corp では不要です）。</p>
+    <div class="stepper" data-key="owners">
+      <button type="button" onclick="step('owners',-1)">−</button>
+      <span class="val" id="owners-val">1</span>
+      <button type="button" onclick="step('owners',1)">＋</button>
+      <span class="slabel">名</span>
+    </div>
+  </div>
+
+  <div class="q mode-ret" id="q-states" style="display:none">
+    <h2>申告が必要な州はいくつですか？</h2>
+    <p class="hint">1州目は基本料金に含まれます。事務所・従業員・一定の売上がある州は、それぞれ申告義務が生じることがあります。</p>
+    <div class="stepper" data-key="states">
+      <button type="button" onclick="step('states',-1)">−</button>
+      <span class="val" id="states-val">1</span>
+      <button type="button" onclick="step('states',1)">＋</button>
+      <span class="slabel">州</span>
+    </div>
+    <p class="addnote">どの州に申告義務があるか自体がはっきりしない場合は、Nexus（申告義務）の確認からお手伝いできます（時間制）。</p>
+  </div>
+
+  <div class="q mode-ret" id="q-intl" style="display:none">
+    <h2>海外（日本など）との関係はありますか？（あてはまるものすべて）</h2>
+    <div class="opts" data-key="intl" data-multi="1">
+      <button class="opt" data-v="f5472">米国外の株主・親会社が25%以上を保有している</button>
+      <button class="opt" data-v="f5471">米国外に子会社・関連会社がある</button>
+      <button class="opt" data-v="f1042">米国外への支払い（配当・使用料・役務対価など）がある</button>
+    </div>
+    <p class="addnote" id="intl-note">外国株主のいる米国法人は Form 5472 の提出が必要で、<b>出し忘れの罰金は1件あたり $25,000</b> です。該当しそうな場合は必ずお知らせください。</p>
+  </div>
+
+  <div class="q mode-ret" id="q-books" style="display:none">
+    <h2>帳簿はできていますか？</h2>
+    <p class="hint">申告料金は「帳簿ができている」前提の金額です。</p>
+    <div class="opts" data-key="books">
+      <button class="opt on" data-v="ready">できている（会計ソフトで締まっている）</button>
+      <button class="opt" data-v="rough">だいたいできているが、確認が必要</button>
+      <button class="opt" data-v="none">できていない／ズレがある</button>
+    </div>
+    <p class="addnote" id="books-note"></p>
+  </div>
+
   <!-- 税務戦略 -->
   <div class="q mode-strategy" id="q-strategy" style="display:none">
     <h2>どんなご相談ですか？</h2>
@@ -187,7 +246,7 @@
   </div>
 
   <!-- 会社の規模 -->
-  <div class="q mode-ongoing mode-cleanup" id="q-volume">
+  <div class="q mode-ongoing mode-cleanup mode-ret" id="q-volume">
     <h2>月あたりの取引件数はどのくらいですか？（任意）</h2>
     <p class="hint">銀行・クレジットカードの明細の行数のイメージで結構です。作業量の見当に使います。</p>
     <div class="opts" data-key="volume">
@@ -199,7 +258,7 @@
   </div>
 
   <!-- 会計ソフト -->
-  <div class="q mode-ongoing mode-cleanup" id="q-sw">
+  <div class="q mode-ongoing mode-cleanup mode-ret" id="q-sw">
     <h2>会計ソフトは何をお使いですか？</h2>
     <div class="opts" data-key="sw">
       <button class="opt on" data-v="qbo">QuickBooks Online</button>
@@ -279,13 +338,21 @@ const FEES = {
   monthly: 700,      // 月次 Bookkeeping レビュー＋BS/PL/CF（月額・〜から）
   quarterly: 1000,   // 四半期 Bookkeeping レビュー＋BS/PL/CF（四半期・〜から）
   hourly: 350,       // 過去の帳簿のズレ／税務戦略のご相談（時間制）
+  ret: 2500,         // 法人税の申告書（連邦＋州1つ・帳簿ができている前提・〜から）
+  retState: 400,     // 州の追加（1州あたり）
+  retK1: 150,        // Schedule K-1（2名目以降・1名あたり）
+  f5472: 750,        // Form 5472（外国株主のいる米国法人）
+  f5471: 1000,       // Form 5471（海外子会社）
+  f1042: 600,        // Form 1042 / 1042-S（米国外への支払い）
 };
 
-const state = { svc:'monthly', fix:'no', cleanupsize:'q', strategy:'entity', volume:'s', sw:'qbo' };
+const state = { svc:'monthly', fix:'no', cleanupsize:'q', strategy:'entity', volume:'s', sw:'qbo',
+                entity:'ccorp', owners:1, states:1, intl:new Set(), books:'ready' };
 
 const SVC_LABEL = {
   monthly: '月次 Bookkeeping レビュー＋BS／PL／CF の作成',
   quarterly: '四半期 Bookkeeping レビュー＋BS／PL／CF の作成',
+  ret: '法人税の申告書の作成',
   cleanup: '過去の帳簿のズレの調査・修正',
   strategy: '税務戦略のご相談',
 };
@@ -294,20 +361,39 @@ const STRATEGY_LABEL = {
   cross:'日米をまたぐ取引・親子会社の税務', state:'州をまたぐ事業（Nexus・州税）',
   exit:'売却・撤退・清算の検討', other:'法人税務のご相談',
 };
+const ENTITY_LABEL = {
+  ccorp:'C-Corp（Form 1120）', scorp:'S-Corp（Form 1120-S）',
+  partnership:'パートナーシップ・複数メンバーLLC（Form 1065）',
+  smllc:'単一メンバーLLC（個人の申告に合算）', unknown:'わからない（C-Corp 基準で仮計算）',
+};
 const VOLUME_LABEL = { s:'〜100件/月', m:'100〜500件/月', l:'500件以上/月' };
 const SW_LABEL = { qbo:'QuickBooks Online', xero:'Xero', sheet:'Excel・スプレッドシート', other:'その他・未導入' };
 const CLEANUP_LABEL = { q:'数か月分', y1:'1年分', y2:'2年分以上' };
 
 // ===== UI 配線 =====
 document.querySelectorAll('.opts').forEach(g => {
-  const key = g.dataset.key;
+  const key = g.dataset.key, multi = g.dataset.multi;
   g.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
-    g.querySelectorAll('.opt').forEach(x => x.classList.remove('on'));
-    b.classList.add('on');
-    state[key] = b.dataset.v;
+    if (multi) {
+      b.classList.toggle('on');
+      state[key].has(b.dataset.v) ? state[key].delete(b.dataset.v) : state[key].add(b.dataset.v);
+    } else {
+      g.querySelectorAll('.opt').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      state[key] = b.dataset.v;
+    }
     onChange();
   }));
 });
+
+function step(key, d){
+  state[key] = Math.max(1, Math.min(50, state[key] + d));
+  document.getElementById(key + '-val').textContent = state[key];
+  onChange();
+}
+
+// C-Corp は K-1 を作らない
+function hasK1(){ return state.entity === 'scorp' || state.entity === 'partnership'; }
 
 function isOngoing(){ return state.svc === 'monthly' || state.svc === 'quarterly'; }
 function unit(){ return state.svc === 'monthly' ? '月' : '四半期'; }
@@ -325,6 +411,8 @@ function onChange(){
     note.textContent = state.svc === 'monthly'
       ? '毎月、帳簿をレビューして財務諸表までお作りします。$700〜/月が目安です。'
       : '3か月に1回、まとめてレビューして財務諸表をお作りします。$1,000〜/四半期が目安です。';
+  } else if (state.svc === 'ret') {
+    note.textContent = '連邦＋州1つの法人税申告書の作成です。$2,500〜（帳簿ができている前提）。決算期末から2〜3か月前までにご相談いただけると余裕をもって進められます。';
   } else if (state.svc === 'cleanup') {
     note.textContent = '過去の帳簿の立て直しのみのご依頼です。作業量が案件ごとに大きく異なるため $350/時間の時間制になります。立て直しのあと、月次・四半期の継続をご希望の場合もご相談ください。';
   } else {
@@ -353,6 +441,26 @@ function onChange(){
     ? '例：いま検討していること、判断したい時期、会社の規模、株主構成、日本側の関係会社の有無、など。'
     : '例：業種、設立年、年商、従業員数、これまでの記帳の担当者、決算・申告の期限が近いか、など。書いていただくほど正確なお見積りができます。';
 
+  // 申告モードのサブ質問
+  if (state.svc === 'ret') {
+    document.getElementById('q-owners').style.display = hasK1() ? '' : 'none';
+    document.getElementById('entity-note').textContent = {
+      ccorp:'法人自身に法人税がかかります。株主への配当は株主側で課税されます。',
+      scorp:'法人では課税されず、損益が K-1 で株主に流れます。役員報酬（reasonable compensation）の水準が論点になりやすい形態です。',
+      partnership:'損益が K-1 でパートナーに流れます。持分の変動があった年は配賦の計算が加算になることがあります。',
+      smllc:'原則として個人の Form 1040（Schedule C 等）に合算します。個人向けの見積りページもあわせてご覧ください。',
+      unknown:'定款・IRS からの通知（CP 575 など）を拝見すれば判定できます。見積りは C-Corp 基準で仮計算します。',
+    }[state.entity];
+    document.getElementById('intl-note').innerHTML = (state.entity === 'scorp' && state.intl.has('f5472'))
+      ? 'S-Corp は原則として<b>非居住外国人を株主にできません</b>（要件を外れると S-Corp の選択自体が無効になります）。株主構成をお知らせいただければ、まず選択の有効性を確認します。'
+      : '外国株主のいる米国法人は Form 5472 の提出が必要で、<b>出し忘れの罰金は1件あたり $25,000</b> です。該当しそうな場合は必ずお知らせください。';
+    document.getElementById('books-note').textContent = {
+      ready:'',
+      rough:'確認・調整に時間がかかる場合は、時間制（$350/時間）での追加をご相談します。',
+      none:'まず帳簿の立て直し（$350/時間）が必要です。申告料金とは別枠になります。決算期限が近い場合は Extension（申告期限の延長）もあわせてご案内します。',
+    }[state.books];
+  }
+
   render();
 }
 
@@ -366,6 +474,18 @@ function calc(){
     add(STRATEGY_LABEL[state.strategy] + '（時間制）', FEES.hourly);
     return { rows, total, hourly:true };
   }
+  if (state.svc === 'ret') {
+    const label = { ccorp:'法人税の申告書（Form 1120・連邦＋州1つ）', scorp:'法人税の申告書（Form 1120-S・連邦＋州1つ）',
+                    partnership:'申告書（Form 1065・連邦＋州1つ）', smllc:'単一メンバーLLC（個人の申告に合算）',
+                    unknown:'法人税の申告書（連邦＋州1つ）' }[state.entity];
+    add(label, FEES.ret);
+    if (state.states > 1) add(`州の追加（${state.states - 1}州）`, (state.states - 1) * FEES.retState);
+    if (hasK1() && state.owners > 1) add(`Schedule K-1（${state.owners}名分のうち2名目以降）`, (state.owners - 1) * FEES.retK1);
+    if (state.intl.has('f5472')) add('外国株主のいる法人の報告（Form 5472）', FEES.f5472);
+    if (state.intl.has('f5471')) add('海外子会社の報告（Form 5471）〜', FEES.f5471);
+    if (state.intl.has('f1042')) add('米国外への支払いの報告（Form 1042 / 1042-S）', FEES.f1042);
+    return { rows, total, ret:true, cleanupNeeded: state.books === 'none' };
+  }
   if (state.svc === 'cleanup') {
     add(`過去の帳簿のズレの調査・修正（${CLEANUP_LABEL[state.cleanupsize]}・時間制）`, FEES.hourly);
     return { rows, total, hourly:true };
@@ -378,7 +498,12 @@ function render(){
   const r = calc();
   const amt = document.getElementById('est-amount');
   const note = document.getElementById('est-note');
-  if (r.hourly) {
+  if (r.ret) {
+    amt.innerHTML = `$${r.total.toLocaleString()}<small> 〜 /年</small>`;
+    note.innerHTML = r.cleanupNeeded
+      ? '帳簿の立て直しが必要な場合は<b>別途 $350/時間</b>です。'
+      : '<b>これは最低料金です。</b>帳簿ができている前提の金額です。';
+  } else if (r.hourly) {
     amt.innerHTML = `$${FEES.hourly.toLocaleString()}<small> /時間（最低1時間）</small>`;
     note.innerHTML = (state.svc === 'cleanup')
       ? '着手前に<b>想定時間の目安</b>をお伝えし、ご同意いただいてから作業します。'
@@ -402,6 +527,16 @@ const WARN_ONGOING = `
     <li>過去の帳簿のズレの調査・修正（$350/時間）</li>
   </ul>
   <div style="margin-top:.6rem">作成する財務諸表（BS／PL／CF）は<b>保証業務（監査・レビュー・コンピレーション）ではありません</b>。<b>確定金額にご同意いただいてから着手します。</b></div>`;
+const WARN_RETURN = `
+  <b>この金額は最低料金です。</b>正式なお見積りは、直近の試算表・前期の申告書を拝見してから確定します。実際の料金が上がる典型例：
+  <ul style="margin:.5rem 0 0;padding-left:1.3rem">
+    <li>帳簿の締めが終わっておらず、決算整理から必要（$350/時間）</li>
+    <li>固定資産・減価償却の台帳を作り直す必要がある</li>
+    <li>複数州にまたがる（Nexus の判定・所得の按分計算）</li>
+    <li>海外との取引がある（移転価格・源泉徴収の検討）</li>
+    <li>前期以前の申告に誤りがあり、修正申告が必要</li>
+  </ul>
+  <div style="margin-top:.6rem">申告期限の延長（Extension）の提出は料金に含みます。<b>確定金額にご同意いただいてから着手します。</b></div>`;
 const WARN_CLEANUP = `
   <b>時間制（$350/時間）でのご請求です。</b>作業量は帳簿の状態によって大きく変わるため、金額を先に固定することができません。進め方：
   <ul style="margin:.5rem 0 0;padding-left:1.3rem">
@@ -419,6 +554,17 @@ function estimateText(){
   const lines = ['【法人向け お見積り】' + SVC_LABEL[state.svc]];
   if (state.svc === 'strategy') {
     lines.push(`ご相談内容: ${STRATEGY_LABEL[state.strategy]}`, `料金: $${FEES.hourly.toLocaleString()}/時間（最低1時間）`);
+  } else if (state.svc === 'ret') {
+    const BOOKS_LABEL = { ready:'できている', rough:'だいたいできているが確認が必要', none:'できていない／ズレがある' };
+    lines.push(`会社の形態: ${ENTITY_LABEL[state.entity]}`,
+               ...(hasK1() ? [`株主・パートナー: ${state.owners}名`] : []),
+               `申告する州: ${state.states}州`,
+               `海外との関係: ${state.intl.size ? [...state.intl].map(v => ({f5472:'外国株主25%以上（Form 5472）', f5471:'海外子会社あり（Form 5471）', f1042:'米国外への支払いあり（Form 1042）'})[v]).join('、') : 'なし'}`,
+               `帳簿の状態: ${BOOKS_LABEL[state.books]}`,
+               `会計ソフト: ${SW_LABEL[state.sw]}`,
+               ...r.rows.map(([l, a]) => `・${l}: $${a.toLocaleString()}`),
+               `概算合計: $${r.total.toLocaleString()} 〜/年`,
+               ...(r.cleanupNeeded ? ['※帳簿の立て直しが必要（別途 $350/時間）'] : []));
   } else if (state.svc === 'cleanup') {
     lines.push(`対象期間: ${CLEANUP_LABEL[state.cleanupsize]}`, `月あたりの取引件数: ${VOLUME_LABEL[state.volume]}`,
                `会計ソフト: ${SW_LABEL[state.sw]}`, `料金: $${FEES.hourly.toLocaleString()}/時間`);
@@ -436,7 +582,11 @@ function estimateText(){
 function openSheet(){
   const r = calc();
   let html;
-  if (r.hourly) {
+  if (r.ret) {
+    html = r.rows.map(([l, a]) => `<tr><td>${l}</td><td>$${a.toLocaleString()}</td></tr>`).join('')
+         + (r.cleanupNeeded ? `<tr><td>帳簿の立て直し（時間制・別途）</td><td>$${FEES.hourly.toLocaleString()}/時間</td></tr>` : '')
+         + `<tr class="total"><td>概算最低料金</td><td>$${r.total.toLocaleString()} 〜/年</td></tr>`;
+  } else if (r.hourly) {
     html = r.rows.map(([l]) => `<tr><td>${l}</td><td>$${FEES.hourly.toLocaleString()}/時間</td></tr>`).join('')
          + `<tr class="total"><td>ご料金</td><td>$${FEES.hourly.toLocaleString()}/時間（最低1時間）</td></tr>`;
   } else {
@@ -446,7 +596,8 @@ function openSheet(){
   }
   document.getElementById('bdtable').innerHTML = html;
   document.getElementById('sheet-warn').innerHTML =
-    (state.svc === 'strategy') ? WARN_STRATEGY : (state.svc === 'cleanup') ? WARN_CLEANUP : WARN_ONGOING;
+    (state.svc === 'strategy') ? WARN_STRATEGY : (state.svc === 'cleanup') ? WARN_CLEANUP
+    : (state.svc === 'ret') ? WARN_RETURN : WARN_ONGOING;
   document.getElementById('f-estimate').value = estimateText();
   document.getElementById('sheet').classList.add('open');
 }
@@ -500,7 +651,7 @@ function copyEstimate(){
 // URLパラメータで初期選択（例: ?svc=strategy）
 (function(){
   const v = new URLSearchParams(location.search).get('svc');
-  if (['monthly','quarterly','cleanup','strategy'].includes(v)) {
+  if (['monthly','quarterly','ret','cleanup','strategy'].includes(v)) {
     state.svc = v;
     document.querySelectorAll('[data-key="svc"] .opt').forEach(b => b.classList.toggle('on', b.dataset.v === v));
   }
